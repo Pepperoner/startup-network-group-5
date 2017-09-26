@@ -1,4 +1,4 @@
-package ua.goit.java.startup.controller;
+package ua.goit.java.startup.ui;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
