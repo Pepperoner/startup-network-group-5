@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
  * Created by Aleksandr on 26.09.2017.
  */
 @Controller
-@ComponentScan(basePackages = "ua.goit.java.startup.domaiservise")
+@ComponentScan(basePackages = "ua.goit.java.startup.domainservise")
 public class HomePageController {
 
 }
