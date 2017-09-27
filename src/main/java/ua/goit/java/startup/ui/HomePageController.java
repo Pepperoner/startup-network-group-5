@@ -11,12 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by Aleksandr on 26.09.2017.
  */
 @Controller
-@ComponentScan(basePackages = "ua.goit.java.startup.domainservise")
 public class HomePageController {
 
-    private StartupService startupService;
-    private DeveloperService developerService;
-    private InvestorService investorService;
+//    private final StartupService startupService;
+//    private final DeveloperService developerService;
+//    private final InvestorService investorService;
 
 //    @Autowired
 //    public HomePageController(StartupService startupService, DeveloperService developerService, InvestorService investorService) {
