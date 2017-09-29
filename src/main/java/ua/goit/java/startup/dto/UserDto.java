@@ -10,9 +10,6 @@ import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-/**
- * Created by Aleksandr on 28.09.2017.
- */
 public class UserDto extends Model implements UserDetails {
 
     @Column(name = "username", nullable = false)

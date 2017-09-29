@@ -7,9 +7,6 @@ import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-/**
- * Created by Aleksandr on 28.09.2017.
- */
 public class StartupDto extends Model {
 
     @Column(name = "name", nullable = false)
