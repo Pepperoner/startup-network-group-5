@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ua.goit.java.startup.bom.UserRole;
 
+import javax.persistence.*;
 import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -14,20 +15,31 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
  */
 public class UserDto extends Model implements UserDetails {
 
+    @Column(name = "username", nullable = false)
     private String username;
 
+    @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "contacts", nullable = false)
     private String contacts;
 
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @Column(name = "paidcost", nullable = false)
     private long paidcost;
-
+    @Column(name = "locked", nullable = false)
     private boolean isLocked;
 
+    @Column(name = "image")
     private byte[] image;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_startups",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "startup_id"))
     Set<StartupDto> startupDto;
 
     public UserDto() {

@@ -1,12 +1,16 @@
 package ua.goit.java.startup.dto;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Aleksandr on 29.09.2017.
  */
+@MappedSuperclass
 public abstract class Model implements Serializable {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
     public long getId() {
