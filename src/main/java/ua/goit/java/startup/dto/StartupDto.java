@@ -25,8 +25,8 @@ public class StartupDto extends Model {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_startups",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "startup_id"))
+            joinColumns = @JoinColumn(name = "startup_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     Set<UserDto> userDto;
 
     public String getName() {
