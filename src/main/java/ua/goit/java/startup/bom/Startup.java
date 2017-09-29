@@ -6,7 +6,7 @@ import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-public class Startup {
+public class Startup extends Model {
 
     private String name;
 

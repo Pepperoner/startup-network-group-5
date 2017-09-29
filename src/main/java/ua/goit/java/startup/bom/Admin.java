@@ -11,7 +11,7 @@ import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-public class Admin implements UserDetails {
+public class Admin extends Model implements UserDetails {
 
     private String username;
 

@@ -11,7 +11,7 @@ import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-public class Investor implements UserDetails {
+public class Investor extends Model implements UserDetails {
 
     private String username;
 

@@ -8,7 +8,7 @@ import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-public class Developer implements UserDetails {
+public class Developer extends Model implements UserDetails {
 
     private String username;
 
