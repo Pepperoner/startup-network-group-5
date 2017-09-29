@@ -8,9 +8,6 @@ import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-/**
- * Created by Aleksandr on 29.09.2017.
- */
 public class Developer implements UserDetails {
 
     private String username;
