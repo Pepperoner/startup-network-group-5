@@ -73,7 +73,7 @@ import org.springframework.web.bind.annotation.*;
 //    @RequestMapping(method = RequestMethod.POST)
 //    public String createStartup (@ModelAttribute Startup startup){
 //        if (startup!= null){
-//            userService.createStartup(startup);
+//           Startup startup = userService.createStartup(startup);
 //        }
 //        return "redirect:startup/list";
 //    }
@@ -81,13 +81,13 @@ import org.springframework.web.bind.annotation.*;
 //
 //    @RequestMapping(method = RequestMethod.PUT)
 //    public String updateStartup(@ModelAttribute Startup startup) {
-//        userService.updateStartup(startup);
+//        Startup startup = userService.updateStartup(startup);
 //        return "redirect:startup/list";
 //    }
 //
 //    @RequestMapping(method = RequestMethod.DELETE)
 //    public String deleteStrtup(@RequestParam String id) {
-//        userService.deleteStartup(id);
+//        Startup startup = userService.deleteStartup(id);
 //        return "redirect:startup/list";
 //    }
 
