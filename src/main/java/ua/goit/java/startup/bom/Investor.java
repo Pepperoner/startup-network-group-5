@@ -3,7 +3,6 @@ package ua.goit.java.startup.bom;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ua.goit.java.startup.dto.StartupDto;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,7 +27,7 @@ public class Investor implements UserDetails {
 
     private byte[] image;
 
-    Set<StartupDto> startup;
+    Set<Startup> startup;
 
     public Investor() {
         username = "";
@@ -133,11 +132,11 @@ public class Investor implements UserDetails {
         this.image = image;
     }
 
-    public Set<StartupDto> getStartup() {
+    public Set<Startup> getStartup() {
         return startup;
     }
 
-    public void setStartup(Set<StartupDto> startup) {
+    public void setStartup(Set<Startup> startup) {
 
         this.startup = startup != null ? startup : new HashSet<>();
     }
