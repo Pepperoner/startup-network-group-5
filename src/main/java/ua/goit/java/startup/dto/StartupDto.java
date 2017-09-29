@@ -7,7 +7,7 @@ import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-public class StartupDto extends Model {
+public class StartupDto extends ModelDTO {
 
     @Column(name = "name", nullable = false)
     private String name;

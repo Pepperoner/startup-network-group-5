@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @MappedSuperclass
-public abstract class Model implements Serializable {
+public abstract class ModelDTO implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,7 +28,7 @@ public abstract class Model implements Serializable {
 
     @Override
     public String toString() {
-        return "Model{" +
+        return "ModelDTO{" +
                 "id=" + id +
                 '}';
     }

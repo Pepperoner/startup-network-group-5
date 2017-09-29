@@ -10,7 +10,7 @@ import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-public class UserDto extends Model implements UserDetails {
+public class UserDto extends ModelDTO implements UserDetails {
 
     @Column(name = "username", nullable = false)
     private String username;

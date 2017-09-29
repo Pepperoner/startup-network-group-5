@@ -1,7 +1,8 @@
 package ua.goit.java.startup.translator;
 
 import ua.goit.java.startup.bom.Developer;
-import ua.goit.java.startup.dto.Model;
+import ua.goit.java.startup.bom.Model;
+import ua.goit.java.startup.dto.ModelDTO;
 import ua.goit.java.startup.dto.UserDto;
 
 /**
@@ -13,8 +14,10 @@ public class DeveloperTranslator {
         if (source == null){
             return;
         }
-        Model modelSource = source;
-
+        ModelDTO modelDTOSource = source;
+        Model modelDesination = destination;
+        destination.setId(source.getId());
+        destination.
 
 
     }

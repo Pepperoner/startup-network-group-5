@@ -28,7 +28,7 @@ public abstract class Model {
 
     @Override
     public String toString() {
-        return "Model{" +
+        return "ModelDTO{" +
                 "id=" + id +
                 '}';
     }
