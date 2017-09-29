@@ -1,5 +1,6 @@
 package ua.goit.java.startup.dto;
 
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,16 +12,21 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
  */
 public class StartupDto extends Model {
 
+    @Column(name = "name", nullable = false)
     private String name;
-
+    @Column(name = "description", nullable = false)
     private String description;
-
+    @Column(name = "cost", nullable = false)
     private long cost;
-
+    @Column(name = "currentsum", nullable = false)
     private long currentsum;
-
+    @Column(name = "image")
     private byte[] image;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_startups",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "startup_id"))
     Set<UserDto> userDto;
 
     public String getName() {
