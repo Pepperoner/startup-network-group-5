@@ -135,7 +135,7 @@ public class Developer implements UserDetails {
     }
 
     public void setStartup(Set<Startup> startup) {
-        this.startup = startup;
+        this.startup = startup != null ? startup : new HashSet<>();
     }
 
     @Override
