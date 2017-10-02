@@ -1,8 +1,10 @@
 package ua.goit.java.startup.translator;
 
+import org.springframework.stereotype.Component;
 import ua.goit.java.startup.bom.User;
 import ua.goit.java.startup.dto.UserDto;
 
+@Component
 public class UserTranslator {
 
 

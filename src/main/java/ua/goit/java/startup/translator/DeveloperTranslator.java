@@ -28,14 +28,14 @@ public class DeveloperTranslator {
 //        }
 //    }
 
-    public void toDto(User source, UserDto destination) {
+    public void toDto(Developer source, UserDto destination) {
         if (source == null) {
             return;
         }
 
     }
 
-    public void fromDto(UserDto source, User destination) {
+    public void fromDto(UserDto source, Developer destination) {
 
 
     }

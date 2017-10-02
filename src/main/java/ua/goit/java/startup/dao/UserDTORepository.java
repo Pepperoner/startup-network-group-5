@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import ua.goit.java.startup.dto.UserDto;
 
 //@Repository
-public interface UserDTORepository extends CrudRepository<UserDto, Integer> {
+public interface UserDTORepository extends CrudRepository<UserDto, Long> {
     UserDto findByEmail(String email);
     //UserDto findByEmail(String email);
     //User findByConfirmationToken(String confirmationToken);
