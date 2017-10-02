@@ -10,43 +10,52 @@ import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
+@Entity
+@Table(name = "user")
 public class UserDto extends ModelDTO implements UserDetails {
 
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "LAST_NAME", nullable = false)
+    private String lastName;
+
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "contacts", nullable = false)
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "contacts")
     private String contacts;
 
     @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private UserRole role;
 
-    @Column(name = "paidcost", nullable = false)
+    @Column(name = "paidcost")
     private long paidcost;
-    @Column(name = "locked", nullable = false)
+    @Column(name = "locked")
     private boolean isLocked;
 
     @Column(name = "image")
     private byte[] image;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "users_startups",
+    @ManyToMany/*(cascade = CascadeType.ALL)*/(mappedBy = "userDto")
+    /*@JoinTable(name = "users_startups",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "startup_id"))
-    Set<StartupDto> startupDto;
+            inverseJoinColumns = @JoinColumn(name = "startup_id"))*/
+
+    private Set<StartupDto> startupDto = new HashSet<>();
 
     public UserDto() {
-        username = "";
+        /*username = "";
         password = "";
         contacts = "";
         role = UserRole.INVESTOR;
         paidcost = 0;
         startupDto = new HashSet<>();
-        image = new byte[0];
+        image = new byte[0];*/
     }
 
     public UserDto(String username, String password, String contacts, UserRole role, long paidcost) {
@@ -91,6 +100,14 @@ public class UserDto extends ModelDTO implements UserDetails {
         this.username = isNotBlank(username) ? username : "";
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     @Override
     public String getPassword() {
         return password;
@@ -98,6 +115,15 @@ public class UserDto extends ModelDTO implements UserDetails {
 
     public void setPassword(String password) {
         this.password = isNotBlank(password) ? password : "";
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getContacts() {
@@ -166,7 +192,7 @@ public class UserDto extends ModelDTO implements UserDetails {
                 ", paidcost=" + paidcost +
                 ", isLocked=" + isLocked +
                 ", image=" + Arrays.toString(image) +
-                ", startupDto=" + startupDto +
+                //", startupDto=" + startupDto +
                 '}';
     }
 

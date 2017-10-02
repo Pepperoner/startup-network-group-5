@@ -1,10 +1,7 @@
 package ua.goit.java.startup.translator;
 
-import ua.goit.java.startup.bom.Developer;
-import ua.goit.java.startup.bom.Model;
-import ua.goit.java.startup.bom.Startup;
-import ua.goit.java.startup.bom.UserRole;
-import ua.goit.java.startup.dto.ModelDTO;
+import ua.goit.java.startup.bom.*;
+//import ua.goit.java.startup.dto.ModelDTO;
 import ua.goit.java.startup.dto.UserDto;
 
 import java.util.HashSet;
@@ -30,5 +27,17 @@ public class DeveloperTranslator {
 //            developerDestination.setStartup(source.getStartupDto());
 //        }
 //    }
+
+    public void toDto(User source, UserDto destination) {
+        if (source == null) {
+            return;
+        }
+
+    }
+
+    public void fromDto(UserDto source, User destination) {
+
+
+    }
 }
 

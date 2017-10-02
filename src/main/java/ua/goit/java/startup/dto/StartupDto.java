@@ -7,6 +7,8 @@ import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
+@Entity
+@Table(name = "startup")
 public class StartupDto extends ModelDTO {
 
     @Column(name = "name", nullable = false)
@@ -20,11 +22,12 @@ public class StartupDto extends ModelDTO {
     @Column(name = "image")
     private byte[] image;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    /*@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_startups",
             joinColumns = @JoinColumn(name = "startup_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    Set<UserDto> userDto;
+            inverseJoinColumns = @JoinColumn(name = "user_id"))*/
+    @ManyToMany//(mappedBy = "startupDto")
+    private Set<UserDto> userDto = new HashSet<>();
 
     public String getName() {
         return name;
@@ -75,12 +78,12 @@ public class StartupDto extends ModelDTO {
     }
 
     public StartupDto() {
-        this.name = "";
+        /*this.name = "";
         this.description = "";
         this.cost = 0;
         this.currentsum = 0;
         this.image = new byte[0];
-        this.userDto = new HashSet<>();
+        this.userDto = new HashSet<>();*/
     }
 
     public StartupDto(String name, String description, long cost, long currentsum, byte[] image, Set<UserDto> userDto) {
@@ -101,7 +104,7 @@ public class StartupDto extends ModelDTO {
                 ", cost=" + cost +
                 ", currentsum=" + currentsum +
                 ", image=" + Arrays.toString(image) +
-                ", userDto=" + userDto +
+                //", userDto=" + userDto +
                 '}';
     }
 

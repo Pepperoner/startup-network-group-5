@@ -1,0 +1,26 @@
+.role-selector-wrapper{
+    width: 70%;
+    margin: 30% auto 0;
+}
+
+.role-selector-block{
+    display: inline-block;
+    width: 50%;
+    float: left;
+    background-color: aliceblue;
+    padding: 15px 10px 15px 50px;
+    font-size: 20px;
+    border: 1px solid;
+}
+.role-selector-submit{
+    text-align: center;
+    padding: 10px 0;
+    clear: both;
+    background-color: papayawhip;
+}
+
+#show_reg_form{
+    padding: 5px 20px;
+    border-radius: 10px;
+    font-size: larger;
+}
