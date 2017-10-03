@@ -11,12 +11,11 @@ import java.util.*;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserDto extends ModelDTO implements UserDetails {
 
     @Column(name = "username", nullable = false)
     private String username;
-
 
     @Column(name = "password")
     private String password;
@@ -46,7 +45,8 @@ public class UserDto extends ModelDTO implements UserDetails {
 
     private Set<StartupDto> startupDto = new HashSet<>();
 
-    public UserDto() {}
+    public UserDto() {
+    }
 
     public UserDto(String username, String password, String contacts, UserRole role, long paidcost) {
         this();
@@ -68,6 +68,7 @@ public class UserDto extends ModelDTO implements UserDetails {
         if (paidcost != userDto.paidcost) return false;
         if (!username.equals(userDto.username)) return false;
         if (!password.equals(userDto.password)) return false;
+        if (!email.equals(userDto.email)) return false;
         if (!contacts.equals(userDto.contacts)) return false;
         return role == userDto.role;
     }
@@ -76,6 +77,7 @@ public class UserDto extends ModelDTO implements UserDetails {
     public int hashCode() {
         int result = username.hashCode();
         result = 31 * result + password.hashCode();
+        result = 31 * result + email.hashCode();
         result = 31 * result + contacts.hashCode();
         result = 31 * result + role.hashCode();
         result = 31 * result + (int) (paidcost ^ (paidcost >>> 32));
@@ -106,7 +108,7 @@ public class UserDto extends ModelDTO implements UserDetails {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = isNotBlank(email) ? email : "";
     }
 
     public String getContacts() {
@@ -167,15 +169,16 @@ public class UserDto extends ModelDTO implements UserDetails {
 
     @Override
     public String toString() {
-        return "UserDto{" + super.toString() + " " +
+        return "UserDto{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", contacts='" + contacts + '\'' +
                 ", role=" + role +
                 ", paidcost=" + paidcost +
                 ", isLocked=" + isLocked +
                 ", image=" + Arrays.toString(image) +
-                //", startupDto=" + startupDto +
+                ", startupDto=" + startupDto +
                 '}';
     }
 

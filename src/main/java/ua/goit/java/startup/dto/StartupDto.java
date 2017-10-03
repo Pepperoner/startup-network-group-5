@@ -7,7 +7,7 @@ import java.util.Set;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Entity
-@Table(name = "startup")
+@Table(name = "startups")
 public class StartupDto extends ModelDTO {
 
     @Column(name = "name", nullable = false)
@@ -95,7 +95,7 @@ public class StartupDto extends ModelDTO {
                 ", cost=" + cost +
                 ", currentsum=" + currentsum +
                 ", image=" + Arrays.toString(image) +
-                //", userDto=" + userDto +
+                ", userDto=" + userDto +
                 '}';
     }
 

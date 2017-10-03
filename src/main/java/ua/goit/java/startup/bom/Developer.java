@@ -14,6 +14,8 @@ public class Developer extends Model implements UserDetails {
 
     private String password;
 
+    private String email;
+
     private String contacts;
 
     private UserRole role;
@@ -80,6 +82,14 @@ public class Developer extends Model implements UserDetails {
 
     public void setPassword(String password) {
         this.password = isNotBlank(password) ? password : "";
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = isNotBlank(email) ? email : "";
     }
 
     public String getContacts() {

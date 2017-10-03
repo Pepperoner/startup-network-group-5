@@ -27,6 +27,6 @@ public class DeveloperAspect {
     public void fillDeveloperInfo(JoinPoint joinPoint) {
         Developer developer = (Developer) joinPoint.getTarget();
         UserDto userDto = userDTORepository.findOne(developer.getId());
-        //developerTranslator.fromDto(userDto, developer);
+        developerTranslator.fromDto(userDto, developer);
     }
 }
