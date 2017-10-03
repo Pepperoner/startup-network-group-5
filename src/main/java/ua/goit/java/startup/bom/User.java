@@ -1,15 +1,17 @@
 package ua.goit.java.startup.bom;
 
 
-import java.util.List;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class User{
+import java.util.Collection;
+
+
+public class User extends Model implements UserDetails {
 
     private int id;
 
     private String firstName;
-
-    private String lastName;
 
     private String email;
 
@@ -19,16 +21,51 @@ public class User{
 
     public User() {}
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
     }
 
     public void setId(int id) {
@@ -41,14 +78,6 @@ public class User{
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -70,10 +99,9 @@ public class User{
     @Override
     public String toString() {
 
-        return String.format("UserDTO{id=%d, firstName='%s', lastName='%s', email='%s', roleList=[%s]}",
+        return String.format("UserDTO{id=%d, firstName='%s', email='%s', roleList=[%s]}",
                 id,
                 firstName,
-                lastName,
                 email,
                 roleList
         );

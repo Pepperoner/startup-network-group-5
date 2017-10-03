@@ -17,13 +17,11 @@ public class UserDto extends ModelDTO implements UserDetails {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "LAST_NAME", nullable = false)
-    private String lastName;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "EMAIL")
+    @Column(name = "email")
     private String email;
 
     @Column(name = "contacts")
@@ -41,22 +39,14 @@ public class UserDto extends ModelDTO implements UserDetails {
     @Column(name = "image")
     private byte[] image;
 
-    @ManyToMany/*(cascade = CascadeType.ALL)*/(mappedBy = "userDto")
-    /*@JoinTable(name = "users_startups",
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_startups",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "startup_id"))*/
+            inverseJoinColumns = @JoinColumn(name = "startup_id"))
 
     private Set<StartupDto> startupDto = new HashSet<>();
 
-    public UserDto() {
-        /*username = "";
-        password = "";
-        contacts = "";
-        role = UserRole.INVESTOR;
-        paidcost = 0;
-        startupDto = new HashSet<>();
-        image = new byte[0];*/
-    }
+    public UserDto() {}
 
     public UserDto(String username, String password, String contacts, UserRole role, long paidcost) {
         this();
@@ -100,13 +90,6 @@ public class UserDto extends ModelDTO implements UserDetails {
         this.username = isNotBlank(username) ? username : "";
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     @Override
     public String getPassword() {

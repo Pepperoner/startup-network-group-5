@@ -21,13 +21,6 @@
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
 
-                <div class="form-group input-group has-feedback">
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </span>
-                    <input name="lastName" id="lastName" placeholder="Last Name" class="form-control" required />
-                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                </div>
 
                 <div class="form-group input-group has-feedback">
                     <span class="input-group-addon">

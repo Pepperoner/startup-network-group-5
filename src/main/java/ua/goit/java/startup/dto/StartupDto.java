@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Entity
@@ -22,11 +21,10 @@ public class StartupDto extends ModelDTO {
     @Column(name = "image")
     private byte[] image;
 
-    /*@ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_startups",
             joinColumns = @JoinColumn(name = "startup_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))*/
-    @ManyToMany//(mappedBy = "startupDto")
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<UserDto> userDto = new HashSet<>();
 
     public String getName() {
@@ -77,14 +75,7 @@ public class StartupDto extends ModelDTO {
         this.userDto = userDto != null ? userDto : new HashSet<>();
     }
 
-    public StartupDto() {
-        /*this.name = "";
-        this.description = "";
-        this.cost = 0;
-        this.currentsum = 0;
-        this.image = new byte[0];
-        this.userDto = new HashSet<>();*/
-    }
+    public StartupDto() {}
 
     public StartupDto(String name, String description, long cost, long currentsum, byte[] image, Set<UserDto> userDto) {
         this();

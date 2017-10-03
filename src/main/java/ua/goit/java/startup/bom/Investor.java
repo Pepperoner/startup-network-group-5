@@ -27,17 +27,9 @@ public class Investor extends Model implements UserDetails {
 
     private byte[] image;
 
-    Set<Startup> startup;
+    Set<Startup> startup = new HashSet<>();;
 
-    public Investor() {
-        username = "";
-        password = "";
-        contacts = "";
-        role = UserRole.INVESTOR;
-        paidcost = 0;
-        startup = new HashSet<>();
-        image = new byte[0];
-    }
+    public Investor() {}
 
     public Investor(String username, String password, String contacts, UserRole role, long paidcost) {
         this();

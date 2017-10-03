@@ -1,12 +1,9 @@
 package ua.goit.java.startup.config;
 
-//import com.dimas.service.UserDetailsServiceImpl;
-//import com.dimas.service.UserService;
-//import com.dimas.service.UserServiceImpl;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
