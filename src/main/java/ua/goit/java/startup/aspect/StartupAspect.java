@@ -25,6 +25,6 @@ public class StartupAspect {
     public void fillStarupInfo(JoinPoint joinPoint) {
         Startup startup = (Startup) joinPoint.getTarget();
         StartupDto startupDto = startupDTORepository.findOne(startup.getId());
-        startupTranslator.fromDTO(startupDto, startup);
+        startupTranslator.fromDto(startupDto, startup);
     }
 }

@@ -7,9 +7,9 @@ import ua.goit.java.startup.dto.UserDto;
 import java.util.HashSet;
 import java.util.Set;
 
-public class StartupTranslator {
+public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
 
-    public void fromDTO(StartupDto source, Model destination) {
+    public void fromDTO (StartupDto source, Model destination) {
         if (source == null) {
             return;
         }
@@ -21,6 +21,7 @@ public class StartupTranslator {
         startupDestination.setCost(source.getCost());
         startupDestination.setCurrentsum(source.getCurrentsum());
         startupDestination.setImage(source.getImage());
+
         Set<Developer> developers = new HashSet<>();
         startupDestination.setDeveloper(developers);
         for (UserDto userDto : source.getUserDto()) {
