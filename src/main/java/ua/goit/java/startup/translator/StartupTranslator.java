@@ -66,12 +66,6 @@ public class StartupTranslator {
         }
     }
 }
-//    public Set<Startup> getSetFromDTO(Set<StartupDto> dtoSet){
-//        Set<Startup> startupSet = new HashSet<>();
-//        for (StartupDto startupDto : dtoSet) {
-//            Startup startup = new Startup();
-//            startupSet.add((Startup) startupDto)
-//        }
-//    }
+
 
 
