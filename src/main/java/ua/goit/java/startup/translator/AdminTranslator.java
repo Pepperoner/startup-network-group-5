@@ -1,7 +1,7 @@
 package ua.goit.java.startup.translator;
 
-
 import org.springframework.stereotype.Component;
+import ua.goit.java.startup.bom.Admin;
 import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.bom.Startup;
 import ua.goit.java.startup.dto.StartupDto;
@@ -11,11 +11,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
-
+public class AdminTranslator extends DataTranslator<UserDto, Admin> {
 
     @Override
-    public void fromDto(UserDto source, Investor destination) {
+    public void fromDto(UserDto source, Admin destination) {
         if (source == null) {
             return;
         }
@@ -41,7 +40,7 @@ public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
     }
 
     @Override
-    public void toDto(Investor source, UserDto destination) {
+    public void toDto(Admin source, UserDto destination) {
         if (source == null) {
             return;
         }
@@ -63,20 +62,5 @@ public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
             startupDtos.add(startupDto);
         }
     }
-
-//    @Override
-//    public UserDto toDto(Investor source) {
-//        UserDto destination = new UserDto();
-//        toDto(source, destination);
-//        return destination;
-//    }
-//
-//
-//    @Override
-//    public Investor fromDto(UserDto source) {
-//        Investor destination = new Investor();
-//        fromDto(source, destination);
-//        return destination;
-//    }
 
 }
