@@ -147,13 +147,14 @@ public class Investor extends Model implements UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Investor investor = (Investor) o;
 
         if (paidcost != investor.paidcost) return false;
-        if (isLocked != investor.isLocked) return false;
         if (!username.equals(investor.username)) return false;
         if (!password.equals(investor.password)) return false;
+        if (!email.equals(investor.email)) return false;
         if (!contacts.equals(investor.contacts)) return false;
         return role == investor.role;
     }
@@ -162,10 +163,10 @@ public class Investor extends Model implements UserDetails {
     public int hashCode() {
         int result = username.hashCode();
         result = 31 * result + password.hashCode();
+        result = 31 * result + email.hashCode();
         result = 31 * result + contacts.hashCode();
         result = 31 * result + role.hashCode();
         result = 31 * result + (int) (paidcost ^ (paidcost >>> 32));
-        result = 31 * result + (isLocked ? 1 : 0);
         return result;
     }
 }

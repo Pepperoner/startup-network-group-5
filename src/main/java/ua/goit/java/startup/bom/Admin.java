@@ -155,13 +155,14 @@ public class Admin extends Model implements UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Admin admin = (Admin) o;
 
         if (paidcost != admin.paidcost) return false;
-        if (isLocked != admin.isLocked) return false;
         if (!username.equals(admin.username)) return false;
         if (!password.equals(admin.password)) return false;
+        if (!email.equals(admin.email)) return false;
         if (!contacts.equals(admin.contacts)) return false;
         return role == admin.role;
     }
@@ -170,10 +171,10 @@ public class Admin extends Model implements UserDetails {
     public int hashCode() {
         int result = username.hashCode();
         result = 31 * result + password.hashCode();
+        result = 31 * result + email.hashCode();
         result = 31 * result + contacts.hashCode();
         result = 31 * result + role.hashCode();
         result = 31 * result + (int) (paidcost ^ (paidcost >>> 32));
-        result = 31 * result + (isLocked ? 1 : 0);
         return result;
     }
 }

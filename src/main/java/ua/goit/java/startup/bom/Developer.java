@@ -144,29 +144,26 @@ public class Developer extends Model implements UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Developer developer = (Developer) o;
 
         if (paidcost != developer.paidcost) return false;
-        if (isLocked != developer.isLocked) return false;
-        if (username != null ? !username.equals(developer.username) : developer.username != null) return false;
-        if (password != null ? !password.equals(developer.password) : developer.password != null) return false;
-        if (contacts != null ? !contacts.equals(developer.contacts) : developer.contacts != null) return false;
-        if (role != developer.role) return false;
-        if (!Arrays.equals(image, developer.image)) return false;
-        return startup != null ? startup.equals(developer.startup) : developer.startup == null;
+        if (!username.equals(developer.username)) return false;
+        if (!password.equals(developer.password)) return false;
+        if (!email.equals(developer.email)) return false;
+        if (!contacts.equals(developer.contacts)) return false;
+        return role == developer.role;
     }
 
     @Override
     public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (contacts != null ? contacts.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
+        int result = username.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + contacts.hashCode();
+        result = 31 * result + role.hashCode();
         result = 31 * result + (int) (paidcost ^ (paidcost >>> 32));
-        result = 31 * result + (isLocked ? 1 : 0);
-        result = 31 * result + Arrays.hashCode(image);
-        result = 31 * result + (startup != null ? startup.hashCode() : 0);
         return result;
     }
 }
