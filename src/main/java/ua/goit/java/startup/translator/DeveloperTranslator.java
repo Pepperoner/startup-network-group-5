@@ -62,20 +62,20 @@ public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
         }
     }
 
-//    @Override
-//    public UserDto toDto(Developer source) {
-//        UserDto destination = new UserDto();
-//        toDto(source, destination);
-//        return destination;
-//    }
-//
-//
-//    @Override
-//    public Developer fromDto(UserDto source) {
-//        Developer destination = new Developer();
-//        fromDto(source, destination);
-//        return destination;
-//    }
+    @Override
+    public UserDto toDto(Developer source) {
+        UserDto destination = new UserDto();
+        toDto(source, destination);
+        return destination;
+    }
+
+
+    @Override
+    public Developer fromDto(UserDto source) {
+        Developer destination = new Developer();
+        fromDto(source, destination);
+        return destination;
+    }
 
 
 

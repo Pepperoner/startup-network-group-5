@@ -64,19 +64,19 @@ public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
         }
     }
 
-//    @Override
-//    public UserDto toDto(Investor source) {
-//        UserDto destination = new UserDto();
-//        toDto(source, destination);
-//        return destination;
-//    }
-//
-//
-//    @Override
-//    public Investor fromDto(UserDto source) {
-//        Investor destination = new Investor();
-//        fromDto(source, destination);
-//        return destination;
-//    }
+    @Override
+    public UserDto toDto(Investor source) {
+        UserDto destination = new UserDto();
+        toDto(source, destination);
+        return destination;
+    }
+
+
+    @Override
+    public Investor fromDto(UserDto source) {
+        Investor destination = new Investor();
+        fromDto(source, destination);
+        return destination;
+    }
 
 }

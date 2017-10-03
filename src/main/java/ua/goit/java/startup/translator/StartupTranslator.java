@@ -1,5 +1,6 @@
 package ua.goit.java.startup.translator;
 
+import org.springframework.stereotype.Component;
 import ua.goit.java.startup.bom.*;
 import ua.goit.java.startup.dto.StartupDto;
 import ua.goit.java.startup.dto.UserDto;
@@ -7,6 +8,7 @@ import ua.goit.java.startup.dto.UserDto;
 import java.util.HashSet;
 import java.util.Set;
 
+@Component
 public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
 
     public void fromDTO (StartupDto source, Model destination) {

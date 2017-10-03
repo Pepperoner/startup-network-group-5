@@ -31,10 +31,10 @@ public class DataConfig {
 
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         //put here your db url
-        dataSource.setUrl("jdbc:mysql://localhost:3306/startap");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/startupdb");
         dataSource.setUsername("root");
         //put here your db password, if needed
-        //dataSource.setPassword("1111");
+        //dataSource.setPassword("root");
         return dataSource;
     }
 
