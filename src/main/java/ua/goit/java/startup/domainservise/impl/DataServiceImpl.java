@@ -9,6 +9,8 @@ import ua.goit.java.startup.translator.DataTranslator;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DataServiceImpl<T extends ModelDTO, V extends Model> implements DataService<V> {
 
@@ -53,11 +55,10 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
 
     @Override
     public Collection<V> getAll() {
-
-      /*  Collection<T> modelDto = (Collection<T>) repository.findAll();
-        Collection<V> model = translator.fromDto(modelDto);
-        return model;*/
-      return null;
+        Set<T> modelDto = (Set<T>) repository.findAll();
+        Set<V> model = new HashSet<V>();
+        model.addAll(translator.getListFromDto(modelDto));
+        return model;
     }
 
     @Override
