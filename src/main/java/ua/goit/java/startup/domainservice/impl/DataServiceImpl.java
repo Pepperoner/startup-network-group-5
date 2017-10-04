@@ -8,6 +8,7 @@ import ua.goit.java.startup.domainservice.DataService;
 import ua.goit.java.startup.dto.ModelDTO;
 import ua.goit.java.startup.translator.DataTranslator;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +19,7 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     private DataRepository<T> repository;
     @Autowired
     private DataTranslator<T, V> translator;
-    
+
     @Override
     @Transactional
     public V add(V model) {
@@ -30,7 +31,9 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     @Override
     @Transactional
     public Collection<V> addAll(Collection<V> collection) {
-        return null;
+        Collection<V> addedModels = new ArrayList<V>();
+        collection.forEach(model -> addedModels.add(this.add(model)));
+        return addedModels;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     @Override
     @Transactional
     public Collection<V> updateAll(Collection<V> collection) {
-        return null;
+        return this.addAll(collection);
     }
 
     @Override
