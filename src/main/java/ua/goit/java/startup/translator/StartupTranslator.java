@@ -11,21 +11,21 @@ import java.util.Set;
 @Component
 public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
 
-    public void fromDTO (StartupDto source, Model destination) {
+    @Override
+    public void fromDto(StartupDto source, Startup destination) {
         if (source == null) {
             return;
         }
 
-        Startup startupDestination = (Startup) destination;
-        startupDestination.setId(source.getId());
-        startupDestination.setName(source.getName());
-        startupDestination.setDescription(source.getDescription());
-        startupDestination.setCost(source.getCost());
-        startupDestination.setCurrentsum(source.getCurrentsum());
-        startupDestination.setImage(source.getImage());
+        destination.setId(source.getId());
+        destination.setName(source.getName());
+        destination.setDescription(source.getDescription());
+        destination.setCost(source.getCost());
+        destination.setCurrentsum(source.getCurrentsum());
+        destination.setImage(source.getImage());
 
         Set<Developer> developers = new HashSet<>();
-        startupDestination.setDeveloper(developers);
+        destination.setDeveloper(developers);
         for (UserDto userDto : source.getUserDto()) {
             if (UserRole.DEVELOPER.equals(userDto.getRole())) {
                 Developer developer = new Developer();
@@ -34,7 +34,7 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
             }
         }
         Set<Investor> investors = new HashSet<>();
-        startupDestination.setInvestor(investors);
+        destination.setInvestor(investors);
         for (UserDto userDto : source.getUserDto()) {
             if (UserRole.INVESTOR.equals(userDto.getRole())) {
                 Investor investor = new Investor();
@@ -44,7 +44,8 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
         }
     }
 
-    public void toDTO(Startup source, StartupDto destination) {
+    @Override
+    public void toDto(Startup source, StartupDto destination) {
         if (source == null) {
             return;
         }
@@ -67,6 +68,20 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
             userDto.setId(investor.getId());
             userDtos.add(userDto);
         }
+    }
+
+    @Override
+    public StartupDto toDto(Startup source) {
+        StartupDto destination = new StartupDto();
+        toDto(source, destination);
+        return destination;
+    }
+
+    @Override
+    public Startup fromDto(StartupDto source) {
+        Startup destination = new Startup();
+        fromDto(source,destination);
+        return destination;
     }
 }
 

@@ -63,4 +63,17 @@ public class AdminTranslator extends DataTranslator<UserDto, Admin> {
         }
     }
 
+    @Override
+    public UserDto toDto(Admin source) {
+        UserDto destination = new UserDto();
+        toDto(source, destination);
+        return destination;
+    }
+
+    @Override
+    public Admin fromDto(UserDto source) {
+        Admin destination = new Admin();
+        fromDto(source, destination);
+        return destination;
+    }
 }

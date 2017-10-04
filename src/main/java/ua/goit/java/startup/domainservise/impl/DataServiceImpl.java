@@ -7,6 +7,7 @@ import ua.goit.java.startup.domainservise.DataService;
 import ua.goit.java.startup.dto.ModelDTO;
 import ua.goit.java.startup.translator.DataTranslator;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class DataServiceImpl<T extends ModelDTO, V extends Model> implements DataService<V> {
@@ -19,10 +20,8 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     private DataTranslator<T, V> translator;
 
 
-
     @Override
     public V add(V model) {
-
         T modelDto = translator.toDto(model);
         repository.save(modelDto);
         return model;
@@ -35,7 +34,9 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
 
     @Override
     public V update(V model) {
-        return null;
+        T modelDto = translator.toDto(model);
+        repository.save(modelDto);
+        return this.add(model);
     }
 
     @Override
@@ -45,22 +46,31 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
 
     @Override
     public V get(long id) {
-        return null;
+        T modelDto = repository.findOne(id);
+        V model = translator.fromDto(modelDto);
+        return model;
     }
 
     @Override
     public Collection<V> getAll() {
-        return null;
+
+      /*  Collection<T> modelDto = (Collection<T>) repository.findAll();
+        Collection<V> model = translator.fromDto(modelDto);
+        return model;*/
+      return null;
     }
 
     @Override
     public void remove(long id) {
-
+        V model = this.get(id);
+        T modelDto = translator.toDto(model);
+        repository.delete(modelDto);
     }
 
     @Override
     public void remove(V model) {
-
+        T modelDto = translator.toDto(model);
+        repository.delete(modelDto);
     }
 
     @Override
@@ -75,11 +85,13 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
 
     @Override
     public boolean exist(long id) {
-        return false;
+        V model = this.get(id);
+        T modelDto = translator.toDto(model);
+        return repository.exists(modelDto.getId());
     }
 
     @Override
     public boolean exist(V model) {
-        return false;
+        return this.exist(model.getId());
     }
 }

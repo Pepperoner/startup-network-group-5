@@ -12,7 +12,7 @@ import java.util.Set;
 @Component
 public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
 
-
+    @Override
     public void fromDto(UserDto source, Developer destination) {
         if (source == null) {
             return;
