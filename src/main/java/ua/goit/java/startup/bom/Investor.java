@@ -23,6 +23,7 @@ public class Investor extends Model implements UserDetails {
 
     private UserRole role;
 
+    //TODO: Typo. Use camel case.
     private long paidcost;
 
     private boolean isLocked;

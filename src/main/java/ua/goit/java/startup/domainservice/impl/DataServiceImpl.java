@@ -13,15 +13,20 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+//TODO: This class should be am abstract.
 public class DataServiceImpl<T extends ModelDTO, V extends Model> implements DataService<V> {
 
+    //TODO: This field should be final.
     private DataRepository<T> repository;
 
+    //TODO: This field should be final.
     private DataTranslator<T, V> translator;
 
+    //TODO: Please remove default constructor.
     public DataServiceImpl() {
     }
 
+    //TODO: How you can inject Spring beans in non Spring component?
     @Autowired
     public DataServiceImpl(DataRepository<T> repository, DataTranslator<T, V> translator) {
         this.repository = repository;
@@ -32,6 +37,7 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     @Transactional
     public V add(V model) {
         T modelDto = translator.toDto(model);
+        //TODO: After execution, returned BOM will have an empty ID. `save(T)` returns valid object from DB(with ID), please translate this result to BOM.
         repository.save(modelDto);
         return model;
     }
@@ -49,6 +55,7 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     public V update(V model) {
         T modelDto = translator.toDto(model);
         repository.save(modelDto);
+        //TODO: WTF?
         return this.add(model);
     }
 
@@ -62,11 +69,13 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     @Transactional
     public V get(long id) {
         T modelDto = repository.findOne(id);
+        //TODO: Could be simplify.
         V model = translator.fromDto(modelDto);
         return model;
     }
 
     @Override
+    //TODO: For read operations transaction is not necessary.
     @Transactional
     public Collection<V> getAll() {
         Set<T> modelDto = (Set<T>) repository.findAll();
@@ -105,8 +114,10 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     }
 
     @Override
+    //TODO: For read operations transaction is not necessary.
     @Transactional
     public boolean exist(long id) {
+        //TODO: WTF?? You already have ID as method parameter!
         V model = this.get(id);
         T modelDto = translator.toDto(model);
         return repository.exists(modelDto.getId());

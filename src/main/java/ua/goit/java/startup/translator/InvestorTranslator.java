@@ -13,6 +13,7 @@ import java.util.Set;
 public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
 
     @Override
+    //TODO: Please, move this logic to abstract translator.
     public void fromDto(UserDto source, Investor destination) {
         if (source == null) {
             return;
@@ -38,6 +39,7 @@ public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
     }
 
     @Override
+    //TODO: Please, move this logic to abstract translator.
     public void toDto(Investor source, UserDto destination) {
         if (source == null) {
             return;

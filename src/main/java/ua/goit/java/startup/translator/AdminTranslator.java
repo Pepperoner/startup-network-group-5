@@ -13,6 +13,7 @@ import java.util.Set;
 public class AdminTranslator extends DataTranslator<UserDto, Admin> {
 
     @Override
+    //TODO: Please, move this logic to abstract translator.
     public void fromDto(UserDto source, Admin destination) {
         if (source == null) {
             return;
@@ -38,6 +39,7 @@ public class AdminTranslator extends DataTranslator<UserDto, Admin> {
     }
 
     @Override
+    //TODO: Please, move this logic to abstract translator.
     public void toDto(Admin source, UserDto destination) {
         if (source == null) {
             return;

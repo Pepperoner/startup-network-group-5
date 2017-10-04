@@ -21,7 +21,7 @@ public class DataConfig {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
+        //TODO: Please, move connection info into properties.
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         //put here your db url
         dataSource.setUrl("jdbc:mysql://localhost:3306/startupdb");

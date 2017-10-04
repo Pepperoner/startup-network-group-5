@@ -20,6 +20,7 @@ public class Developer extends Model implements UserDetails {
 
     private UserRole role;
 
+    //TODO: Why this field is part of developer?
     private long paidcost;
 
     private boolean isLocked;
