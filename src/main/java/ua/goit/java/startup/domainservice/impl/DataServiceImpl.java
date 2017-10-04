@@ -1,14 +1,13 @@
-package ua.goit.java.startup.domainservise.impl;
+package ua.goit.java.startup.domainservice.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.java.startup.bom.Model;
 import ua.goit.java.startup.dao.DataRepository;
-import ua.goit.java.startup.domainservise.DataService;
+import ua.goit.java.startup.domainservice.DataService;
 import ua.goit.java.startup.dto.ModelDTO;
 import ua.goit.java.startup.translator.DataTranslator;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;

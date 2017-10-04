@@ -3,11 +3,8 @@ package ua.goit.java.startup.ui;
 
 
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,9 +14,9 @@ import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.bom.User;
 import ua.goit.java.startup.bom.UserRole;
-import ua.goit.java.startup.domainservise.DeveloperService;
-import ua.goit.java.startup.domainservise.InvestorService;
-import ua.goit.java.startup.domainservise.UserService;
+import ua.goit.java.startup.domainservice.DeveloperService;
+import ua.goit.java.startup.domainservice.InvestorService;
+import ua.goit.java.startup.domainservice.UserService;
 
 
 @Controller

@@ -7,11 +7,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import ua.goit.java.startup.domainservise.UserService;
+import ua.goit.java.startup.domainservice.UserService;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan("ua.goit.java.startup.domainservise")
+@ComponentScan("ua.goit.java.startup.domainservice")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

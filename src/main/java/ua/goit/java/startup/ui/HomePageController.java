@@ -1,19 +1,16 @@
 package ua.goit.java.startup.ui;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
-
 /**
  * Created by Aleksandr on 26.09.2017.
  */
 @Controller
-@ComponentScan(basePackages = "ua.goit.java.startup.domainservise")
+@ComponentScan(basePackages = "ua.goit.java.startup.domainservice")
 public class HomePageController {
 
 //    private StartupService startupService;

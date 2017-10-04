@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.servlet.ModelAndView;
-//import ua.goit.java.startup.domainservise.StartupService;
-//import ua.goit.java.startup.domainservise.impl.UserService;
+//import ua.goit.java.startup.domainservice.StartupService;
+//import ua.goit.java.startup.domainservice.impl.UserService;
 //import ua.goit.java.startup.dto.DtoStartup;
 
 

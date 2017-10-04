@@ -1,4 +1,4 @@
-package ua.goit.java.startup.domainservise.impl;
+package ua.goit.java.startup.domainservice.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ua.goit.java.startup.bom.User;
 import ua.goit.java.startup.dao.UserDTORepository;
-import ua.goit.java.startup.domainservise.UserDetailsSecurity;
-import ua.goit.java.startup.domainservise.UserService;
+import ua.goit.java.startup.domainservice.UserDetailsSecurity;
+import ua.goit.java.startup.domainservice.UserService;
 import ua.goit.java.startup.dto.UserDto;
 import ua.goit.java.startup.translator.UserTranslator;
 

@@ -1,7 +1,5 @@
-package ua.goit.java.startup.domainservise;
+package ua.goit.java.startup.domainservice;
 
-import ua.goit.java.startup.bom.Model;
-import ua.goit.java.startup.dto.ModelDTO;
 import java.util.Collection;
 
 public interface DataService<T> {

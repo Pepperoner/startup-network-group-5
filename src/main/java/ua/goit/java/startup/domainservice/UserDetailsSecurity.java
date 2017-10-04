@@ -1,4 +1,4 @@
-package ua.goit.java.startup.domainservise;
+package ua.goit.java.startup.domainservice;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
