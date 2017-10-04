@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Aleksandr
-  Date: 26.09.2017
-  Time: 16:48
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
@@ -41,7 +34,7 @@
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
                             <li><a href="<c:url value="/logout"/>">Log Out</a></li>
-                            <li><sec:authentication property="principal.username" />:<sec:authentication property="principal.userRole" /></li>
+                            <li><sec:authentication property="principal.username" />:<sec:authentication property="principal.role" /></li>
                         </sec:authorize>
                     </ul>
                 </div>
@@ -52,6 +45,7 @@
 
         <div class="container">
             Some info
+            <a href="/add-startup" class="btn btn-primary">Add startup</a>
         </div>
 
 

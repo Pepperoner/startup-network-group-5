@@ -1,10 +1,9 @@
 package ua.goit.java.startup.ui;
 
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,9 +21,6 @@ import ua.goit.java.startup.domainservice.UserService;
 @Controller
 public class RegisterController {
 
-
-    @Autowired
-    private UserService userService;
     @Autowired
     private DeveloperService developerService;
 
@@ -33,57 +29,47 @@ public class RegisterController {
 
 
     // Return registration form template
-    @RequestMapping(value="/register", method = RequestMethod.GET)
-    public ModelAndView showRegistrationPage(ModelAndView modelAndView, UserRole userRole){
-        modelAndView.addObject("user", userRole);
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView showRegistrationPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("developer", UserRole.DEVELOPER);
+        modelAndView.addObject("investor", UserRole.INVESTOR);
         modelAndView.setViewName("register");
         return modelAndView;
     }
 
 
-    @RequestMapping(value = "/registration-form", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView ajaxTest(@RequestParam(value = "userType") int userRole) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("userRole", UserRole.values()[userRole]);
-        modelAndView.setViewName("_registration-form");
-        return modelAndView;
+    @RequestMapping(value = "/registration-form", method = RequestMethod.POST)
+    //@ResponseBody
+    public ModelAndView getRegistrationForm(UserRole userRole) {
 
-    }
+        ModelAndView modelAndView;
 
-
-    // Process form input data
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView processRegistrationForm(ModelAndView modelAndView, User user) {
-
-        System.out.println("User: " + user);
-        userService.add(user);
-        modelAndView.setViewName("index");
+        if (userRole.equals(UserRole.INVESTOR)) {
+            modelAndView = new ModelAndView("_registration-form", "investor", new Investor());
+            modelAndView.addObject("userModel", "investor");
+        } else {
+            modelAndView = new ModelAndView("_registration-form", "developer", new Developer());
+            modelAndView.addObject("userModel", "developer");
+        }
+        modelAndView.addObject("userRole", userRole);
         return modelAndView;
     }
 
-    // Process form input data
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView processRegistrationForm(ModelAndView modelAndView, Developer developer) {
 
-        System.out.println("User: " + developer);
+    @RequestMapping(value = "/register/developer", method = RequestMethod.POST)
+    public String doDeveloperRegistration(Developer developer, BindingResult result) {
+        developer.setRole(UserRole.DEVELOPER);
         developerService.add(developer);
-        modelAndView.setViewName("index");
-        return modelAndView;
+        return "redirect:/index";
     }
 
-    // Process form input data
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView processRegistrationForm(ModelAndView modelAndView, Investor investor) {
-
-        System.out.println("User: " + investor);
+    @RequestMapping(value = "/register/investor", method = RequestMethod.POST)
+    public String doInvestorRegistration(Investor investor, BindingResult result) {
+        investor.setRole(UserRole.INVESTOR);
         investorService.add(investor);
-        modelAndView.setViewName("index");
-        return modelAndView;
+        return "redirect:/index";
     }
-
-
-
 
 
 }

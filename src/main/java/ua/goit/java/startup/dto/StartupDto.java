@@ -21,7 +21,7 @@ public class StartupDto extends ModelDTO {
     @Column(name = "image")
     private byte[] image;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "users_startups",
             joinColumns = @JoinColumn(name = "startup_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))

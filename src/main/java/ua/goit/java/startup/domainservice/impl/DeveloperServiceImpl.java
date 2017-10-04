@@ -1,6 +1,7 @@
 package ua.goit.java.startup.domainservice.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,12 +25,14 @@ import java.util.Set;
 
 
 @Service
+@Primary
 public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> implements DeveloperService {
 
     private UserDTORepository userRepository;
 
     @Autowired
-    public DeveloperServiceImpl(UserDTORepository userRepository) {
+    public DeveloperServiceImpl(DataRepository<UserDto> repository, DataTranslator<UserDto, Developer> translator, UserDTORepository userRepository) {
+        super(repository, translator);
         this.userRepository = userRepository;
     }
 
@@ -47,12 +50,7 @@ public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> im
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
-        Developer developer = findByEmail(s);
-        Set<GrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority(developer.getRole().name()));
-        UserDetailsSecurity userSecurity = new UserDetailsSecurity(s,developer.getPassword(),roles);
-        userSecurity.setUserRole(developer.getRole());
-        return userSecurity;
+        return findByEmail(s);
     }
 
 

@@ -13,21 +13,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-//TODO: This class should be am abstract.
 public class DataServiceImpl<T extends ModelDTO, V extends Model> implements DataService<V> {
 
-    //TODO: This field should be final.
-    private DataRepository<T> repository;
+    protected DataRepository<T> repository;
 
-    //TODO: This field should be final.
-    private DataTranslator<T, V> translator;
+    protected DataTranslator<T, V> translator;
 
-    //TODO: Please remove default constructor.
-    public DataServiceImpl() {
-    }
-
-    //TODO: How you can inject Spring beans in non Spring component?
-    @Autowired
     public DataServiceImpl(DataRepository<T> repository, DataTranslator<T, V> translator) {
         this.repository = repository;
         this.translator = translator;

@@ -27,7 +27,7 @@ public class UserDto extends ModelDTO implements UserDetails {
     private String contacts;
 
     @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     @Column(name = "paidcost")
@@ -38,7 +38,7 @@ public class UserDto extends ModelDTO implements UserDetails {
     @Column(name = "image")
     private byte[] image;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "users_startups",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "startup_id"))
@@ -77,10 +77,10 @@ public class UserDto extends ModelDTO implements UserDetails {
     public int hashCode() {
         int result = username.hashCode();
         result = 31 * result + password.hashCode();
-        result = 31 * result + email.hashCode();
-        result = 31 * result + contacts.hashCode();
-        result = 31 * result + role.hashCode();
-        result = 31 * result + (int) (paidcost ^ (paidcost >>> 32));
+//        result = 31 * result + email.hashCode();
+//        result = 31 * result + contacts.hashCode();
+//        result = 31 * result + role.hashCode();
+//        result = 31 * result + (int) (paidcost ^ (paidcost >>> 32));
         return result;
     }
 

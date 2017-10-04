@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <%--<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>--%>
 <html>
 <head>
@@ -17,23 +18,28 @@
 <div class="container">
 
     <div class="role-selector-wrapper">
-        <div class="role-selector">
-            <div class="role-selector-block">
-                <label>
-                    <input type="radio" name="userRole" value="1" checked>
-                    <span>Developer</span>
-                </label>
+        <form:form id="show_reg_form">
+            <div class="role-selector">
+
+
+
+                <div class="role-selector-block">
+                    <label>
+                        <input  type="radio" name="userRole" value="${developer}" checked="true"/>
+                        <span>Developer</span>
+                    </label>
+                </div>
+                <div class="role-selector-block">
+                    <label>
+                        <input  type="radio" name="userRole" value="${investor}"/>
+                        <span>Investor</span>
+                    </label>
+                </div>
             </div>
-            <div class="role-selector-block">
-                <label>
-                    <input type="radio" name="userRole" value="2">
-                    <span>Investor</span>
-                </label>
+            <div class="role-selector-submit">
+                <button id = "show_reg_form_btn">Submit</button>
             </div>
-        </div>
-        <div class="role-selector-submit">
-            <button id = "show_reg_form">Submit</button>
-        </div>
+        </form:form>
     </div>
 
 

@@ -27,7 +27,7 @@ public class DataConfig {
         dataSource.setUrl("jdbc:mysql://localhost:3306/startupdb");
         dataSource.setUsername("root");
         //put here your db password, if needed
-        //dataSource.setPassword("root");
+        dataSource.setPassword("root");
         return dataSource;
     }
 

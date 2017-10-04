@@ -3,17 +3,50 @@ package ua.goit.java.startup.ui;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.servlet.ModelAndView;
-//import ua.goit.java.startup.domainservice.StartupService;
-//import ua.goit.java.startup.domainservice.impl.UserService;
-//import ua.goit.java.startup.dto.DtoStartup;
+import org.springframework.web.servlet.ModelAndView;
+import ua.goit.java.startup.bom.Developer;
+import ua.goit.java.startup.bom.Startup;
+import ua.goit.java.startup.domainservice.StartupService;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
-//@Controller
-//@RequestMapping("/startup")
-//public class StartupController {
+@Controller
+@RequestMapping("/startup")
+public class StartupController {
+
+    @Autowired
+    private StartupService startupService;
+
+    @RequestMapping(value = "/add-startup", method = RequestMethod.GET)
+    public ModelAndView createStartup() {
+        return new ModelAndView("add-startup", "startup", new Startup());
+    }
+
+
+    @RequestMapping(value = "/add-startup", method = RequestMethod.POST)
+    public String createStartup(Startup startup, BindingResult result) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Object user = auth.getPrincipal();
+
+        if (user instanceof Developer) {
+            Set<Developer> set = new HashSet<>();
+            set.add((Developer) user);
+            startup.setDeveloper(set);
+        }
+        startupService.add(startup);
+
+        return "redirect:/index";
+    }
+
+
 //
 //    private final StartupService startupService;
 //    private final UserService userService;
@@ -60,8 +93,8 @@ import org.springframework.web.bind.annotation.*;
 //        }
 //        return new ResponseEntity<Startup>(HttpStatus.FORBIDDEN);
 //    }
-
-    ///////////////////////////////////////////////////////
+//
+//    /////////////////////////////////////////////////////
 //    @RequestMapping(value = "/startup/list", method = RequestMethod.GET)
 //    public ModelAndView getStartupById() {
 //        ModelAndView model = new ModelAndView("startup");
@@ -91,4 +124,4 @@ import org.springframework.web.bind.annotation.*;
 //        return "redirect:startup/list";
 //    }
 
-//}
+}

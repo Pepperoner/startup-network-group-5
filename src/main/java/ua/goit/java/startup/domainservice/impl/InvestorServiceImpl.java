@@ -1,6 +1,7 @@
 package ua.goit.java.startup.domainservice.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,8 +25,13 @@ public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> impl
 
     private UserDTORepository userRepository;
 
-    @Autowired
+    /*@Autowired
     public InvestorServiceImpl(UserDTORepository userRepository) {
+        this.userRepository = userRepository;
+    }*/
+    @Autowired
+    public InvestorServiceImpl(DataRepository<UserDto> repository, DataTranslator<UserDto, Investor> translator, UserDTORepository userRepository) {
+        super(repository, translator);
         this.userRepository = userRepository;
     }
 
@@ -39,15 +45,8 @@ public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> impl
 
 
 
-
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-
-        Investor investor = findByEmail(s);
-        Set<GrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority(investor.getRole().name()));
-        UserDetailsSecurity userSecurity = new UserDetailsSecurity(s,investor.getPassword(),roles);
-        userSecurity.setUserRole(investor.getRole());
-        return userSecurity;
+        return findByEmail(s);
     }
 }

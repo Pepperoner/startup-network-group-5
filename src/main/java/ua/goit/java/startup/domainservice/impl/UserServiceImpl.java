@@ -25,7 +25,8 @@ public class UserServiceImpl extends DataServiceImpl<UserDto, User> implements U
     private UserDTORepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserDTORepository userRepository) {
+    public UserServiceImpl(DataRepository<UserDto> repository, DataTranslator<UserDto, User> translator, UserDTORepository userRepository) {
+        super(repository, translator);
         this.userRepository = userRepository;
     }
 

@@ -1,28 +1,19 @@
 $(function() {
     //alert( "ready!" );
+    $("#show_reg_form").submit(function(e) {
 
-    $("#show_reg_form").click(function(e){
-        e.preventDefault();
-        var role = $('input[name="userRole"]:checked').val();
-        console.log('role: ' + role);
+        var url = "/registration-form"; // the script where you handle the form input.
+        console.log($("#show_reg_form").serialize());
         $.ajax({
-            url : "/registration-form",
-            data : "userType="+role,
-            //dataType : 'json',
-            //timeout : 100000,
-            success : function(data) {
+            type: "POST",
+            url: url,
+            data: $("#show_reg_form").serialize(), // serializes the form's elements.
+            success: function(data){
                 $('.container').replaceWith(data);
-            },
-            // error : function(e) {
-            //     console.log("ERROR: ", e);
-            //     display(e);
-            // },
-            // done : function(e) {
-            //     console.log("DONE");
-            //     enableSearchButton(true);
-            // }
+            }
         });
-    });
 
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+    });
 
 });
