@@ -7,10 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ua.goit.java.startup.bom.User;
+import ua.goit.java.startup.dao.DataRepository;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.domainservice.UserDetailsSecurity;
 import ua.goit.java.startup.domainservice.UserService;
 import ua.goit.java.startup.dto.UserDto;
+import ua.goit.java.startup.translator.DataTranslator;
 import ua.goit.java.startup.translator.UserTranslator;
 
 import java.util.HashSet;
@@ -20,9 +22,12 @@ import java.util.Set;
 @Service
 public class UserServiceImpl extends DataServiceImpl<UserDto, User> implements UserService {
 
+    private UserDTORepository userRepository;
 
     @Autowired
-    private UserDTORepository userRepository;
+    public UserServiceImpl(UserDTORepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public User findByEmail(String email) {
         UserDto userDTO = userRepository.findByEmail(email);

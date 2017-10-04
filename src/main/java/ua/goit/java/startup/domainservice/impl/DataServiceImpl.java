@@ -15,10 +15,18 @@ import java.util.Set;
 
 public class DataServiceImpl<T extends ModelDTO, V extends Model> implements DataService<V> {
 
-    @Autowired
     private DataRepository<T> repository;
-    @Autowired
+
     private DataTranslator<T, V> translator;
+
+    public DataServiceImpl() {
+    }
+
+    @Autowired
+    public DataServiceImpl(DataRepository<T> repository, DataTranslator<T, V> translator) {
+        this.repository = repository;
+        this.translator = translator;
+    }
 
     @Override
     @Transactional

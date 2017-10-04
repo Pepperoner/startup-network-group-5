@@ -7,10 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ua.goit.java.startup.bom.Investor;
+import ua.goit.java.startup.dao.DataRepository;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.domainservice.InvestorService;
 import ua.goit.java.startup.domainservice.UserDetailsSecurity;
 import ua.goit.java.startup.dto.UserDto;
+import ua.goit.java.startup.translator.DataTranslator;
 import ua.goit.java.startup.translator.InvestorTranslator;
 
 import java.util.HashSet;
@@ -20,8 +22,12 @@ import java.util.Set;
 @Service
 public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> implements InvestorService {
 
-    @Autowired
     private UserDTORepository userRepository;
+
+    @Autowired
+    public InvestorServiceImpl(UserDTORepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public Investor findByEmail(String email) {
         UserDto userDTO = userRepository.findByEmail(email);

@@ -8,11 +8,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ua.goit.java.startup.bom.Developer;
 
+import ua.goit.java.startup.dao.DataRepository;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.domainservice.DeveloperService;
 import ua.goit.java.startup.domainservice.UserDetailsSecurity;
 
 import ua.goit.java.startup.dto.UserDto;
+import ua.goit.java.startup.translator.DataTranslator;
 import ua.goit.java.startup.translator.DeveloperTranslator;
 
 
@@ -24,9 +26,12 @@ import java.util.Set;
 @Service
 public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> implements DeveloperService {
 
+    private UserDTORepository userRepository;
 
     @Autowired
-    private UserDTORepository userRepository;
+    public DeveloperServiceImpl(UserDTORepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public Developer findByEmail(String email) {
         UserDto userDTO = userRepository.findByEmail(email);
