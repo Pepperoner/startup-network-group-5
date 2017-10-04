@@ -75,6 +75,7 @@ public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
         return destination;
     }
 
+    @Override
     public Set<Investor> getListFromDto(Set<UserDto> dtoSet){
         Set <Investor> investorSet = new HashSet<>();
         for (UserDto userDto : dtoSet){

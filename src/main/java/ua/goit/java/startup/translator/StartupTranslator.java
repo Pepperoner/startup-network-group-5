@@ -84,6 +84,7 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
         return destination;
     }
 
+    @Override
     public Set<Startup> getListFromDto(Set<StartupDto> dtoSet){
         Set <Startup> startupSet = new HashSet<>();
         for (StartupDto startupDto : dtoSet){

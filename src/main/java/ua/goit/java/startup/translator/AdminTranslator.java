@@ -75,7 +75,8 @@ public class AdminTranslator extends DataTranslator<UserDto, Admin> {
         return destination;
     }
 
-    public Set<Admin> getSetFromDto(Set<UserDto> dtoSet){
+    @Override
+    public Set<Admin> getListFromDto(Set<UserDto> dtoSet){
         Set <Admin> adminSet = new HashSet<>();
         for (UserDto userDto : dtoSet){
             Admin admin = new Admin();
