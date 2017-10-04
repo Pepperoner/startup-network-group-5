@@ -82,10 +82,11 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     @Override
     @Transactional
     public void remove(Collection<V> collection) {
-        Set<V> models = (Set<V>) this.getAll();
-        for (V model : models) {
-            this.remove(model);
-        }
+//        Set<V> models = (Set<V>) this.getAll();
+//        for (V model : models) {
+//            this.remove(model);
+//        }
+            this.getAll().remove(collection);
     }
 
     @Override
