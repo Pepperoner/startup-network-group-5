@@ -1,8 +1,5 @@
 package ua.goit.java.startup.config;
 
-
-
-
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,10 +18,6 @@ import java.util.Properties;
 @EnableJpaRepositories("ua.goit.java.startup.dao")
 public class DataConfig {
 
-
-
-
-
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -38,7 +31,6 @@ public class DataConfig {
         return dataSource;
     }
 
-
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -49,14 +41,12 @@ public class DataConfig {
         return entityManagerFactoryBean;
     }
 
-
     @Bean
     public JpaTransactionManager transactionManager(){
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
-
 
     /**
      *
@@ -70,7 +60,5 @@ public class DataConfig {
         properties.put("hibernate.hbm2ddl.auto", "none");
         return properties;
     }
-
-
 }
 

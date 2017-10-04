@@ -83,6 +83,16 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
         fromDto(source,destination);
         return destination;
     }
+
+    public Set<Startup> getListFromDto(Set<StartupDto> dtoSet){
+        Set <Startup> startupSet = new HashSet<>();
+        for (StartupDto startupDto : dtoSet){
+            Startup startup = new Startup();
+            fromDto(startupDto, startup);
+            startupSet.add(startup);
+        }
+        return startupSet;
+    }
 }
 
 

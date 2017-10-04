@@ -1,6 +1,5 @@
 package ua.goit.java.startup.config;
 
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -25,5 +24,4 @@ public class Initializer implements WebApplicationInitializer {
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
     }
-
 }

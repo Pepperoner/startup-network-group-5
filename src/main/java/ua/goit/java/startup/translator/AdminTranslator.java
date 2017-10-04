@@ -2,7 +2,6 @@ package ua.goit.java.startup.translator;
 
 import org.springframework.stereotype.Component;
 import ua.goit.java.startup.bom.Admin;
-import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.bom.Startup;
 import ua.goit.java.startup.dto.StartupDto;
 import ua.goit.java.startup.dto.UserDto;
@@ -36,7 +35,6 @@ public class AdminTranslator extends DataTranslator<UserDto, Admin> {
             startup.setId(startupDto.getId());
             startups.add(startup);
         }
-
     }
 
     @Override
@@ -75,5 +73,15 @@ public class AdminTranslator extends DataTranslator<UserDto, Admin> {
         Admin destination = new Admin();
         fromDto(source, destination);
         return destination;
+    }
+
+    public Set<Admin> getSetFromDto(Set<UserDto> dtoSet){
+        Set <Admin> adminSet = new HashSet<>();
+        for (UserDto userDto : dtoSet){
+            Admin admin = new Admin();
+            fromDto(userDto, admin);
+            adminSet.add(admin);
+        }
+        return adminSet;
     }
 }

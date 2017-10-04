@@ -37,7 +37,6 @@ public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
         }
     }
 
-
     @Override
     public void toDto(Developer source, UserDto destination) {
         if (source == null) {
@@ -77,6 +76,15 @@ public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
         return destination;
     }
 
+    public Set<Developer> getListFromDto(Set<UserDto> dtoSet){
+        Set <Developer> developerSet = new HashSet<>();
+        for (UserDto userDto : dtoSet){
+            Developer developer = new Developer();
+            fromDto(userDto, developer);
+            developerSet.add(developer);
+        }
+        return developerSet;
+    }
 
 
 

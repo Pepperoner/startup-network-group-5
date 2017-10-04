@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import ua.goit.java.startup.bom.Model;
 import ua.goit.java.startup.dto.ModelDTO;
 
-
 @Component
 public class DataTranslator<T extends ModelDTO, V extends Model> {
 
