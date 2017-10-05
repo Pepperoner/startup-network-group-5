@@ -61,8 +61,6 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     }
 
     @Override
-    //TODO: For read operations transaction is not necessary.
-    @Transactional
     public Collection<V> getAll() {
         Set<T> modelDto = (Set<T>) repository.findAll();
         Set<V> model = new HashSet<V>();
@@ -100,13 +98,8 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     }
 
     @Override
-    //TODO: For read operations transaction is not necessary.
-    @Transactional
     public boolean exist(long id) {
-        //TODO: WTF?? You already have ID as method parameter!
-        V model = this.get(id);
-        T modelDto = translator.toDto(model);
-        return repository.exists(modelDto.getId());
+        return repository.exists(id);
     }
 
     @Override
