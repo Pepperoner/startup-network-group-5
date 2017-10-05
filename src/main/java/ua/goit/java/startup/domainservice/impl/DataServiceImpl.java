@@ -27,10 +27,8 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     @Override
     @Transactional
     public V add(V model) {
-        T modelDto = translator.toDto(model);
-        //TODO: After execution, returned BOM will have an empty ID. `save(T)` returns valid object from DB(with ID), please translate this result to BOM.
-        repository.save(modelDto);
-        return model;
+        T modelDto = repository.save(translator.toDto(model));
+        return translator.fromDto(modelDto);
     }
 
     @Override
@@ -44,9 +42,6 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
     @Override
     @Transactional
     public V update(V model) {
-        T modelDto = translator.toDto(model);
-        repository.save(modelDto);
-        //TODO: WTF?
         return this.add(model);
     }
 
