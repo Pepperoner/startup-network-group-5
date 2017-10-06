@@ -25,7 +25,6 @@ public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
         destination.setEmail(source.getEmail());
         destination.setContacts(source.getContacts());
         destination.setRole(source.getRole());
-        destination.setPaidcost(source.getPaidcost());
         destination.setLocked(source.isLocked());
         destination.setImage(source.getImage());
 
@@ -50,7 +49,6 @@ public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
         destination.setEmail(source.getEmail());
         destination.setContacts(source.getContacts());
         destination.setRole(source.getRole());
-        destination.setPaidcost(source.getPaidcost());
         destination.setLocked(source.isLocked());
         destination.setImage(source.getImage());
 

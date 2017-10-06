@@ -20,9 +20,6 @@ public class Developer extends Model implements UserDetails {
 
     private UserRole role;
 
-    //TODO: Why this field is part of developer?
-    private long paidcost;
-
     private boolean isLocked;
 
     private byte[] image;
@@ -37,7 +34,6 @@ public class Developer extends Model implements UserDetails {
         setPassword(password);
         setContacts(contacts);
         setRole(role);
-        setPaidcost(paidcost);
     }
 
     @Override
@@ -109,14 +105,6 @@ public class Developer extends Model implements UserDetails {
         this.role = (role != null) ? role : UserRole.DEVELOPER;
     }
 
-    public long getPaidcost() {
-        return paidcost;
-    }
-
-    public void setPaidcost(long paidcost) {
-        this.paidcost = paidcost > 0 ? paidcost : 0;
-    }
-
     public boolean isLocked() {
         return isLocked;
     }
@@ -149,7 +137,6 @@ public class Developer extends Model implements UserDetails {
 
         Developer developer = (Developer) o;
 
-        if (paidcost != developer.paidcost) return false;
         if (!username.equals(developer.username)) return false;
         if (!password.equals(developer.password)) return false;
         if (!email.equals(developer.email)) return false;
@@ -164,7 +151,6 @@ public class Developer extends Model implements UserDetails {
         result = 31 * result + email.hashCode();
         result = 31 * result + contacts.hashCode();
         result = 31 * result + role.hashCode();
-        result = 31 * result + (int) (paidcost ^ (paidcost >>> 32));
         return result;
     }
 }

@@ -23,8 +23,6 @@ public class Admin extends Model implements UserDetails {
 
     private UserRole role;
 
-    private long paidcost;
-
     private boolean isLocked;
 
     private byte[] image;
@@ -36,7 +34,6 @@ public class Admin extends Model implements UserDetails {
         password = "";
         contacts = "";
         role = UserRole.ADMIN;
-        paidcost = 0;
         startup = new HashSet<>();
         image = new byte[0];
     }
@@ -47,7 +44,6 @@ public class Admin extends Model implements UserDetails {
         setPassword(password);
         setContacts(contacts);
         setRole(role);
-        setPaidcost(paidcost);
     }
 
     public String getUsername() {
@@ -118,14 +114,6 @@ public class Admin extends Model implements UserDetails {
         this.role = (role != null) ? role : UserRole.ADMIN;
     }
 
-    public long getPaidcost() {
-        return paidcost;
-    }
-
-    public void setPaidcost(long paidcost) {
-        this.paidcost = paidcost > 0 ? paidcost : 0;
-    }
-
     public boolean isLocked() {
         return isLocked;
     }
@@ -159,7 +147,6 @@ public class Admin extends Model implements UserDetails {
 
         Admin admin = (Admin) o;
 
-        if (paidcost != admin.paidcost) return false;
         if (!username.equals(admin.username)) return false;
         if (!password.equals(admin.password)) return false;
         if (!email.equals(admin.email)) return false;
@@ -174,7 +161,6 @@ public class Admin extends Model implements UserDetails {
         result = 31 * result + email.hashCode();
         result = 31 * result + contacts.hashCode();
         result = 31 * result + role.hashCode();
-        result = 31 * result + (int) (paidcost ^ (paidcost >>> 32));
         return result;
     }
 }

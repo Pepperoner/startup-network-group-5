@@ -5,16 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Investor;
-import ua.goit.java.startup.bom.User;
 import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.domainservice.DeveloperService;
 import ua.goit.java.startup.domainservice.InvestorService;
-import ua.goit.java.startup.domainservice.UserService;
 
 
 @Controller
