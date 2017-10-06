@@ -38,7 +38,7 @@ public class Admin extends Model implements UserDetails {
         image = new byte[0];
     }
 
-    public Admin(String username, String password, String contacts, UserRole role, long paidcost) {
+    public Admin(String username, String password, String contacts, UserRole role) {
         this();
         setUsername(username);
         setPassword(password);

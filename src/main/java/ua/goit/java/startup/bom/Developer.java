@@ -28,7 +28,7 @@ public class Developer extends Model implements UserDetails {
 
     public Developer() {}
 
-    public Developer(String username, String password, String contacts, UserRole role, long paidcost) {
+    public Developer(String username, String password, String contacts, UserRole role) {
         this();
         setUsername(username);
         setPassword(password);
