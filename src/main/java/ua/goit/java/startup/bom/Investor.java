@@ -30,7 +30,7 @@ public class Investor extends Model implements UserDetails {
 
     private byte[] image;
 
-    Set<Startup> startup = new HashSet<>();;
+    private Set<Startup> startup = new HashSet<>();
 
     public Investor() {}
 

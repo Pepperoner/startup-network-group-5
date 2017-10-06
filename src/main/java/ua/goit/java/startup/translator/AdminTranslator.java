@@ -2,8 +2,6 @@ package ua.goit.java.startup.translator;
 
 import org.springframework.stereotype.Component;
 import ua.goit.java.startup.bom.Admin;
-import ua.goit.java.startup.bom.Startup;
-import ua.goit.java.startup.dto.StartupDto;
 import ua.goit.java.startup.dto.UserDto;
 
 import java.util.HashSet;
@@ -18,7 +16,6 @@ public class AdminTranslator extends DataTranslator<UserDto, Admin> {
         if (source == null) {
             return;
         }
-
         destination.setId(source.getId());
         destination.setUsername(source.getUsername());
         destination.setPassword(source.getPassword());
@@ -27,14 +24,6 @@ public class AdminTranslator extends DataTranslator<UserDto, Admin> {
         destination.setRole(source.getRole());
         destination.setLocked(source.isLocked());
         destination.setImage(source.getImage());
-
-        Set<Startup> startups = new HashSet<>();
-        destination.setStartup(startups);
-        for (StartupDto startupDto : source.getStartupDto()) {
-            Startup startup = new Startup();
-            startup.setId(startupDto.getId());
-            startups.add(startup);
-        }
     }
 
     @Override
@@ -51,14 +40,6 @@ public class AdminTranslator extends DataTranslator<UserDto, Admin> {
         destination.setRole(source.getRole());
         destination.setLocked(source.isLocked());
         destination.setImage(source.getImage());
-
-        Set<StartupDto> startupDtos = new HashSet<>();
-        destination.setStartupDto(startupDtos);
-        for (Startup startup : source.getStartup()) {
-            StartupDto startupDto = new StartupDto();
-            startupDto.setId(startup.getId());
-            startupDtos.add(startupDto);
-        }
     }
 
     @Override

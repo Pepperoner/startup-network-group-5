@@ -24,7 +24,7 @@ public class Developer extends Model implements UserDetails {
 
     private byte[] image;
 
-    private Set<Startup> startup = new HashSet<>();;
+    private Set<Startup> startup = new HashSet<>();
 
     public Developer() {}
 

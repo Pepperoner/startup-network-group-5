@@ -27,14 +27,11 @@ public class Admin extends Model implements UserDetails {
 
     private byte[] image;
 
-    Set<Startup> startup;
-
     public Admin() {
         username = "";
         password = "";
         contacts = "";
         role = UserRole.ADMIN;
-        startup = new HashSet<>();
         image = new byte[0];
     }
 
@@ -128,15 +125,6 @@ public class Admin extends Model implements UserDetails {
 
     public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    public Set<Startup> getStartup() {
-        return startup;
-    }
-
-    public void setStartup(Set<Startup> startup) {
-
-        this.startup = startup != null ? startup : new HashSet<>();
     }
 
     @Override
