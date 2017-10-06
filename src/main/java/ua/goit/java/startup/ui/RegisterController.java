@@ -19,6 +19,7 @@ import ua.goit.java.startup.domainservice.UserService;
 
 
 @Controller
+@RequestMapping("register")
 public class RegisterController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class RegisterController {
 
 
     // Return registration form template
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showRegistrationPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("developer", UserRole.DEVELOPER);
@@ -40,8 +41,7 @@ public class RegisterController {
 
 
     @RequestMapping(value = "/registration-form", method = RequestMethod.POST)
-    //@ResponseBody
-    public ModelAndView getRegistrationForm(UserRole userRole) {
+    public @ResponseBody ModelAndView getRegistrationForm(UserRole userRole) {
 
         ModelAndView modelAndView;
 
@@ -57,14 +57,14 @@ public class RegisterController {
     }
 
 
-    @RequestMapping(value = "/register/developer", method = RequestMethod.POST)
+    @RequestMapping(value = "/developer", method = RequestMethod.POST)
     public String doDeveloperRegistration(Developer developer, BindingResult result) {
         developer.setRole(UserRole.DEVELOPER);
         developerService.add(developer);
         return "redirect:/index";
     }
 
-    @RequestMapping(value = "/register/investor", method = RequestMethod.POST)
+    @RequestMapping(value = "/investor", method = RequestMethod.POST)
     public String doInvestorRegistration(Investor investor, BindingResult result) {
         investor.setRole(UserRole.INVESTOR);
         investorService.add(investor);

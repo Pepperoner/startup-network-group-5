@@ -29,8 +29,8 @@
                     <ul class="navbar-nav navbar-right nav">
                         <li class="active"><a href="#">Home</a></li>
                         <sec:authorize access="!isAuthenticated()">
-                            <li><a href="/login">Log In</a></li>
-                            <li><a href="/register">Registration</a></li>
+                            <li><a href="<c:url value="/login"/>">Log In</a></li>
+                            <li><a href="<c:url value="/register"/>">Registration</a></li>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
                             <li><a href="<c:url value="/logout"/>">Log Out</a></li>

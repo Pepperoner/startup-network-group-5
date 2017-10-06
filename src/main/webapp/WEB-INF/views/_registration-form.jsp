@@ -10,7 +10,7 @@
 
             <h3>Please fill the following fields:</h3>
 
-            <form:form commandName="${userModel}" autocomplete="off" action="/register/${userModel}"  method="post" class="m-t" data-toggle="validator">
+            <form:form commandName="${userModel}" autocomplete="off" action="${pageContext.request.contextPath}/register/${userModel}"  method="post" class="m-t" data-toggle="validator">
 
                 <%--<input type="hidden" name="roleList" id="roleList" value="${userRole}"/>--%>
 

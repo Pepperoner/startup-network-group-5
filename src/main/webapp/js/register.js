@@ -1,19 +1,22 @@
-$(function() {
-    //alert( "ready!" );
-    $("#show_reg_form").submit(function(e) {
+(function($){
+    $(function() {
+        var urlRegForm = document.location.pathname + '/registration-form';
+        var roleForm = $('#show_reg_form');
+        roleForm.on('submit', getRegistrationForm);
 
-        var url = "/registration-form"; // the script where you handle the form input.
-        console.log($("#show_reg_form").serialize());
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: $("#show_reg_form").serialize(), // serializes the form's elements.
-            success: function(data){
-                $('.container').replaceWith(data);
-            }
-        });
+        function getRegistrationForm(e) {
+            console.log(roleForm.serialize());
 
-        e.preventDefault(); // avoid to execute the actual submit of the form.
+            $.ajax({
+                type: 'POST',
+                url: urlRegForm,
+                data: roleForm.serialize(), // serializes the form's elements.
+                success: function(data){
+                    $('.container').replaceWith(data);
+                }
+            });
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        }
     });
-
-});
+})(jQuery);

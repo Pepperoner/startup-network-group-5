@@ -24,7 +24,7 @@ public class DataConfig {
         //TODO: Please, move connection info into properties.
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         //put here your db url
-        dataSource.setUrl("jdbc:mysql://localhost:3306/startupdb");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/startupdb?useSSL=false&serverTimezone=UTC");
         dataSource.setUsername("root");
         //put here your db password, if needed
         dataSource.setPassword("root");
