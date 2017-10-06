@@ -128,27 +128,24 @@ public class Admin extends Model implements UserDetails {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Admin admin = (Admin) o;
-
-        if (!username.equals(admin.username)) return false;
-        if (!password.equals(admin.password)) return false;
-        if (!email.equals(admin.email)) return false;
-        if (!contacts.equals(admin.contacts)) return false;
-        return role == admin.role;
+    public boolean equals(Object object) {
+        boolean res = super.equals(object);
+        if (res) {
+            final Admin admin = (Admin) object;
+            res = (this.username.equals(admin.username)) &&
+                    (this.password.equals(admin.password)) &&
+                    (this.contacts.equals(admin.contacts)) &&
+                    (this.email.equals(admin.email));
+        }
+        return res;
     }
 
     @Override
     public int hashCode() {
-        int result = username.hashCode();
-        result = 31 * result + password.hashCode();
-        result = 31 * result + email.hashCode();
-        result = 31 * result + contacts.hashCode();
-        result = 31 * result + role.hashCode();
+        int result = this.username.hashCode();
+        result = 31* result + this.password.hashCode();
+        result = 31* result + this.contacts.hashCode();
+        result = 31* result + this.email.hashCode();
         return result;
     }
 }

@@ -3,6 +3,7 @@ package ua.goit.java.startup.bom;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ua.goit.java.startup.dto.UserDto;
 
 import java.util.*;
 
@@ -130,27 +131,24 @@ public class Developer extends Model implements UserDetails {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Developer developer = (Developer) o;
-
-        if (!username.equals(developer.username)) return false;
-        if (!password.equals(developer.password)) return false;
-        if (!email.equals(developer.email)) return false;
-        if (!contacts.equals(developer.contacts)) return false;
-        return role == developer.role;
+    public boolean equals(Object object) {
+        boolean res = super.equals(object);
+        if (res) {
+            final Developer developer = (Developer) object;
+            res = (this.username.equals(developer.username)) &&
+                    (this.password.equals(developer.password)) &&
+                    (this.contacts.equals(developer.contacts)) &&
+                    (this.email.equals(developer.email));
+        }
+        return res;
     }
 
     @Override
     public int hashCode() {
-        int result = username.hashCode();
-        result = 31 * result + password.hashCode();
-        result = 31 * result + email.hashCode();
-        result = 31 * result + contacts.hashCode();
-        result = 31 * result + role.hashCode();
+        int result = this.username.hashCode();
+        result = 31* result + this.password.hashCode();
+        result = 31* result + this.contacts.hashCode();
+        result = 31* result + this.email.hashCode();
         return result;
     }
 }

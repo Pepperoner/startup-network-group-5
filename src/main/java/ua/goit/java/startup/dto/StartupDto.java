@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Entity
@@ -75,7 +76,8 @@ public class StartupDto extends ModelDTO {
         this.userDto = userDto != null ? userDto : new HashSet<>();
     }
 
-    public StartupDto() {}
+    public StartupDto() {
+    }
 
     public StartupDto(String name, String description, long cost, long currentsum, byte[] image, Set<UserDto> userDto) {
         this();
@@ -100,25 +102,24 @@ public class StartupDto extends ModelDTO {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        StartupDto that = (StartupDto) o;
-
-        if (cost != that.cost) return false;
-        if (currentsum != that.currentsum) return false;
-        if (!name.equals(that.name)) return false;
-        return description.equals(that.description);
+    public boolean equals(Object object) {
+        boolean res = super.equals(object);
+        if (res) {
+            final StartupDto startupDto = (StartupDto) object;
+            res = (this.name.equals(startupDto.name)) &&
+                    (this.description.equals(startupDto.description)) &&
+                    (this.cost == startupDto.cost) &&
+                    (this.currentsum == startupDto.currentsum);
+        }
+        return res;
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + (int) (cost ^ (cost >>> 32));
-        result = 31 * result + (int) (currentsum ^ (currentsum >>> 32));
+        int result = this.name.hashCode();
+        result = 31 * result + this.description.hashCode();
+        result = (int) (31 * result + this.cost);
+        result = (int) (31 * result + this.currentsum);
         return result;
     }
 }

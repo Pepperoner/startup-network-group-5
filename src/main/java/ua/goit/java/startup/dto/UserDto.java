@@ -58,29 +58,24 @@ public class UserDto extends ModelDTO implements UserDetails {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        UserDto userDto = (UserDto) o;
-
-        if (paidcost != userDto.paidcost) return false;
-        if (!username.equals(userDto.username)) return false;
-        if (!password.equals(userDto.password)) return false;
-        if (!email.equals(userDto.email)) return false;
-        if (!contacts.equals(userDto.contacts)) return false;
-        return role == userDto.role;
+    public boolean equals(Object object) {
+        boolean res = super.equals(object);
+        if (res) {
+            final UserDto userDto = (UserDto) object;
+            res = (this.username.equals(userDto.username)) &&
+                    (this.password.equals(userDto.password)) &&
+                    (this.contacts.equals(userDto.contacts)) &&
+                    (this.email.equals(userDto.email));
+        }
+        return res;
     }
 
     @Override
     public int hashCode() {
-        int result = username.hashCode();
-        result = 31 * result + password.hashCode();
-//        result = 31 * result + email.hashCode();
-//        result = 31 * result + contacts.hashCode();
-//        result = 31 * result + role.hashCode();
-//        result = 31 * result + (int) (paidcost ^ (paidcost >>> 32));
+        int result = this.username.hashCode();
+        result = 31* result + this.password.hashCode();
+        result = 31* result + this.contacts.hashCode();
+        result = 31* result + this.email.hashCode();
         return result;
     }
 

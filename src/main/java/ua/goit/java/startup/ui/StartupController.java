@@ -18,7 +18,6 @@ import java.util.Set;
 
 
 @Controller
-@RequestMapping("/startup")
 public class StartupController {
 
     @Autowired
