@@ -18,7 +18,6 @@ import ua.goit.java.startup.translator.UserTranslator;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Service
 public class UserServiceImpl extends DataServiceImpl<UserDto, User> implements UserService {
 

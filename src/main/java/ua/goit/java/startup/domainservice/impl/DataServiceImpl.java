@@ -1,6 +1,5 @@
 package ua.goit.java.startup.domainservice.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.java.startup.bom.Model;
 import ua.goit.java.startup.dao.DataRepository;

@@ -2,8 +2,6 @@ package ua.goit.java.startup.domainservice.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -12,17 +10,10 @@ import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.dao.DataRepository;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.domainservice.DeveloperService;
-import ua.goit.java.startup.domainservice.UserDetailsSecurity;
 
 import ua.goit.java.startup.dto.UserDto;
 import ua.goit.java.startup.translator.DataTranslator;
 import ua.goit.java.startup.translator.DeveloperTranslator;
-
-
-import java.util.HashSet;
-import java.util.Set;
-
-
 
 @Service
 @Primary

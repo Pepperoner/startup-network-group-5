@@ -1,6 +1,5 @@
 package ua.goit.java.startup.domainservice.impl;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.goit.java.startup.bom.Startup;

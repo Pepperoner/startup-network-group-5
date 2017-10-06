@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.dto.UserDto;
-import ua.goit.java.startup.translator.DeveloperTranslator;
 import ua.goit.java.startup.translator.InvestorTranslator;
 
 @Aspect
