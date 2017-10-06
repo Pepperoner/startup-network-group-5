@@ -17,10 +17,6 @@ public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> impl
 
     private UserDTORepository userRepository;
 
-    /*@Autowired
-    public InvestorServiceImpl(UserDTORepository userRepository) {
-        this.userRepository = userRepository;
-    }*/
     @Autowired
     public InvestorServiceImpl(DataRepository<UserDto> repository, DataTranslator<UserDto, Investor> translator, UserDTORepository userRepository) {
         super(repository, translator);

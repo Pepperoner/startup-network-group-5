@@ -15,6 +15,8 @@ public class StartupServiceImpl extends DataServiceImpl<StartupDto, Startup> imp
 
     private StartupDTORepository startupDTORepository;
 
+
+
     @Autowired
     public StartupServiceImpl(DataRepository<StartupDto> repository, DataTranslator<StartupDto, Startup> translator, StartupDTORepository startupDTORepository) {
             super(repository, translator);

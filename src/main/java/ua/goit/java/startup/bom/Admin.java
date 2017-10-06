@@ -129,7 +129,7 @@ public class Admin extends Model implements UserDetails {
     public void setImage(byte[] image) {
         this.image = image;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj);

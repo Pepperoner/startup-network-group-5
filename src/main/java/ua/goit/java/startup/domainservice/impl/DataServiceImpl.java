@@ -59,9 +59,15 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
         return model;
     }
 
+
     @Override
     public Collection<V> getAll() {
-        Set<T> modelDto = (Set<T>) repository.findAll();
+        /*Set<T> modelDto = (Set<T>) repository.findAll();
+        Set<V> model = new HashSet<V>();
+        model.addAll(translator.getListFromDto(modelDto));
+        return model;*/
+        Set<T> modelDto = new HashSet<T>();
+        modelDto.addAll(repository.findAll());
         Set<V> model = new HashSet<V>();
         model.addAll(translator.getListFromDto(modelDto));
         return model;
