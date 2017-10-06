@@ -1,22 +1,33 @@
-(function($){
-    $(function() {
-        var urlRegForm = document.location.pathname + '/registration-form';
-        var roleForm = $('#show_reg_form');
-        roleForm.on('submit', getRegistrationForm);
+$(function() {
 
-        function getRegistrationForm(e) {
-            console.log(roleForm.serialize());
+    $("#registerLink").click(function (e) {
+        e.preventDefault();
 
-            $.ajax({
-                type: 'POST',
-                url: urlRegForm,
-                data: roleForm.serialize(), // serializes the form's elements.
-                success: function(data){
-                    $('.container').replaceWith(data);
-                }
-            });
+        var url = "/user_type-selector";
+        //console.log($("#show_reg_form").serialize());
+        $.ajax({
+            type: "GET",
+            url: url,
+            //data: $("#show_reg_form").serialize(),
+            success: function(data){
+                $('#content').empty().append(data);
+            }
+        });
 
-            e.preventDefault(); // avoid to execute the actual submit of the form.
-        }
     });
-})(jQuery);
+/*
+    $("#show_reg_form").submit(function(e) {
+        var url = "/registration-form";
+        console.log($("#show_reg_form").serialize());
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#show_reg_form").serialize(),
+            success: function(data){
+                $('#content').empty().append(data);
+            }
+        });
+        e.preventDefault();
+    });
+*/
+});
