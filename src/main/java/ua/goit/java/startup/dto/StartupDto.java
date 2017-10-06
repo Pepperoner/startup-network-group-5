@@ -1,5 +1,9 @@
 package ua.goit.java.startup.dto;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -90,36 +94,17 @@ public class StartupDto extends ModelDTO {
     }
 
     @Override
-    public String toString() {
-        return "StartupDto{" + super.toString() + " " +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", cost=" + cost +
-                ", currentsum=" + currentsum +
-                ", image=" + Arrays.toString(image) +
-                ", userDto=" + userDto +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        boolean res = super.equals(object);
-        if (res) {
-            final StartupDto startupDto = (StartupDto) object;
-            res = (this.name.equals(startupDto.name)) &&
-                    (this.description.equals(startupDto.description)) &&
-                    (this.cost == startupDto.cost) &&
-                    (this.currentsum == startupDto.currentsum);
-        }
-        return res;
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
     }
 
     @Override
     public int hashCode() {
-        int result = this.name.hashCode();
-        result = 31 * result + this.description.hashCode();
-        result = (int) (31 * result + this.cost);
-        result = (int) (31 * result + this.currentsum);
-        return result;
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this);
     }
 }

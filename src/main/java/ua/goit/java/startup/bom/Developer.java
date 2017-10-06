@@ -1,5 +1,8 @@
 package ua.goit.java.startup.bom;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -131,24 +134,17 @@ public class Developer extends Model implements UserDetails {
     }
 
     @Override
-    public boolean equals(Object object) {
-        boolean res = super.equals(object);
-        if (res) {
-            final Developer developer = (Developer) object;
-            res = (this.username.equals(developer.username)) &&
-                    (this.password.equals(developer.password)) &&
-                    (this.contacts.equals(developer.contacts)) &&
-                    (this.email.equals(developer.email));
-        }
-        return res;
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
     }
 
     @Override
     public int hashCode() {
-        int result = this.username.hashCode();
-        result = 31* result + this.password.hashCode();
-        result = 31* result + this.contacts.hashCode();
-        result = 31* result + this.email.hashCode();
-        return result;
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this);
     }
 }

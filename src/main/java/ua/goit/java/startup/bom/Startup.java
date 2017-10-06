@@ -1,5 +1,8 @@
 package ua.goit.java.startup.bom;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import ua.goit.java.startup.dto.StartupDto;
 
 import java.util.Arrays;
@@ -102,60 +105,17 @@ public class Startup extends Model {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
     public String toString() {
-        return "StartupDto{" + super.toString() + " " +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", cost=" + cost +
-                ", currentsum=" + currentsum +
-                ", image=" + Arrays.toString(image) +
-                ", developer=" + developer +
-                ", investor=" + investor +
-                '}';
-    }
-
-    /*@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Startup that = (Startup) o;
-
-        if (cost != that.cost) return false;
-        if (currentsum != that.currentsum) return false;
-        if (!name.equals(that.name)) return false;
-        return description.equals(that.description);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + (int) (cost ^ (cost >>> 32));
-        result = 31 * result + (int) (currentsum ^ (currentsum >>> 32));
-        return result;
-    }*/
-
-    @Override
-    public boolean equals(Object object) {
-        boolean res = super.equals(object);
-        if (res) {
-            final Startup startup = (Startup) object;
-            res = (this.name.equals(startup.name)) &&
-                    (this.description.equals(startup.description)) &&
-                    (this.cost == startup.cost) &&
-                    (this.currentsum == startup.currentsum);
-        }
-        return res;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = this.name.hashCode();
-        result = 31 * result + this.description.hashCode();
-        result = (int) (31 * result + this.cost);
-        result = (int) (31 * result + this.currentsum);
-        return result;
+        return ReflectionToStringBuilder.toString(this);
     }
 }
