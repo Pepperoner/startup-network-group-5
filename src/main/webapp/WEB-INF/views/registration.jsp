@@ -21,9 +21,7 @@
 
                 <h3>Please fill the following fields:</h3>
 
-                <form:form   commandName="${userModel}" autocomplete="off" action="/registration/${userModel}"  method="post" class="m-t" data-toggle="validator">
-
-                    <%--<input type="hidden" name="roleList" id="roleList" value="${userRole}"/>--%>
+                <form:form commandName="${userModel}" enctype="multipart/form-data"  autocomplete="off" action="/registration/${userModel}"  method="post" class="m-t" data-toggle="validator">
                 <c:if test="${alreadyRegisteredMessage != null}">
                     <div class="alert alert-warning" role="alert" >${alreadyRegisteredMessage}</div>
                 </c:if>
@@ -34,7 +32,7 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-user"></span>
                     </span>
-                        <form:input path="username" placeholder="First Name" class="form-control" required="true" />
+                        <form:input path="username" name="username" placeholder="First Name" class="form-control" required="true" />
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
@@ -43,7 +41,7 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-envelope"></span>
                     </span>
-                        <form:input path="email" type="email"
+                        <form:input path="email" type="email" name="email"
                                     placeholder="Email Address" class="form-control"
                                     data-error="This email address is invalid" required="true" />
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -53,7 +51,14 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-user"></span>
                     </span>
-                        <form:input path="password" placeholder="Password" class="form-control" required="true" />
+                        <form:input path="password" name="password" placeholder="Password" class="form-control" required="true" />
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group input-group has-feedback">
+                        <label> Add Avatar
+                            <input type="file" name="file" required />
+                        </label>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 

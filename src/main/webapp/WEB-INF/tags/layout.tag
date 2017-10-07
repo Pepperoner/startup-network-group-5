@@ -51,8 +51,8 @@
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
                                 <li><a href="<c:url value="/logout"/>">Log Out</a></li>
-                                <li><sec:authentication property="principal.username" />:<sec:authentication property="principal.role" /></li>
-                                <img src="<sec:authentication property="principal.image" />" alt="">
+                                <li><a href="<c:url value="/${user.role.toString().toLowerCase()}/cabinet"/>">My Cabinet</a></li>
+                                <li><a><sec:authentication property="principal.username" />:<sec:authentication property="principal.role" /></a></li>
                             </sec:authorize>
                         </ul>
                     </div>

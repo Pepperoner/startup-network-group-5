@@ -4,14 +4,21 @@ package ua.goit.java.startup.ui;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.domainservice.DeveloperService;
 import ua.goit.java.startup.domainservice.InvestorService;
+
+import javax.servlet.annotation.MultipartConfig;
+import javax.validation.Valid;
+import java.io.IOException;
 
 
 @Controller
@@ -53,7 +60,8 @@ public class RegisterController {
 
 
     @RequestMapping(value = "/registration/developer", method = RequestMethod.POST)
-    public ModelAndView doDeveloperRegistration(Developer developer, BindingResult result) {
+    public ModelAndView doDeveloperRegistration(@ModelAttribute("developer")Developer developer, BindingResult result,
+                                                @RequestParam("file") MultipartFile file){
 
         ModelAndView modelAndView = new ModelAndView("registration");
         Developer devExist = developerService.findByEmail(developer.getEmail());
@@ -65,17 +73,25 @@ public class RegisterController {
             result.reject("email");
             modelAndView.addObject("userRole", devExist.getRole());
         }
-
         if (!result.hasErrors()) {
             developer.setRole(UserRole.DEVELOPER);
+            if(!file.isEmpty()){
+                try {
+                    developer.setImage(file.getBytes());
+                }catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             developerService.add(developer);
             modelAndView.addObject("confirmationMessage", "You has been registered successfully.");
         }
         return modelAndView;
     }
 
+
     @RequestMapping(value = "/registration/investor", method = RequestMethod.POST)
-    public ModelAndView doInvestorRegistration(Investor investor, BindingResult result) {
+    public ModelAndView doInvestorRegistration(@ModelAttribute("investor")Investor investor, BindingResult result,
+                                               @RequestParam("file") MultipartFile file) {
 
         ModelAndView modelAndView = new ModelAndView("registration");
         Investor invExist = investorService.findByEmail(investor.getEmail());
@@ -90,6 +106,13 @@ public class RegisterController {
 
         if (!result.hasErrors()) {
             investor.setRole(UserRole.INVESTOR);
+            if(!file.isEmpty()){
+                try {
+                    investor.setImage(file.getBytes());
+                }catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             investorService.add(investor);
             modelAndView.addObject("confirmationMessage", "You has been registered successfully.");
         }
