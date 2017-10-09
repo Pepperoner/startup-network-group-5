@@ -8,11 +8,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Startup;
+import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.domainservice.StartupService;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,20 +35,51 @@ public class StartupController {
     }
 
 
-    @RequestMapping(value = "/add-startup", method = RequestMethod.POST)
-    public String createStartup(Startup startup, BindingResult result) {
+    /* @RequestMapping(value = "/add-startup", method = RequestMethod.POST)
+     public String createStartup(Startup startup, BindingResult result) {
 
+         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+         Object user = auth.getPrincipal();
+
+         if (user instanceof Developer) {
+             Set<Developer> set = new HashSet<>();
+             set.add((Developer) user);
+             startup.setDeveloper(set);
+         }
+         startupService.add(startup);
+
+         return "redirect:/index";
+     }*/
+    @RequestMapping(value = "/add-startup", method = RequestMethod.POST)
+    public ModelAndView createStartup(@ModelAttribute("startup") Startup startup, BindingResult result,
+                                      @RequestParam("file") MultipartFile file) {
+        ModelAndView modelAndView = new ModelAndView("add-startup");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
-
         if (user instanceof Developer) {
             Set<Developer> set = new HashSet<>();
             set.add((Developer) user);
             startup.setDeveloper(set);
         }
+        modelAndView.addObject("startup", new Startup());
+        modelAndView.addObject("startupModel", "startup");
+        try {
+            startup.setImage(file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         startupService.add(startup);
+        return modelAndView;
+    }
 
-        return "redirect:/index";
+    @RequestMapping(value = "/startup/imageDisplay", method = RequestMethod.GET)
+    public void showImage(@RequestParam("id") Long id, HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+
+        Startup startup = startupService.get(id);
+        response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+        response.getOutputStream().write(startup.getImage());
+        response.getOutputStream().close();
     }
 
 

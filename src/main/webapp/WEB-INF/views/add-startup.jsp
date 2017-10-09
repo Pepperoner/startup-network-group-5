@@ -17,8 +17,8 @@
                 <hr />
 
                 <h3>Please fill the following fields:</h3>
-                <form:form commandName="startup" autocomplete="off" action="/add-startup"  method="post" class="m-t" data-toggle="validator">
-
+                <form:form commandName="startup" enctype="multipart/form-data"  autocomplete="off" action="/add-startup/${startupModel}"  method="post" class="m-t" data-toggle="validator">
+                <%--<form:form commandName="startup" autocomplete="off" action="/add-startup"  method="post" class="m-t" data-toggle="validator">--%>
                     <div class="form-group input-group has-feedback">
                         <form:input path="name" placeholder="Startup Name" class="form-control" required="true" />
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -34,8 +34,13 @@
                         <form:input path="cost" placeholder="Cost" class="form-control" required="true" />
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
-
-
+                    <%--///////--%>
+                    <div class="form-group input-group has-feedback">
+                        <label> Add Image
+                            <input type="file" name="file" required />
+                        </label>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
 
                     <button type="submit" class="btn btn-primary block full-width m-b">Add My Startup</button>
 

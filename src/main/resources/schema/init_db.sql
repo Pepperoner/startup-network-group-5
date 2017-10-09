@@ -23,7 +23,7 @@ CREATE TABLE startups
   description VARCHAR(1800) DEFAULT '' NOT NULL,
   cost INT(11) DEFAULT '0' NOT NULL,
   currentsum INT(11) DEFAULT '0' NOT NULL,
-  image BLOB
+  image MEDIUMBLOB
 );
 
 CREATE TABLE users_startups
