@@ -41,7 +41,7 @@ public class UserDto extends ModelDTO implements UserDetails {
     @Column(name = "image")
     private byte[] image;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "users_startups",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "startup_id"))

@@ -37,7 +37,7 @@
                     <%--///////--%>
                     <div class="form-group input-group has-feedback">
                         <label> Add Image
-                            <input type="file" name="file" required />
+                            <input type="file" name="file" />
                         </label>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>

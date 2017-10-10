@@ -51,7 +51,7 @@ public class StartupController {
          return "redirect:/index";
      }*/
     @RequestMapping(value = "/add-startup", method = RequestMethod.POST)
-    public ModelAndView createStartup(@ModelAttribute("startup") Startup startup, BindingResult result,
+    public String createStartup(@ModelAttribute("startup") Startup startup, BindingResult result,
                                       @RequestParam("file") MultipartFile file) {
         ModelAndView modelAndView = new ModelAndView("add-startup");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -61,15 +61,16 @@ public class StartupController {
             set.add((Developer) user);
             startup.setDeveloper(set);
         }
-        modelAndView.addObject("startup", new Startup());
-        modelAndView.addObject("startupModel", "startup");
+        //modelAndView.addObject("startup", new Startup());
+        //modelAndView.addObject("startupModel", "startup");
         try {
             startup.setImage(file.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
         startupService.add(startup);
-        return modelAndView;
+        //return modelAndView;
+        return "redirect:/developer/cabinet";
     }
 
     @RequestMapping(value = "/startup/imageDisplay", method = RequestMethod.GET)
@@ -92,35 +93,43 @@ public class StartupController {
 
     @RequestMapping(value = "/startup/update/{id}", method = RequestMethod.POST)
     public String updateStartup(
-            @ModelAttribute("startup") Startup startupToUpdate, BindingResult result,
-            @RequestParam("file") MultipartFile file,
-            @PathVariable(name = "id") long id,
-            @RequestParam(value = "name", defaultValue = "") String name,
-            @RequestParam(value = "description", defaultValue = "") String description,
-            @RequestParam(value = "cost", defaultValue = "0") long cost,
-            @RequestParam(value = "currentsum", defaultValue = "0") long currentsum
+            @ModelAttribute("startup") Startup startup, BindingResult result,
+            @RequestParam("file") MultipartFile file
+            //@PathVariable(name = "id") long id,
+            //@RequestParam(value = "name", defaultValue = "") String name,
+            //@RequestParam(value = "description", defaultValue = "") String description,
+            //@RequestParam(value = "cost", defaultValue = "0") long cost,
+            //@RequestParam(value = "currentsum", defaultValue = "0") long currentsum
     ) {
-        /*Startup*/ startupToUpdate = startupService.get(id);
-        startupToUpdate.setName(name);
-        startupToUpdate.setDescription(description);
-        startupToUpdate.setCost(cost);
-        startupToUpdate.setCurrentsum(currentsum);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Startup startupToUpdate = startupService.get(startup.getId());
+        startupToUpdate.setName(startup.getName());
+        startupToUpdate.setDescription(startup.getDescription());
+        startupToUpdate.setCost(startup.getCost());
+        //startupToUpdate.setCurrentsum(currentsum);
+        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Developer) {
             Set<Developer> set = new HashSet<>();
             set.add((Developer) user);
             startupToUpdate.setDeveloper(set);
         }
-        try {
-            startupToUpdate.setImage(file.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
+        */
+
+        if(!file.isEmpty()){
+            try {
+                startupToUpdate.setImage(file.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        ModelAndView modelAndView = new ModelAndView("edit_startup");
-        modelAndView.addObject("startup", new Startup());
+
         Startup startupFromDb = startupService.update(startupToUpdate);
-        return ("/startup/edit/" + startupFromDb.getId());
+        ModelAndView modelAndView = new ModelAndView("edit_startup");
+        modelAndView.addObject("startup", startupFromDb);
+
+        //return ("/startup/edit/" + startupFromDb.getId());
+        return "redirect:/developer/cabinet";
     }
 
     @RequestMapping(value = "/startup/delete/{id}", method = RequestMethod.GET)

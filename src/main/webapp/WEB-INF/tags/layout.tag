@@ -26,6 +26,7 @@
     <link href="<c:url value="/css/site.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/signin.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/register.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/startup.css"/>" rel="stylesheet">
 </head>
 
 <body>
@@ -49,10 +50,12 @@
                                 <li><a href="/login">Log In</a></li>
                                 <li><a id="registerLink" href="${goToRegister}">Registration</a></li>
                             </sec:authorize>
+
                             <sec:authorize access="isAuthenticated()">
-                                <li><a href="<c:url value="/logout"/>">Log Out</a></li>
-                                <li><a href="<c:url value="/${user.role.toString().toLowerCase()}/cabinet"/>">My Cabinet</a></li>
-                                <li><a><sec:authentication property="principal.username" />:<sec:authentication property="principal.role" /></a></li>
+                                <sec:authentication property="principal.role" var="userRole"/>
+                                <sec:authentication property="principal.username" var="userName"/>
+                                <li><a href="<c:url value="/${userRole.toString().toLowerCase()}/cabinet"/>">My Cabinet</a></li>
+                                <li><a href="<c:url value="/logout"/>">Log Out: ${userName}</a></li>
                             </sec:authorize>
                         </ul>
                     </div>

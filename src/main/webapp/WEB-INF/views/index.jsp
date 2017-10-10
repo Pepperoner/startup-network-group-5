@@ -7,37 +7,35 @@
         STARTUP-SERVICE
     </jsp:attribute>
     <jsp:body>
+
         <h4><b>Startups</b></h4>
-        <div class="table-responsive">
-
-            <table class="table table-striped table-bordered">
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Cost</th>
-                    <th>CurrentSum</th>
-                    <th>Image</th>
-                    <th>Edit</th>
-                </tr>
-                <c:forEach items="${startups}" var="startup">
-                    <tr>
-                        <td>${startup.name}</td>
-                        <td>${startup.description}</td>
-                        <td>${startup.cost}</td>
-                        <td>${startup.currentsum}</td>
-                        <c:if test="${startup.image != null}">
-                        <td><img src="/startup/imageDisplay?id=${startup.id}" class="media-object pull-left"></td>
-                        </c:if>
-                        <td><a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
-                               href="<c:url value='/startup/edit/${startup.id}'/>">Edit</a></td>
-                    </tr>
-                </c:forEach>
-            </table>
-
+        <div id="startup-item-wrapper">
+            <c:forEach items="${startups}" var="startup">
+                <div class="startup-item">
+                    <div class="startup-item-img">
+                        <img src="/startup/imageDisplay?id=${startup.id}" class="media-object" title="Startup image">
+                    </div>
+                    <div class="startup-item-name">${startup.name}</div>
+                    <div class="ratio-wrapper"><div class="ratio"></div></div>
+                    <div class="row startup-item-footer">
+                        <div class="col-sm-6 test">
+                            <div class="cost-wrapper"><div class="cost-label">Cost:</div></div>
+                            <div class="cost-wrapper"><div class="cost-label">${startup.cost}</div></div>
+                        </div>
+                        <div class="col-sm-6 test">
+                            <div>Current Sum:</div>
+                            <div>${startup.currentsum}</div>
+                        </div>
+                    </div>
+                    <div class="startup-description">
+                        <c:set var="descr" value="${startup.description}"/>
+                        Description: ${descr.length() > 40 ? descr.substring(0, 40) : descr}...
+                    </div>
+                    <div ><a href="#">See more...</a></div>
+                </div>
+            </c:forEach>
         </div>
 
-
-        <a href="/add-startup" class="btn btn-primary">Add startup</a>
 
 
     </jsp:body>

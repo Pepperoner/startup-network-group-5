@@ -31,7 +31,7 @@ public class DeveloperController {
         Object user = auth.getPrincipal();
         ModelAndView modelAndView = new ModelAndView("index");
         if (user instanceof Developer) {
-            modelAndView.addObject("developer", user);
+            modelAndView.addObject("developer", developerService.get(((Developer) user).getId()));
             modelAndView.setViewName("/user/developer_cabinet");
         }
         return modelAndView;

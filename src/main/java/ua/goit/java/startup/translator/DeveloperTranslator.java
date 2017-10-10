@@ -33,6 +33,10 @@ public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
         for (StartupDto startupDto : source.getStartupDto()) {
             Startup startup = new Startup();
             startup.setId(startupDto.getId());
+            startup.setName(startupDto.getName());
+            startup.setDescription(startupDto.getDescription());
+            startup.setCost(startupDto.getCost());
+            startup.setCurrentsum(startupDto.getCurrentsum());
             startups.add(startup);
         }
     }
