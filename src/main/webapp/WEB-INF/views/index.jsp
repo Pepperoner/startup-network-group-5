@@ -17,6 +17,7 @@
                     <th>Cost</th>
                     <th>CurrentSum</th>
                     <th>Image</th>
+                    <th>Edit</th>
                 </tr>
                 <c:forEach items="${startups}" var="startup">
                     <tr>
@@ -27,6 +28,8 @@
                         <c:if test="${startup.image != null}">
                         <td><img src="/startup/imageDisplay?id=${startup.id}" class="media-object pull-left"></td>
                         </c:if>
+                        <td><a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
+                               href="<c:url value='/startup/edit/${startup.id}'/>">Edit</a></td>
                     </tr>
                 </c:forEach>
             </table>

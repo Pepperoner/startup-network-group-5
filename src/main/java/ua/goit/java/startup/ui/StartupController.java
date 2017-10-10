@@ -74,7 +74,7 @@ public class StartupController {
 
     @RequestMapping(value = "/startup/imageDisplay", method = RequestMethod.GET)
     public void showImage(@RequestParam("id") Long id, HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
 
         Startup startup = startupService.get(id);
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
@@ -82,12 +82,52 @@ public class StartupController {
         response.getOutputStream().close();
     }
 
-    /*@RequestMapping(value = "/startup/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView modelAndView(@PathVariable(name = "id") long id){
+    @RequestMapping(value = "/startup/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView editStartup(@PathVariable(name = "id") long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("startup", startupService.get(id));
+        modelAndView.setViewName("edit_startup");
+        return modelAndView;
+    }
 
-    }*/
+    @RequestMapping(value = "/startup/update/{id}", method = RequestMethod.POST)
+    public String updateStartup(
+            @ModelAttribute("startup") Startup startupToUpdate, BindingResult result,
+            @RequestParam("file") MultipartFile file,
+            @PathVariable(name = "id") long id,
+            @RequestParam(value = "name", defaultValue = "") String name,
+            @RequestParam(value = "description", defaultValue = "") String description,
+            @RequestParam(value = "cost", defaultValue = "0") long cost,
+            @RequestParam(value = "currentsum", defaultValue = "0") long currentsum
+    ) {
+        /*Startup*/ startupToUpdate = startupService.get(id);
+        startupToUpdate.setName(name);
+        startupToUpdate.setDescription(description);
+        startupToUpdate.setCost(cost);
+        startupToUpdate.setCurrentsum(currentsum);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Object user = auth.getPrincipal();
+        if (user instanceof Developer) {
+            Set<Developer> set = new HashSet<>();
+            set.add((Developer) user);
+            startupToUpdate.setDeveloper(set);
+        }
+        try {
+            startupToUpdate.setImage(file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ModelAndView modelAndView = new ModelAndView("edit_startup");
+        modelAndView.addObject("startup", new Startup());
+        Startup startupFromDb = startupService.update(startupToUpdate);
+        return ("/startup/edit/" + startupFromDb.getId());
+    }
+
+    @RequestMapping(value = "/startup/delete/{id}", method = RequestMethod.GET)
+    public String deleteStartup(@PathVariable(name = "id") long id) {
+        startupService.remove(id);
+        return "redirect:/index";
+    }
 
 //
 //    private final StartupService startupService;
