@@ -2,6 +2,7 @@ package ua.goit.java.startup.domainservice.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.goit.java.startup.bom.Startup;
 import ua.goit.java.startup.dao.DataRepository;
 import ua.goit.java.startup.dao.StartupDTORepository;
@@ -24,6 +25,7 @@ public class StartupServiceImpl extends DataServiceImpl<StartupDto, Startup> imp
     }
 
     @Override
+    @Transactional
     public Startup findByName(String name) {
         StartupDto startupDto = startupDTORepository.findByName(name);
         StartupTranslator startupTranslator = new StartupTranslator();
@@ -33,6 +35,7 @@ public class StartupServiceImpl extends DataServiceImpl<StartupDto, Startup> imp
     }
 
     @Override
+    @Transactional
     public void removeByName(String name) {
         startupDTORepository.deleteByName(name);
     }

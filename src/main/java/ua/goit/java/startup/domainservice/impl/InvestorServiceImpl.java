@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.dao.DataRepository;
 import ua.goit.java.startup.dao.UserDTORepository;
@@ -22,7 +23,7 @@ public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> impl
         super(repository, translator);
         this.userRepository = userRepository;
     }
-
+    @Transactional
     public Investor findByEmail(String email) {
         UserDto userDTO = userRepository.findByEmail(email);
         InvestorTranslator investorTranslator = new InvestorTranslator();
@@ -34,6 +35,7 @@ public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> impl
 
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return findByEmail(s);
     }

@@ -61,6 +61,7 @@ public class DataServiceImpl<T extends ModelDTO, V extends Model> implements Dat
 
 
     @Override
+    @Transactional
     public Collection<V> getAll() {
         /*Set<T> modelDto = (Set<T>) repository.findAll();
         Set<V> model = new HashSet<V>();

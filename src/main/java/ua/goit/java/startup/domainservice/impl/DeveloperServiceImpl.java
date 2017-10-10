@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.goit.java.startup.bom.Developer;
 
 import ua.goit.java.startup.dao.DataRepository;
@@ -27,6 +28,7 @@ public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> im
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public Developer findByEmail(String email) {
         UserDto userDTO = userRepository.findByEmail(email);
         DeveloperTranslator userTranslator = new DeveloperTranslator();
@@ -36,13 +38,10 @@ public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> im
     }
 
 
-
-
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
         return findByEmail(s);
     }
-
-
 }

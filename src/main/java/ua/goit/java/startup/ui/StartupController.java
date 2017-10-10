@@ -82,6 +82,12 @@ public class StartupController {
         response.getOutputStream().close();
     }
 
+    /*@RequestMapping(value = "/startup/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView modelAndView(@PathVariable(name = "id") long id){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("startup", startupService.get(id));
+
+    }*/
 
 //
 //    private final StartupService startupService;
