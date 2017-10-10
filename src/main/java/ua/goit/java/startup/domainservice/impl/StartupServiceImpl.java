@@ -15,25 +15,25 @@ public class StartupServiceImpl extends DataServiceImpl<StartupDto, Startup> imp
 
     private StartupDTORepository startupDTORepository;
 
-
-
     @Autowired
-    public StartupServiceImpl(DataRepository<StartupDto> repository, DataTranslator<StartupDto, Startup> translator, StartupDTORepository startupDTORepository) {
-            super(repository, translator);
-            this.startupDTORepository = startupDTORepository;
-        }
+    public StartupServiceImpl(DataRepository<StartupDto> repository,
+                              DataTranslator<StartupDto, Startup> translator,
+                              StartupDTORepository startupDTORepository) {
+        super(repository, translator);
+        this.startupDTORepository = startupDTORepository;
+    }
 
-        @Override
-        public Startup findByName(String name) {
-            StartupDto startupDto = startupDTORepository.findByName(name);
-            StartupTranslator startupTranslator = new StartupTranslator();
-            Startup startup = new Startup();
-            startupTranslator.fromDto(startupDto, startup);
-            return startup;
-        }
+    @Override
+    public Startup findByName(String name) {
+        StartupDto startupDto = startupDTORepository.findByName(name);
+        StartupTranslator startupTranslator = new StartupTranslator();
+        Startup startup = new Startup();
+        startupTranslator.fromDto(startupDto, startup);
+        return startup;
+    }
 
-        @Override
-        public void removeByName(String name) {
-            startupDTORepository.deleteByName(name);
+    @Override
+    public void removeByName(String name) {
+        startupDTORepository.deleteByName(name);
     }
 }

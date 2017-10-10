@@ -9,7 +9,13 @@
     <version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
+    <properties>
+        <dbcp.version>1.4</dbcp.version>
+
+    </properties>
+
     <name>Startup Network</name>
+
 
     <dependencies>
         <!-- Javax Core -->
@@ -154,6 +160,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${dbcp.version}</version>
         </dependency>
 
         <!-- For tests -->
