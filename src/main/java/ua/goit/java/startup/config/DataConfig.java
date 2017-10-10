@@ -59,9 +59,6 @@ public class DataConfig {
         return transactionManager;
     }
 
-    /**
-     * @return -
-     */
     private Properties getHibernateProperties() {
 
         Properties properties = new Properties();

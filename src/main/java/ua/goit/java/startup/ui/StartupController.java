@@ -52,7 +52,7 @@ public class StartupController {
      }*/
     @RequestMapping(value = "/add-startup", method = RequestMethod.POST)
     public String createStartup(@ModelAttribute("startup") Startup startup, BindingResult result,
-                                      @RequestParam("file") MultipartFile file) {
+                                @RequestParam("file") MultipartFile file) {
         ModelAndView modelAndView = new ModelAndView("add-startup");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
@@ -95,28 +95,13 @@ public class StartupController {
     public String updateStartup(
             @ModelAttribute("startup") Startup startup, BindingResult result,
             @RequestParam("file") MultipartFile file
-            //@PathVariable(name = "id") long id,
-            //@RequestParam(value = "name", defaultValue = "") String name,
-            //@RequestParam(value = "description", defaultValue = "") String description,
-            //@RequestParam(value = "cost", defaultValue = "0") long cost,
-            //@RequestParam(value = "currentsum", defaultValue = "0") long currentsum
     ) {
 
         Startup startupToUpdate = startupService.get(startup.getId());
         startupToUpdate.setName(startup.getName());
         startupToUpdate.setDescription(startup.getDescription());
         startupToUpdate.setCost(startup.getCost());
-        //startupToUpdate.setCurrentsum(currentsum);
-        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Object user = auth.getPrincipal();
-        if (user instanceof Developer) {
-            Set<Developer> set = new HashSet<>();
-            set.add((Developer) user);
-            startupToUpdate.setDeveloper(set);
-        }
-        */
-
-        if(!file.isEmpty()){
+        if (!file.isEmpty()) {
             try {
                 startupToUpdate.setImage(file.getBytes());
             } catch (IOException e) {
@@ -127,8 +112,6 @@ public class StartupController {
         Startup startupFromDb = startupService.update(startupToUpdate);
         ModelAndView modelAndView = new ModelAndView("edit_startup");
         modelAndView.addObject("startup", startupFromDb);
-
-        //return ("/startup/edit/" + startupFromDb.getId());
         return "redirect:/developer/cabinet";
     }
 
@@ -137,82 +120,4 @@ public class StartupController {
         startupService.remove(id);
         return "redirect:/index";
     }
-
-//
-//    private final StartupService startupService;
-//    private final UserService userService;
-//
-//    @Autowired
-//    public StartupController(StartupService startupService, UserService userService) {
-//        this.startupService = startupService;
-//        this.userService = userService;
-//    }
-//
-//
-//    @RequestMapping(method = RequestMethod.GET)
-//    public ResponseEntity<Startup> getStartupById(@PathVariable("id") long id) {
-//        Startup startup = startupService.getStartupById(id);
-//        if (startup != null) {
-//            return new ResponseEntity<Startup>(startup, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<Startup>(HttpStatus.FORBIDDEN);
-//    }
-//
-//    @RequestMapping(method = RequestMethod.POST)
-//    public ResponseEntity<Startup> createStartup(@RequestBody Startup startup) {
-//        startup = startupService.createNewStartup(startup);
-//        if (startup != null) {
-//            return new ResponseEntity<Startup>(startup, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<Startup>(HttpStatus.FORBIDDEN);
-//    }
-//
-//    @RequestMapping(method = RequestMethod.PUT)
-//    public ResponseEntity<Startup> updateStartup(@RequestBody Startup startup) {
-//        startup = startupService.saveStartup(startup);
-//        if (startup != null) {
-//            return new ResponseEntity<Startup>(startup, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<Startup>(HttpStatus.FORBIDDEN);
-//    }
-//
-//    @RequestMapping(method = RequestMethod.DELETE)
-//    public ResponseEntity<Startup> deleteStartup(@PathVariable("id") long id) {
-//        Startup startup = startupService.deleteStartup(id);
-//        if (startup != null) {
-//            return new ResponseEntity<Startup>(startup, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<Startup>(HttpStatus.FORBIDDEN);
-//    }
-//
-//    /////////////////////////////////////////////////////
-//    @RequestMapping(value = "/startup/list", method = RequestMethod.GET)
-//    public ModelAndView getStartupById() {
-//        ModelAndView model = new ModelAndView("startup");
-//        model.setViewName("startup/list");
-//        model.addObject("startup", userService.getAll());
-//        return model;
-//    }
-//
-//    @RequestMapping(method = RequestMethod.POST)
-//    public String createStartup (@ModelAttribute Startup startup){
-//        if (startup!= null){
-//           Startup startup = userService.createStartup(startup);
-//        }
-//        return "redirect:startup/list";
-//    }
-//
-//
-//    @RequestMapping(method = RequestMethod.PUT)
-//    public String updateStartup(@ModelAttribute Startup startup) {
-//        Startup startup = userService.updateStartup(startup);
-//        return "redirect:startup/list";
-//    }
-//
-//    @RequestMapping(method = RequestMethod.DELETE)
-//    public String deleteStrtup(@RequestParam String id) {
-//        Startup startup = userService.deleteStartup(id);
-//        return "redirect:startup/list";
-//    }
-
 }

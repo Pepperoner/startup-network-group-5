@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.startup.bom.Developer;
+import ua.goit.java.startup.bom.Startup;
 import ua.goit.java.startup.domainservice.DeveloperService;
 
 import javax.servlet.ServletException;
@@ -40,12 +41,11 @@ public class DeveloperController {
 
     @RequestMapping(value = "/developer/imageDisplay", method = RequestMethod.GET)
     public void showImage(@RequestParam("id") Long id, HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
 
         Developer developer = developerService.get(id);
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
         response.getOutputStream().write(developer.getImage());
-        //response.getOutputStream().flush();
         response.getOutputStream().close();
 
 

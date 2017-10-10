@@ -21,34 +21,20 @@ public class HomePageController {
 
     @Autowired
     private StartupService startupService;
-//    private StartupService startupService;
-//    private DeveloperService developerService;
- //   private InvestorService investorService;
 
-//    @Autowired
-//    public HomePageController(StartupService startupService, DeveloperService developerService, InvestorService investorService) {
-//        this.startupService = startupService;
-//        this.developerService = developerService;
-//        this.investorService = investorService;
-//    }
-//
     @RequestMapping(
             value = {"", "/", "index"},
             method = RequestMethod.GET
     )
-    public ModelAndView getHomePage(){
+    public ModelAndView getHomePage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("startups", startupService.getAll());
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
-        if(user instanceof Investor || user instanceof Developer){
+        if (user instanceof Investor || user instanceof Developer) {
             modelAndView.addObject("user", user);
         }
-
-        //modelAndView.addObject("startups", startupService.getAll());
-        //modelAndView.addObject("is_investor", investorService.isAuthenticatedInvestor);
-        //modelAndView.addObject("is_developer", developerService.isAuthenticatedDeveloper);
         modelAndView.setViewName("index");
         return modelAndView;
     }

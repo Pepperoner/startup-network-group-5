@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsService);
-                //.passwordEncoder(getShaPasswordEncoder());
+
     }
 
     @Override

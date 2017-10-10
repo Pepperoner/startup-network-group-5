@@ -31,7 +31,7 @@ public class InvestorController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         ModelAndView modelAndView = new ModelAndView("index");
-        if (((Developer)user).getRole().equals(UserRole.INVESTOR)) {
+        if (((Developer) user).getRole().equals(UserRole.INVESTOR)) {
             modelAndView.addObject("investor", user);
             modelAndView.setViewName("/user/investor_cabinet");
         }
@@ -46,9 +46,6 @@ public class InvestorController {
         Investor investor = investorService.get(id);
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
         response.getOutputStream().write(investor.getImage());
-        //response.getOutputStream().flush();
         response.getOutputStream().close();
-
-
     }
 }

@@ -13,7 +13,6 @@ import java.util.Set;
 public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
 
     @Override
-    //TODO: Please, move this logic to abstract translator.
     public void fromDto(UserDto source, Developer destination) {
         if (source == null) {
             return;

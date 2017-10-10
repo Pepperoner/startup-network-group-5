@@ -30,8 +30,6 @@ public class RegisterController {
     @Autowired
     private InvestorService investorService;
 
-
-    // Return registration form template
     @RequestMapping(value = "/user_type-selector", method = RequestMethod.GET)
     public ModelAndView showRegistrationPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -43,7 +41,6 @@ public class RegisterController {
 
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    //@ResponseBody
     public ModelAndView getRegistrationForm(ModelAndView modelAndView, UserRole userRole) {
 
         modelAndView.setViewName("registration");

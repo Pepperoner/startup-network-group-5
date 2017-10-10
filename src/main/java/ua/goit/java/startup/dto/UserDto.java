@@ -158,21 +158,6 @@ public class UserDto extends ModelDTO implements UserDetails {
         return grantedAuthorities;
     }
 
-    /*@Override
-    public String toString() {
-        return "UserDto{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", contacts='" + contacts + '\'' +
-                ", role=" + role +
-                ", paidcost=" + paidcost +
-                ", isLocked=" + isLocked +
-                ", image=" + Arrays.toString(image) +
-                ", startupDto=" + startupDto +
-                '}';
-    }*/
-
     @Override
     public boolean isAccountNonExpired() {
         return !isLocked;

@@ -17,7 +17,7 @@
                 <hr />
 
                 <h3>Please fill the following fields:</h3>
-                <form:form commandName="startup" enctype="multipart/form-data"  autocomplete="off" action="/add-startup/${startupModel}"  method="post" class="m-t" data-toggle="validator">
+                <form:form commandName="startup" enctype="multipart/form-data"  autocomplete="off" action="/add-startup/"  method="post" class="m-t" data-toggle="validator">
                 <%--<form:form commandName="startup" autocomplete="off" action="/add-startup"  method="post" class="m-t" data-toggle="validator">--%>
                     <div class="form-group input-group has-feedback">
                         <form:input path="name" placeholder="Startup Name" class="form-control" required="true" />
