@@ -67,12 +67,10 @@ public class InvestorController {
         startupToInvest.setCurrentsum(startup.getCurrentsum());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
-        if (user instanceof Developer) {
-            if (((Developer) user).getRole().equals(UserRole.INVESTOR)) {
-                Set<Investor> set = new HashSet<>();
-                set.add((Investor) user);
-                startup.setInvestor(set);
-            }
+        if (user instanceof Investor) {
+            Set<Investor> set = new HashSet<>();
+            set.add((Investor) user);
+            startup.setInvestor(set);
         }
         Startup startupFromDb = startupService.update(startupToInvest);
         ModelAndView modelAndView = new ModelAndView("invest_startup");
