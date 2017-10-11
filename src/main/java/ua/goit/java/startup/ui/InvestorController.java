@@ -64,7 +64,7 @@ public class InvestorController {
     @RequestMapping(value = "startup/invest/{id}", method = RequestMethod.POST)
     public String investMoney(@ModelAttribute("startup") Startup startup) {
         Startup startupToInvest = startupService.get(startup.getId());
-        startupToInvest.setCurrentsum(startup.getCurrentsum());
+        startupToInvest.setCurrentsum(startup.getCurrentsum() + startupToInvest.getCurrentsum());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Investor) {
