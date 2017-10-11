@@ -31,6 +31,8 @@
                         <c:set var="descr" value="${startup.description}"/>
                         Description: ${descr.length() > 40 ? descr.substring(0, 40) : descr}...
                     </div>
+                    <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
+                       href="<c:url value='/startup/invest/${startup.id}'/>">Invest</a>
                     <div ><a href="#">See more...</a></div>
                 </div>
             </c:forEach>
