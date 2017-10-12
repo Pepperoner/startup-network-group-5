@@ -62,9 +62,12 @@ public class InvestorController {
     }
 
     @RequestMapping(value = "startup/invest/{id}", method = RequestMethod.POST)
-    public String investMoney(@ModelAttribute("startup") Startup startup) {
+    public String investMoney(@ModelAttribute("startup") Startup startup,
+                              @ModelAttribute("investor") Investor investor) {
         Startup startupToInvest = startupService.get(startup.getId());
         startupToInvest.setCurrentsum(startup.getCurrentsum() + startupToInvest.getCurrentsum());
+        Investor investorToInvest = investorService.get(investor.getId());
+        investorToInvest.setPaidcost(startupToInvest.getCurrentsum());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Investor) {
@@ -73,8 +76,11 @@ public class InvestorController {
             startup.setInvestor(set);
         }
         Startup startupFromDb = startupService.update(startupToInvest);
+        Investor investorFromDb = investorService.update(investorToInvest);
         ModelAndView modelAndView = new ModelAndView("invest_startup");
         modelAndView.addObject("startup", startupFromDb);
+        modelAndView.addObject("investor", investorFromDb);
         return "redirect:/index";
     }
+
 }
