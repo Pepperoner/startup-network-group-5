@@ -8,38 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class AdminTranslator extends DataTranslator<UserDto, Admin> {
-
-    @Override
-    public void fromDto(UserDto source, Admin destination) {
-        if (source == null) {
-            return;
-        }
-        destination.setId(source.getId());
-        destination.setUsername(source.getUsername());
-        destination.setPassword(source.getPassword());
-        destination.setEmail(source.getEmail());
-        destination.setContacts(source.getContacts());
-        destination.setRole(source.getRole());
-        destination.setLocked(source.isLocked());
-        destination.setImage(source.getImage());
-    }
-
-    @Override
-    //TODO: Please, move this logic to abstract translator.
-    public void toDto(Admin source, UserDto destination) {
-        if (source == null) {
-            return;
-        }
-        destination.setId(source.getId());
-        destination.setUsername(source.getUsername());
-        destination.setPassword(source.getPassword());
-        destination.setEmail(source.getEmail());
-        destination.setContacts(source.getContacts());
-        destination.setRole(source.getRole());
-        destination.setLocked(source.isLocked());
-        destination.setImage(source.getImage());
-    }
+public class AdminTranslator extends AbstractUserTranslator<Admin> {
 
     @Override
     public UserDto toDto(Admin source) {
@@ -56,9 +25,9 @@ public class AdminTranslator extends DataTranslator<UserDto, Admin> {
     }
 
     @Override
-    public Set<Admin> getListFromDto(Set<UserDto> dtoSet){
-        Set <Admin> adminSet = new HashSet<>();
-        for (UserDto userDto : dtoSet){
+    public Set<Admin> getListFromDto(Set<UserDto> dtoSet) {
+        Set<Admin> adminSet = new HashSet<>();
+        for (UserDto userDto : dtoSet) {
             Admin admin = new Admin();
             fromDto(userDto, admin);
             adminSet.add(admin);

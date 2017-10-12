@@ -16,7 +16,6 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
         if (source == null) {
             return;
         }
-
         destination.setId(source.getId());
         destination.setName(source.getName());
         destination.setDescription(source.getDescription());
@@ -49,7 +48,6 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
         if (source == null) {
             return;
         }
-
         destination.setId(source.getId());
         destination.setName(source.getName());
         destination.setDescription(source.getDescription());
@@ -95,6 +93,3 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
         return startupSet;
     }
 }
-
-
-

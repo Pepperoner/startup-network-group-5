@@ -10,24 +10,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
+public class InvestorTranslator extends AbstractUserTranslator<Investor> {
 
     @Override
     public void fromDto(UserDto source, Investor destination) {
-        if (source == null) {
-            return;
-        }
-
-        destination.setId(source.getId());
-        destination.setUsername(source.getUsername());
-        destination.setPassword(source.getPassword());
-        destination.setEmail(source.getEmail());
-        destination.setContacts(source.getContacts());
-        destination.setRole(source.getRole());
-        destination.setPaidcost(source.getPaidcost());
-        destination.setLocked(source.isLocked());
-        destination.setImage(source.getImage());
-
+//        if (source == null) {
+//            return;
+//        }
+//        destination.setId(source.getId());
+//        destination.setUsername(source.getUsername());
+//        destination.setPassword(source.getPassword());
+//        destination.setEmail(source.getEmail());
+//        destination.setContacts(source.getContacts());
+//        destination.setRole(source.getRole());
+//        destination.setLocked(source.isLocked());
+//        destination.setImage(source.getImage());
+        super.fromDto(source, destination);
         Set<Startup> startups = new HashSet<>();
         destination.setStartup(startups);
         for (StartupDto startupDto : source.getStartupDto()) {
@@ -38,21 +36,20 @@ public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
     }
 
     @Override
-    //TODO: Please, move this logic to abstract translator.
     public void toDto(Investor source, UserDto destination) {
-        if (source == null) {
-            return;
-        }
-        destination.setId(source.getId());
-        destination.setUsername(source.getUsername());
-        destination.setPassword(source.getPassword());
-        destination.setEmail(source.getEmail());
-        destination.setContacts(source.getContacts());
-        destination.setRole(source.getRole());
-        destination.setPaidcost(source.getPaidcost());
-        destination.setLocked(source.isLocked());
-        destination.setImage(source.getImage());
+//        if (source == null) {
+//            return;
+//        }
+//        destination.setId(source.getId());
+//        destination.setUsername(source.getUsername());
+//        destination.setPassword(source.getPassword());
+//        destination.setEmail(source.getEmail());
+//        destination.setContacts(source.getContacts());
+//        destination.setRole(source.getRole());
+//        destination.setLocked(source.isLocked());
+//        destination.setImage(source.getImage());
 
+        super.toDto(source, destination);
         Set<StartupDto> startupDtos = new HashSet<>();
         destination.setStartupDto(startupDtos);
         for (Startup startup : source.getStartup()) {
@@ -77,9 +74,9 @@ public class InvestorTranslator extends DataTranslator<UserDto, Investor> {
     }
 
     @Override
-    public Set<Investor> getListFromDto(Set<UserDto> dtoSet){
-        Set <Investor> investorSet = new HashSet<>();
-        for (UserDto userDto : dtoSet){
+    public Set<Investor> getListFromDto(Set<UserDto> dtoSet) {
+        Set<Investor> investorSet = new HashSet<>();
+        for (UserDto userDto : dtoSet) {
             Investor investor = new Investor();
             fromDto(userDto, investor);
             investorSet.add(investor);

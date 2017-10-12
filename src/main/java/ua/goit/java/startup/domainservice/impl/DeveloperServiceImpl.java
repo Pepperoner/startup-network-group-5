@@ -41,7 +41,6 @@ public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> im
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-
         return findByEmail(s);
     }
 }
