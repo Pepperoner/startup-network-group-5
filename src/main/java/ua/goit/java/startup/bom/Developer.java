@@ -12,33 +12,41 @@ import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-public class Developer extends Model implements UserDetails {
+public class Developer extends BaseUser implements UserDetails {
 
-    private String username;
-
-    private String password;
-
-    private String email;
-
-    private String contacts;
-
-    private UserRole role;
+//    private String username;
+//
+//    private String password;
+//
+//    private String email;
+//
+//    private String contacts;
+//
+//    private UserRole role;
 
     private boolean isLocked;
 
-    private byte[] image;
+//    private byte[] image;
 
     private Set<Startup> startup = new HashSet<>();
 
-    public Developer() {}
-
-    public Developer(String username, String password, String contacts, UserRole role) {
-        this();
-        setUsername(username);
-        setPassword(password);
-        setContacts(contacts);
-        setRole(role);
+    public Developer(boolean isLocked, Set<Startup> startup) {
+        this.isLocked = isLocked;
+        this.startup = startup;
     }
+
+    public Developer() {
+    }
+
+    //    public Developer() {}
+//
+//    public Developer(String username, String password, String contacts, UserRole role) {
+//        this();
+//        setUsername(username);
+//        setPassword(password);
+//        setContacts(contacts);
+//        setRole(role);
+//    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -69,61 +77,61 @@ public class Developer extends Model implements UserDetails {
         return grantedAuthorities;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = isNotBlank(username) ? username : "";
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = isNotBlank(password) ? password : "";
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = isNotBlank(email) ? email : "";
-    }
-
-    public String getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(String contacts) {
-        this.contacts = isNotBlank(contacts) ? contacts : "";
-    }
-
-    public UserRole getRole() {
-        return role;
-    }
-
-    public void setRole(UserRole role) {
-        this.role = (role != null) ? role : UserRole.DEVELOPER;
-    }
-
-    public boolean isLocked() {
-        return isLocked;
-    }
-
-    public void setLocked(boolean locked) {
-        isLocked = locked;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    public void setUsername(String username) {
+//        this.username = isNotBlank(username) ? username : "";
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = isNotBlank(password) ? password : "";
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = isNotBlank(email) ? email : "";
+//    }
+//
+//    public String getContacts() {
+//        return contacts;
+//    }
+//
+//    public void setContacts(String contacts) {
+//        this.contacts = isNotBlank(contacts) ? contacts : "";
+//    }
+//
+//    public UserRole getRole() {
+//        return role;
+//    }
+////
+//    public void setRole(UserRole role) {
+//        this.role = (role != null) ? role : UserRole.DEVELOPER;
+//    }
+//
+//    public boolean isLocked() {
+//        return isLocked;
+//    }
+//
+//    public void setLocked(boolean locked) {
+//        isLocked = locked;
+//    }
+//
+//    public byte[] getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(byte[] image) {
+//        this.image = image;
+//    }
 
     public Set<Startup> getStartup() {
         return startup;
@@ -133,18 +141,18 @@ public class Developer extends Model implements UserDetails {
         this.startup = startup != null ? startup : new HashSet<>();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
-    }
-
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
-    }
-
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
+//    @Override
+//    public boolean equals(Object obj) {
+//        return EqualsBuilder.reflectionEquals(this, obj);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return HashCodeBuilder.reflectionHashCode(this);
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return ReflectionToStringBuilder.toString(this);
+//    }
 }

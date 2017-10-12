@@ -14,41 +14,49 @@ import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-public class Investor extends Model implements UserDetails {
+public class Investor extends BaseUser implements UserDetails {
 
-    private String username;
+//    private String username;
 
-    private String password;
+//    private String password;
 
-    private String email;
-
-    private String contacts;
-
-    private UserRole role;
+//    private String email;
+//
+//    private String contacts;
+//
+//    private UserRole role;
 
     //TODO: Typo. Use camel case.
     private long paidcost;
 
     private boolean isLocked;
 
-    private byte[] image;
+//    private byte[] image;
 
     private Set<Startup> startup = new HashSet<>();
 
-    public Investor() {}
+    public Investor(){}
 
-    public Investor(String username, String password, String contacts, UserRole role, long paidcost) {
-        this();
-        setUsername(username);
-        setPassword(password);
-        setContacts(contacts);
-        setRole(role);
-        setPaidcost(paidcost);
+    public Investor(long paidcost, boolean isLocked, Set<Startup> startup) {
+        this.paidcost = paidcost;
+        this.isLocked = isLocked;
+        this.startup = startup;
     }
 
-    public String getUsername() {
-        return username;
-    }
+    //    public Investor() {}
+//
+//    public Investor(String username, String password, String contacts, UserRole role, long paidcost) {
+//        this();
+//        setUsername(username);
+//        setPassword(password);
+//        setContacts(contacts);
+//        setRole(role);
+//        setPaidcost(paidcost);
+//    }
+
+//    public String getUsername() {
+//        return username;
+//    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -70,9 +78,9 @@ public class Investor extends Model implements UserDetails {
         return !isLocked;
     }
 
-    public void setUsername(String username) {
-        this.username = isNotBlank(username) ? username : "";;
-    }
+//    public void setUsername(String username) {
+//        this.username = isNotBlank(username) ? username : "";;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -82,37 +90,37 @@ public class Investor extends Model implements UserDetails {
         return grantedAuthorities;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = isNotBlank(password) ? password : "";
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = isNotBlank(email) ? email : "";
-    }
-
-    public String getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(String contacts) {
-        this.contacts = isNotBlank(contacts) ? contacts : "";
-    }
-
-    public UserRole getRole() {
-        return role;
-    }
-
-    public void setRole(UserRole role) {
-        this.role = (role != null) ? role : UserRole.INVESTOR;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = isNotBlank(password) ? password : "";
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = isNotBlank(email) ? email : "";
+//    }
+//
+//    public String getContacts() {
+//        return contacts;
+//    }
+//
+//    public void setContacts(String contacts) {
+//        this.contacts = isNotBlank(contacts) ? contacts : "";
+//    }
+//
+//    public UserRole getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(UserRole role) {
+//        this.role = (role != null) ? role : UserRole.INVESTOR;
+//    }
 
     public long getPaidcost() {
         return paidcost;
@@ -121,22 +129,22 @@ public class Investor extends Model implements UserDetails {
     public void setPaidcost(long paidcost) {
         this.paidcost = paidcost > 0 ? paidcost : 0;
     }
-
-    public boolean isLocked() {
-        return isLocked;
-    }
-
-    public void setLocked(boolean locked) {
-        isLocked = locked;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
+//
+//    public boolean isLocked() {
+//        return isLocked;
+//    }
+//
+//    public void setLocked(boolean locked) {
+//        isLocked = locked;
+//    }
+//
+//    public byte[] getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(byte[] image) {
+//        this.image = image;
+//    }
 
     public Set<Startup> getStartup() {
         return startup;
@@ -147,18 +155,18 @@ public class Investor extends Model implements UserDetails {
         this.startup = startup != null ? startup : new HashSet<>();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
-    }
+//    @Override
+//    public boolean equals(Object obj) {
+//        return EqualsBuilder.reflectionEquals(this, obj);
+//    }
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
-    }
-
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
+//    @Override
+//    public int hashCode() {
+//        return HashCodeBuilder.reflectionHashCode(this);
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return ReflectionToStringBuilder.toString(this);
+//    }
 }

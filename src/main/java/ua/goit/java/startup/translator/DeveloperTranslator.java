@@ -13,6 +13,7 @@ import java.util.Set;
 public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
 
     @Override
+    //TODO: Please, move this logic to abstract translator.
     public void fromDto(UserDto source, Developer destination) {
         if (source == null) {
             return;
@@ -32,10 +33,6 @@ public class DeveloperTranslator extends DataTranslator<UserDto, Developer> {
         for (StartupDto startupDto : source.getStartupDto()) {
             Startup startup = new Startup();
             startup.setId(startupDto.getId());
-            startup.setName(startupDto.getName());
-            startup.setDescription(startupDto.getDescription());
-            startup.setCost(startupDto.getCost());
-            startup.setCurrentsum(startupDto.getCurrentsum());
             startups.add(startup);
         }
     }

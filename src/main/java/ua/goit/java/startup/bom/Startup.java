@@ -23,9 +23,8 @@ public class Startup extends Model {
 
     private byte[] image;
 
-    //TODO: All fields in BOM should be private.
-    Set<Developer> developer;
-    Set<Investor> investor;
+    private Set<Developer> developer;
+    private Set<Investor> investor;
 
     public Startup() {
         this.name = "";
