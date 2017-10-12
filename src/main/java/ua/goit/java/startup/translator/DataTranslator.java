@@ -7,15 +7,15 @@ import ua.goit.java.startup.dto.ModelDTO;
 import java.util.Set;
 
 @Component
-public class DataTranslator<T extends ModelDTO, V extends Model> {
+public abstract class DataTranslator<T extends ModelDTO, V extends Model> {
 
-    public void toDto(V source, T destination) { }
-    public T toDto(V source) { return null;}
+    public abstract void toDto(V source, T destination);
 
-    public void fromDto(T source, V destination) { }
-    public V fromDto(T source) { return null;}
+    public abstract T toDto(V source);
 
-    public Set<V> getListFromDto(Set<T> dtoSet){
-        return null;
-    }
+    public abstract void fromDto(T source, V destination);
+
+    public abstract V fromDto(T source);
+
+    public abstract Set<V> getListFromDto(Set<T> dtoSet);
 }
