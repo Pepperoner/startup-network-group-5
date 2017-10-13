@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DataServiceImpl<T extends ModelDTO, V extends Model> implements DataService<V> {
+public abstract class DataServiceImpl<T extends ModelDTO, V extends Model> implements DataService<V> {
 
     protected DataRepository<T> repository;
 
