@@ -63,6 +63,10 @@ public class Startup extends Model {
         this.description = isNotBlank(description) ? description : description;
     }
 
+    public void addMoneyToStartup(long sum) {
+        this.currentsum += sum;
+    }
+
     public long getCost() {
         return cost;
     }

@@ -17,11 +17,14 @@
                 <hr />
 
                 <h3>Please fill the following fields:</h3>
-                <form:form commandName="startup"  autocomplete="off" action="/startup/invest/${startup.id}"  method="post" class="m-t" data-toggle="validator">
+                <form:form commandName="investorStartupForm"  autocomplete="off" action="/startup/invest/${investorStartupForm.startup.id}"  method="post" class="m-t" data-toggle="validator">
 
                     <div class="form-group input-group has-feedback">
-                        <form:input path="currentsum" placeholder="CurrentSum" class="form-control" required="true" />
+                        <form:hidden path="startup.currentsum"/>
+                        <form:hidden path="investor.id"/>
+                        <form:input path="paidCost" placeholder="CurrentSum" class="form-control" required="true" />
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+
                     </div>
 
                     <button type="submit" class="btn btn-primary block full-width m-b">Invest To Startup</button>

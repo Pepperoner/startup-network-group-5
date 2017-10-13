@@ -56,6 +56,10 @@ public class Investor extends BaseUser implements UserDetails {
         return grantedAuthorities;
     }
 
+    public void addMoneyToInvestor(long sum) {
+        this.paidcost += sum;
+    }
+
     public long getPaidcost() {
         return paidcost;
     }

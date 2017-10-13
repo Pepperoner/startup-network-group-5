@@ -13,6 +13,7 @@ import ua.goit.java.startup.bom.Startup;
 import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.domainservice.InvestorService;
 import ua.goit.java.startup.domainservice.StartupService;
+import ua.goit.java.startup.ui.form.InvestorStartupForm;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,33 +54,39 @@ public class InvestorController {
         response.getOutputStream().close();
     }
 
+    ///WORK without primary in DeveloperService
     @RequestMapping(value = "startup/invest/{id}", method = RequestMethod.GET)
     public ModelAndView investPage(@PathVariable(name = "id") long id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("startup", startupService.get(id));
+        InvestorStartupForm investorStartupForm = new InvestorStartupForm();
+        investorStartupForm.setStartup(startupService.get(id));
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Object user = auth.getPrincipal();
+        if (user instanceof Investor) {
+            investorStartupForm.setInvestor((Investor) user);
+        }
+        modelAndView.addObject("investorStartupForm", investorStartupForm);
         modelAndView.setViewName("invest_startup");
         return modelAndView;
     }
 
+    ///WORK without primary in DeveloperService
     @RequestMapping(value = "startup/invest/{id}", method = RequestMethod.POST)
-    public String investMoney(@ModelAttribute("startup") Startup startup,
-                              @ModelAttribute("investor") Investor investor) {
-        Startup startupToInvest = startupService.get(startup.getId());
-        startupToInvest.setCurrentsum(startup.getCurrentsum() + startupToInvest.getCurrentsum());
-        Investor investorToInvest = investorService.get(investor.getId());
-        investorToInvest.setPaidcost(startupToInvest.getCurrentsum());
+    public String investMoney(@ModelAttribute("investorStartupForm") InvestorStartupForm investorStartupForm,
+                              @PathVariable(name = "id") long startupId) {
+
+        Startup startupToInvest = startupService.get(startupId);
+        startupToInvest.addMoneyToStartup(investorStartupForm.getPaidCost());
+        Investor investorToInvest = investorService.get(investorStartupForm.getInvestor().getId());
+        investorToInvest.addMoneyToInvestor(investorStartupForm.getPaidCost());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Investor) {
-            Set<Investor> set = new HashSet<>();
-            set.add((Investor) user);
-            startup.setInvestor(set);
+            startupToInvest.getInvestor().add((Investor) user);
+            Investor investorFromDb = investorService.update(investorToInvest);
         }
         Startup startupFromDb = startupService.update(startupToInvest);
-        Investor investorFromDb = investorService.update(investorToInvest);
-        ModelAndView modelAndView = new ModelAndView("invest_startup");
-        modelAndView.addObject("startup", startupFromDb);
-        modelAndView.addObject("investor", investorFromDb);
+
         return "redirect:/index";
     }
 
