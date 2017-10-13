@@ -14,17 +14,9 @@ public class InvestorTranslator extends AbstractUserTranslator<Investor> {
 
     @Override
     public void fromDto(UserDto source, Investor destination) {
-//        if (source == null) {
-//            return;
-//        }
-//        destination.setId(source.getId());
-//        destination.setUsername(source.getUsername());
-//        destination.setPassword(source.getPassword());
-//        destination.setEmail(source.getEmail());
-//        destination.setContacts(source.getContacts());
-//        destination.setRole(source.getRole());
-//        destination.setLocked(source.isLocked());
-//        destination.setImage(source.getImage());
+        if (source == null) {
+            return;
+        }
         super.fromDto(source, destination);
         Set<Startup> startups = new HashSet<>();
         destination.setStartup(startups);
@@ -37,18 +29,9 @@ public class InvestorTranslator extends AbstractUserTranslator<Investor> {
 
     @Override
     public void toDto(Investor source, UserDto destination) {
-//        if (source == null) {
-//            return;
-//        }
-//        destination.setId(source.getId());
-//        destination.setUsername(source.getUsername());
-//        destination.setPassword(source.getPassword());
-//        destination.setEmail(source.getEmail());
-//        destination.setContacts(source.getContacts());
-//        destination.setRole(source.getRole());
-//        destination.setLocked(source.isLocked());
-//        destination.setImage(source.getImage());
-
+        if (source == null) {
+            return;
+        }
         super.toDto(source, destination);
         Set<StartupDto> startupDtos = new HashSet<>();
         destination.setStartupDto(startupDtos);
