@@ -81,5 +81,6 @@
     <script src="<c:url value="/js/jquery-3.2.1.min.js"/>"></script>
     <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
     <script src="<c:url value="/js/register.js"/>"></script>
+    <script src="<c:url value="/js/admin.js"/>"></script>
 </body>
 </html>

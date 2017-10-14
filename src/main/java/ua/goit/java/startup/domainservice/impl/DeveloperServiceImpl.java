@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.java.startup.bom.Developer;
 
+import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.dao.DataRepository;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.domainservice.DeveloperService;
@@ -16,8 +17,12 @@ import ua.goit.java.startup.dto.UserDto;
 import ua.goit.java.startup.translator.DataTranslator;
 import ua.goit.java.startup.translator.DeveloperTranslator;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Service
-//@Primary
 public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> implements DeveloperService {
 
     private UserDTORepository userRepository;
@@ -37,10 +42,21 @@ public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> im
         return developer;
     }
 
+    @Override
+    @Transactional
+    public Collection<Developer> getAll() {
 
-//    @Override
-//    @Transactional
-//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-//        return findByEmail(s);
-//    }
+        Set<UserDto> modelDto = new HashSet<>();
+        List<UserDto> userDtoList = repository.findAll();
+        for (UserDto userDto : userDtoList) {
+            if (userDto.getRole().equals(UserRole.DEVELOPER)){
+                modelDto.add(userDto);
+            }
+        }
+        Set<Developer> model = new HashSet<>();
+        model.addAll(translator.getListFromDto(modelDto));
+        return model;
+    }
+
+
 }

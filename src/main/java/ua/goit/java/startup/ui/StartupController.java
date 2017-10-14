@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Startup;
 import ua.goit.java.startup.bom.UserRole;
+import ua.goit.java.startup.domainservice.DeveloperService;
 import ua.goit.java.startup.domainservice.StartupService;
 
 import javax.servlet.ServletException;
@@ -28,6 +29,9 @@ public class StartupController {
 
     @Autowired
     private StartupService startupService;
+
+    @Autowired
+    private DeveloperService developerService;
 
     @RequestMapping(value = "/add-startup", method = RequestMethod.GET)
     public ModelAndView createStartup() {
@@ -117,7 +121,20 @@ public class StartupController {
 
     @RequestMapping(value = "/startup/delete/{id}", method = RequestMethod.GET)
     public String deleteStartup(@PathVariable(name = "id") long id) {
-        startupService.remove(id);
-        return "redirect:/index";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Object user = auth.getPrincipal();
+        if (user instanceof Developer) {
+
+            Developer developer = developerService.get(((Developer) user).getId());
+            Startup serchStartup = startupService.get(id);
+            Set<Startup> startups = developer.getStartup();
+
+            for(Startup startup:startups){
+                if(startup.getId() == serchStartup.getId()){
+                    startupService.remove(id);
+                }
+            }
+        }
+        return "redirect:/developer/cabinet";
     }
 }

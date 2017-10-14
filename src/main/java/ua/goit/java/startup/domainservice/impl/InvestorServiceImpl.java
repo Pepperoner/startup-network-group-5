@@ -5,13 +5,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Investor;
+import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.dao.DataRepository;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.domainservice.InvestorService;
 import ua.goit.java.startup.dto.UserDto;
 import ua.goit.java.startup.translator.DataTranslator;
 import ua.goit.java.startup.translator.InvestorTranslator;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> implements InvestorService {
@@ -32,11 +39,19 @@ public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> impl
         return investor;
     }
 
+    @Override
+    @Transactional
+    public Collection<Investor> getAll() {
 
-
-//    @Override
-//    @Transactional
-//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-//        return findByEmail(s);
-//    }
+        Set<UserDto> modelDto = new HashSet<>();
+        List<UserDto> userDtoList = repository.findAll();
+        for (UserDto userDto : userDtoList) {
+            if (userDto.getRole().equals(UserRole.INVESTOR)){
+                modelDto.add(userDto);
+            }
+        }
+        Set<Investor> model = new HashSet<>();
+        model.addAll(translator.getListFromDto(modelDto));
+        return model;
+    }
 }

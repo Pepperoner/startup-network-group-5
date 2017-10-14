@@ -39,8 +39,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
+
+        //return userRepository.findByEmail(s);
         UserDto userDTO = userRepository.findByEmail(s);
         UserRole userRole = userDTO.getRole();
+
         if(userRole.equals(UserRole.DEVELOPER)){
             return developerTranslator.fromDto(userDTO);
         }else if(userRole.equals(UserRole.INVESTOR)){

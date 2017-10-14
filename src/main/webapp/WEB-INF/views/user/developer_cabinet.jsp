@@ -36,8 +36,12 @@
                             <c:if test="${startup.image != null}">
                                 <td><img style="width: 200px" src="/startup/imageDisplay?id=${startup.id}" class="media-object pull-left"></td>
                             </c:if>
-                            <td><a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
-                                   href="<c:url value='/startup/edit/${startup.id}'/>">Edit</a></td>
+                            <td>
+                                <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
+                                   href="<c:url value='/startup/edit/${startup.id}'/>">Edit</a>
+                                <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
+                                   href="<c:url value='/startup/delete/${startup.id}'/>">Delete</a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
