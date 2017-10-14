@@ -34,9 +34,9 @@ public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> impl
 
 
 
-    @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return findByEmail(s);
-    }
+//    @Override
+//    @Transactional
+//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+//        return findByEmail(s);
+//    }
 }

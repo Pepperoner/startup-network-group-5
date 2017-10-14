@@ -3,6 +3,6 @@ package ua.goit.java.startup.domainservice;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import ua.goit.java.startup.bom.Developer;
 
-public interface DeveloperService extends DataService<Developer>, UserDetailsService {
+public interface DeveloperService extends DataService<Developer> {
     Developer findByEmail(String email);
 }

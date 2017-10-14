@@ -37,7 +37,7 @@ public class DataConfig {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl(url);
         dataSource.setUsername(username);
-        dataSource.setPassword(password);
+        //dataSource.setPassword(password);
         dataSource.setDriverClassName(driverClassname);
         return dataSource;
     }

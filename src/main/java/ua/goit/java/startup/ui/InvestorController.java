@@ -36,7 +36,8 @@ public class InvestorController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         ModelAndView modelAndView = new ModelAndView("index");
-        if (((Developer) user).getRole().equals(UserRole.INVESTOR)) {
+        if (user instanceof Investor) {
+        //if (((Developer) user).getRole().equals(UserRole.INVESTOR)) {
             modelAndView.addObject("investor", user);
             modelAndView.setViewName("/user/investor_cabinet");
         }

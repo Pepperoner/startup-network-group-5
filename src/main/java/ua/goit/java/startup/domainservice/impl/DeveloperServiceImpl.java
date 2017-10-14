@@ -17,7 +17,7 @@ import ua.goit.java.startup.translator.DataTranslator;
 import ua.goit.java.startup.translator.DeveloperTranslator;
 
 @Service
-@Primary
+//@Primary
 public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> implements DeveloperService {
 
     private UserDTORepository userRepository;
@@ -38,9 +38,9 @@ public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> im
     }
 
 
-    @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return findByEmail(s);
-    }
+//    @Override
+//    @Transactional
+//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+//        return findByEmail(s);
+//    }
 }
