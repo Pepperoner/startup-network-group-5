@@ -38,7 +38,7 @@ public class InvestorController {
         ModelAndView modelAndView = new ModelAndView("index");
         if (user instanceof Investor) {
         //if (((Developer) user).getRole().equals(UserRole.INVESTOR)) {
-            modelAndView.addObject("investor", user);
+            modelAndView.addObject("investor", investorService.get(((Investor) user).getId()));
             modelAndView.setViewName("/user/investor_cabinet");
         }
         return modelAndView;
@@ -70,7 +70,7 @@ public class InvestorController {
         modelAndView.setViewName("invest_startup");
         return modelAndView;
     }
-
+/**/
     ///WORK without primary in DeveloperService
     @RequestMapping(value = "startup/invest/{id}", method = RequestMethod.POST)
     public String investMoney(@ModelAttribute("investorStartupForm") InvestorStartupForm investorStartupForm,
@@ -83,12 +83,48 @@ public class InvestorController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Investor) {
+            //System.out.println(1);
             startupToInvest.getInvestor().add((Investor) user);
+            //System.out.println(2);
             Investor investorFromDb = investorService.update(investorToInvest);
+            //System.out.println(3);
         }
         Startup startupFromDb = startupService.update(startupToInvest);
 
         return "redirect:/index";
     }
+  /*
+@RequestMapping(value = "startup/invest/{id}", method = RequestMethod.POST)
+public String investMoney(@ModelAttribute("startup") Startup startup) {
+
+
+
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Object user = auth.getPrincipal();
+    if (user instanceof Investor) {
+        Startup startupToInvest = startupService.get(startup.getId());
+        startupToInvest.setCurrentsum(startup.getCurrentsum() + startupToInvest.getCurrentsum());
+
+        Investor investor = investorService.get(((Investor) user).getId());
+        investor.setPaidcost(investor.getPaidcost() + startup.getCurrentsum());
+
+        Set<Startup> startups = investor.getStartup();
+        //if(startups.contains(startupToInvest)){
+        //    startupService.update(startupToInvest);
+
+        //}else{
+        startups.add(startupToInvest);
+        //investorService.update(investor);
+        //}
+        investorService.update(investor);
+        //System.out.println("investor paid cost: " + investor.getPaidcost());
+        //set.add(investor);
+        //startupToInvest.setInvestor(set);
+
+    }
+
+
+    return "redirect:/index";
+}*/
 
 }
