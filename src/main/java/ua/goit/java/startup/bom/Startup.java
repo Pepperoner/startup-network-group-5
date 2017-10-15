@@ -11,6 +11,10 @@ import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
+/*
+a BOM class for Startup's data
+ */
+
 public class Startup extends Model {
 
     private String name;

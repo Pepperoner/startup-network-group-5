@@ -6,6 +6,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
 
+/*
+A BOM class for Developer content
+ */
+
 public class Developer extends BaseUser implements UserDetails {
 
     private boolean isLocked;

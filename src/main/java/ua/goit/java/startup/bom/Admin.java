@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/*
+A BOM class for administrator
+ */
 
 public class Admin extends BaseUser implements UserDetails {
 

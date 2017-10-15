@@ -7,6 +7,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
+/*
+BaseUser class represent an abstract class that contains common fields for Admin, Developer and Investor classes
+ */
+
 public abstract class BaseUser extends Model {
 
     private String username;
