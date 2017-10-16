@@ -65,4 +65,14 @@ public class StartupServiceImpl extends DataServiceImpl<StartupDto, Startup> imp
         }
         return developers;
     }
+
+    @Override
+    @Transactional
+    public Set<Startup> findStartupsByKeyWord(String key) {
+        Set<StartupDto> modelDto = new HashSet<>();
+        modelDto.addAll(startupDTORepository.findStartupsByKeyWord(key));
+        Set<Startup> model = new HashSet<>();
+        model.addAll(translator.getListFromDto(modelDto));
+        return model;
+    }
 }

@@ -119,4 +119,9 @@ public class StartupController {
         }
         return "redirect:/developer/cabinet";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView findStartup(@RequestParam("keyword") String keyword) {
+        return new ModelAndView("/index", "startups", startupService.findStartupsByKeyWord(keyword));
+    }
 }

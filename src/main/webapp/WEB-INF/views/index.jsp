@@ -9,7 +9,16 @@
         STARTUP-SERVICE
     </jsp:attribute>
     <jsp:body>
-
+        <div>
+            <form action="/search" class="navbar-form" role="search">
+                <div class="input-group add-on">
+                    <input class="form-control" placeholder="Search" name="keyword" id="keyword">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <h4><b>Startups</b></h4>
         <div id="startup-item-wrapper">
             <c:forEach items="${startups}" var="startup">
