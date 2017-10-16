@@ -1,8 +1,9 @@
 package ua.goit.java.startup.domainservice;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
 import ua.goit.java.startup.bom.Developer;
-
+/*
+A main method for Developer's side
+ */
 public interface DeveloperService extends DataService<Developer> {
     Developer findByEmail(String email);
 }

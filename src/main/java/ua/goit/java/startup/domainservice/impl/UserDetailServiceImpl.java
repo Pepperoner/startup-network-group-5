@@ -12,14 +12,15 @@ import ua.goit.java.startup.dto.UserDto;
 import ua.goit.java.startup.translator.AdminTranslator;
 import ua.goit.java.startup.translator.DeveloperTranslator;
 import ua.goit.java.startup.translator.InvestorTranslator;
-
+/*
+Implementation of the main method of the UserDetailService
+ */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
     private final UserDTORepository userRepository;
     private final DeveloperTranslator developerTranslator;
     private final InvestorTranslator investorTranslator;
-
     private final AdminTranslator adminTranslator;
 
     @Autowired
@@ -33,22 +34,16 @@ public class UserDetailServiceImpl implements UserDetailsService {
         this.adminTranslator = adminTranslator;
     }
 
-
-
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-
-
-        //return userRepository.findByEmail(s);
         UserDto userDTO = userRepository.findByEmail(s);
         UserRole userRole = userDTO.getRole();
-
-        if(userRole.equals(UserRole.DEVELOPER)){
+        if (userRole.equals(UserRole.DEVELOPER)) {
             return developerTranslator.fromDto(userDTO);
-        }else if(userRole.equals(UserRole.INVESTOR)){
+        } else if (userRole.equals(UserRole.INVESTOR)) {
             return investorTranslator.fromDto(userDTO);
-        }else if(userRole.equals(UserRole.ADMIN)){
+        } else if (userRole.equals(UserRole.ADMIN)) {
             return adminTranslator.fromDto(userDTO);
         }
         return null;

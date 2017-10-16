@@ -20,7 +20,7 @@
                 <form:form commandName="investorStartupForm"  autocomplete="off" action="/startup/invest/${investorStartupForm.startup.id}"  method="post" class="m-t" data-toggle="validator">
 
                     <div class="form-group input-group has-feedback">
-                        <form:hidden path="startup.currentsum"/>
+                        <form:hidden path="startup.currentSum"/>
                         <form:hidden path="investor.id"/>
                         <form:input path="paidCost" placeholder="CurrentSum" class="form-control" required="true" />
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

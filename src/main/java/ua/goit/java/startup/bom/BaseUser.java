@@ -10,21 +10,14 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 /*
 BaseUser class represent an abstract class that contains common fields for Admin, Developer and Investor classes
  */
-
 public abstract class BaseUser extends Model {
 
     private String username;
-
     private String password;
-
     private String email;
-
     private String contacts;
-
     private UserRole role;
-
     private boolean isLocked;
-
     private byte[] image;
 
     public BaseUser() {

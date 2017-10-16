@@ -5,7 +5,9 @@ import org.springframework.security.core.userdetails.User;
 import ua.goit.java.startup.bom.UserRole;
 
 import java.util.Collection;
-
+/*
+Security part for involving roles
+ */
 public class UserDetailsSecurity extends User{
 
     private UserRole userRole;

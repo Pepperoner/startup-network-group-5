@@ -7,7 +7,9 @@ import ua.goit.java.startup.dto.UserDto;
 
 import java.util.HashSet;
 import java.util.Set;
-
+/*
+A class with Startup's methods for transfer from/to DataBase
+ */
 @Component
 public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
 
@@ -20,7 +22,7 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
         destination.setName(source.getName());
         destination.setDescription(source.getDescription());
         destination.setCost(source.getCost());
-        destination.setCurrentsum(source.getCurrentsum());
+        destination.setCurrentSum(source.getCurrentSum());
         destination.setImage(source.getImage());
 
         Set<Developer> developers = new HashSet<>();
@@ -52,7 +54,7 @@ public class StartupTranslator extends DataTranslator<StartupDto, Startup> {
         destination.setName(source.getName());
         destination.setDescription(source.getDescription());
         destination.setCost(source.getCost());
-        destination.setCurrentsum(source.getCurrentsum());
+        destination.setCurrentSum(source.getCurrentSum());
         destination.setImage(source.getImage());
         Set<UserDto> userDtos = new HashSet<>();
         destination.setUserDto(userDtos);

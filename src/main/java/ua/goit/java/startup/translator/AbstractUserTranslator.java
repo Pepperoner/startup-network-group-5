@@ -1,15 +1,10 @@
 package ua.goit.java.startup.translator;
 
 import ua.goit.java.startup.bom.BaseUser;
-import ua.goit.java.startup.bom.Model;
-import ua.goit.java.startup.bom.Startup;
-import ua.goit.java.startup.dto.ModelDTO;
-import ua.goit.java.startup.dto.StartupDto;
 import ua.goit.java.startup.dto.UserDto;
-
-import java.util.HashSet;
-import java.util.Set;
-
+/*
+A class with common methods for entities(BOMs) for transfer from/to DataBase
+ */
 public abstract class AbstractUserTranslator<T extends BaseUser> extends DataTranslator<UserDto, T> {
 
     @Override

@@ -10,17 +10,14 @@ import java.util.Collection;
 /*
 A BOM class for administrator
  */
-
 public class Admin extends BaseUser implements UserDetails {
 
     private boolean isLocked;
-
     public Admin(boolean isLocked) {
         this.isLocked = isLocked;
     }
 
     public Admin() {
-
     }
 
     @Override

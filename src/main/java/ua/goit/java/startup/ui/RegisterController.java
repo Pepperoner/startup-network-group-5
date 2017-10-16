@@ -1,6 +1,5 @@
 package ua.goit.java.startup.ui;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,17 +15,15 @@ import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.domainservice.DeveloperService;
 import ua.goit.java.startup.domainservice.InvestorService;
 
-import javax.servlet.annotation.MultipartConfig;
-import javax.validation.Valid;
 import java.io.IOException;
-
-
+/*
+A class for (Developer/Investor) registration management
+ */
 @Controller
 public class RegisterController {
 
     @Autowired
     private DeveloperService developerService;
-
     @Autowired
     private InvestorService investorService;
 
@@ -39,10 +36,8 @@ public class RegisterController {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView getRegistrationForm(ModelAndView modelAndView, UserRole userRole) {
-
         modelAndView.setViewName("registration");
         if (userRole.equals(UserRole.INVESTOR)) {
             modelAndView.addObject("investor", new Investor());
@@ -55,16 +50,15 @@ public class RegisterController {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/registration/developer", method = RequestMethod.POST)
-    public ModelAndView doDeveloperRegistration(@ModelAttribute("developer")Developer developer, BindingResult result,
-                                                @RequestParam("file") MultipartFile file){
+    public ModelAndView doDeveloperRegistration(@ModelAttribute("developer") Developer developer, BindingResult result,
+                                                @RequestParam("file") MultipartFile file) {
 
         ModelAndView modelAndView = new ModelAndView("registration");
         Developer devExist = developerService.findByEmail(developer.getEmail());
-
         if (devExist != null && devExist.getEmail() != null) {
-            modelAndView.addObject("alreadyRegisteredMessage", "Oops!  There is already a user registered with the email provided.");
+            modelAndView.addObject("alreadyRegisteredMessage",
+                    "Oops!  There is already a user registered with the email provided.");
             modelAndView.addObject("developer", new Developer());
             modelAndView.addObject("userModel", "developer");
             result.reject("email");
@@ -72,27 +66,25 @@ public class RegisterController {
         }
         if (!result.hasErrors()) {
             developer.setRole(UserRole.DEVELOPER);
-            if(!file.isEmpty()){
+            if (!file.isEmpty()) {
                 try {
                     developer.setImage(file.getBytes());
-                }catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
             developerService.add(developer);
-            modelAndView.addObject("confirmationMessage", "You has been registered successfully.");
+            modelAndView.addObject("confirmationMessage",
+                    "You has been registered successfully.");
         }
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/registration/investor", method = RequestMethod.POST)
-    public ModelAndView doInvestorRegistration(@ModelAttribute("investor")Investor investor, BindingResult result,
+    public ModelAndView doInvestorRegistration(@ModelAttribute("investor") Investor investor, BindingResult result,
                                                @RequestParam("file") MultipartFile file) {
-
         ModelAndView modelAndView = new ModelAndView("registration");
         Investor invExist = investorService.findByEmail(investor.getEmail());
-
         if (invExist != null && invExist.getEmail() != null) {
             modelAndView.addObject("alreadyRegisteredMessage", "Oops!  There is already a user registered with the email provided.");
             modelAndView.addObject("investor", new Investor());
@@ -100,21 +92,19 @@ public class RegisterController {
             result.reject("email");
             modelAndView.addObject("userRole", invExist.getRole());
         }
-
         if (!result.hasErrors()) {
             investor.setRole(UserRole.INVESTOR);
-            if(!file.isEmpty()){
+            if (!file.isEmpty()) {
                 try {
                     investor.setImage(file.getBytes());
-                }catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
             investorService.add(investor);
-            modelAndView.addObject("confirmationMessage", "You has been registered successfully.");
+            modelAndView.addObject("confirmationMessage",
+                    "You has been registered successfully.");
         }
         return modelAndView;
     }
-
-
 }

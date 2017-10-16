@@ -5,7 +5,9 @@ import ua.goit.java.startup.bom.Model;
 import ua.goit.java.startup.dto.ModelDTO;
 
 import java.util.Set;
-
+/*
+A class for transfer entities(BOMs) from/to DataBase
+ */
 @Component
 public abstract class DataTranslator<T extends ModelDTO, V extends Model> {
 

@@ -1,6 +1,5 @@
 package ua.goit.java.startup.bom;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,20 +12,16 @@ import java.util.Set;
 /*
 A BOM class for Investor content
  */
-
 public class Investor extends BaseUser implements UserDetails {
 
-    //TODO: Typo. Use camel case.
-    private long paidcost;
-
+    private long paidCost;
     private boolean isLocked;
-
     private Set<Startup> startup = new HashSet<>();
 
     public Investor(){}
 
-    public Investor(long paidcost, boolean isLocked, Set<Startup> startup) {
-        this.paidcost = paidcost;
+    public Investor(long paidCost, boolean isLocked, Set<Startup> startup) {
+        this.paidCost = paidCost;
         this.isLocked = isLocked;
         this.startup = startup;
     }
@@ -60,15 +55,15 @@ public class Investor extends BaseUser implements UserDetails {
     }
 
     public void addMoneyToInvestor(long sum) {
-        this.paidcost += sum;
+        this.paidCost += sum;
     }
 
-    public long getPaidcost() {
-        return paidcost;
+    public long getPaidCost() {
+        return paidCost;
     }
 
-    public void setPaidcost(long paidcost) {
-        this.paidcost = paidcost > 0 ? paidcost : 0;
+    public void setPaidCost(long paidCost) {
+        this.paidCost = paidCost > 0 ? paidCost : 0;
     }
 
     public Set<Startup> getStartup() {

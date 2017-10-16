@@ -3,9 +3,7 @@ package ua.goit.java.startup.bom;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import ua.goit.java.startup.dto.StartupDto;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,19 +12,13 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 /*
 a BOM class for Startup's data
  */
-
 public class Startup extends Model {
 
     private String name;
-
     private String description;
-
     private long cost;
-
-    private long currentsum;
-
+    private long currentSum;
     private byte[] image;
-
     private Set<Developer> developer;
     private Set<Investor> investor;
 
@@ -34,18 +26,18 @@ public class Startup extends Model {
         this.name = "";
         this.description = "";
         this.cost = 0;
-        this.currentsum = 0;
+        this.currentSum = 0;
         this.image = new byte[0];
         this.developer = new HashSet<>();
         this.investor = new HashSet<>();
     }
 
-    public Startup(String name, String description, long cost, long currentsum, byte[] image, Set<Developer> developer, Set<Investor> investor) {
+    public Startup(String name, String description, long cost, long currentSum, byte[] image, Set<Developer> developer, Set<Investor> investor) {
         this();
         setName(name);
         setDescription(description);
         setCost(cost);
-        setCurrentsum(currentsum);
+        setCurrentSum(currentSum);
         setImage(image);
         setDeveloper(developer);
         setInvestor(investor);
@@ -68,7 +60,7 @@ public class Startup extends Model {
     }
 
     public void addMoneyToStartup(long sum) {
-        this.currentsum += sum;
+        this.currentSum += sum;
     }
 
     public long getCost() {
@@ -79,12 +71,12 @@ public class Startup extends Model {
         this.cost = cost > 0 ? cost : 0;
     }
 
-    public long getCurrentsum() {
-        return currentsum;
+    public long getCurrentSum() {
+        return currentSum;
     }
 
-    public void setCurrentsum(long currentsum) {
-        this.currentsum = currentsum > 0 ? currentsum : 0;
+    public void setCurrentSum(long currentSum) {
+        this.currentSum = currentSum > 0 ? currentSum : 0;
     }
 
     public byte[] getImage() {

@@ -3,6 +3,9 @@ package ua.goit.java.startup.dto;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/*
+Basic class for Dto entities(BOMs)
+ */
 @MappedSuperclass
 public abstract class ModelDTO implements Serializable {
     @Id

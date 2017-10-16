@@ -4,16 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.startup.bom.Admin;
-import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.domainservice.AdminService;
 import ua.goit.java.startup.domainservice.DeveloperService;
 import ua.goit.java.startup.domainservice.InvestorService;
-
-
+/*
+A class for the Admin page, with methods for inside management
+ */
 @Controller
 public class AdminController {
 
@@ -24,10 +23,8 @@ public class AdminController {
     @Autowired
     private InvestorService investorService;
 
-
     @RequestMapping(value = "/admin/cabinet", method = RequestMethod.GET)
     public ModelAndView viewCabinet() {
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         ModelAndView modelAndView = new ModelAndView("index");
@@ -50,11 +47,8 @@ public class AdminController {
         return "redirect:/admin/cabinet";
     }
 
-
     @RequestMapping(value = "/admin/delete/developer/", method = RequestMethod.POST)
-    public String deleteDeveloper(@RequestParam(name = "id") long id){//@PathVariable(name = "id") long id) {
-
-
+    public String deleteDeveloper(@RequestParam(name = "id") long id){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Admin) {

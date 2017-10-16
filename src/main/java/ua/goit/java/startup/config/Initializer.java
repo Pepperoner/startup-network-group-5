@@ -8,7 +8,9 @@ import org.springframework.web.servlet.DispatcherServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
-
+/*
+Security initialization class
+ */
 @Configuration
 public class Initializer implements WebApplicationInitializer {
 

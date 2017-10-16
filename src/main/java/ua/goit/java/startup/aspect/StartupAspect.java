@@ -9,7 +9,9 @@ import ua.goit.java.startup.bom.Startup;
 import ua.goit.java.startup.dao.StartupDTORepository;
 import ua.goit.java.startup.dto.StartupDto;
 import ua.goit.java.startup.translator.StartupTranslator;
-
+/*
+Class implements end-to-end functionality for the Startup's side
+ */
 @Aspect
 @Component
 public class StartupAspect {
@@ -24,7 +26,7 @@ public class StartupAspect {
     }
 
     @Before("execution(* ua.goit.java.startup.bom.Startup.get*(..))")
-    public void fillStarupInfo(JoinPoint joinPoint) {
+    public void fillStartupInfo(JoinPoint joinPoint) {
         Startup startup = (Startup) joinPoint.getTarget();
         StartupDto startupDto = startupDTORepository.findOne(startup.getId());
         startupTranslator.fromDto(startupDto, startup);

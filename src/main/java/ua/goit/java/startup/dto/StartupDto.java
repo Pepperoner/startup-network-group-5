@@ -3,14 +3,14 @@ package ua.goit.java.startup.dto;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-
+/*
+A (Data Transfer Object) class for Startups that will be connect the entity(BOM) and the database
+ */
 @Entity
 @Table(name = "startups")
 public class StartupDto extends ModelDTO {
@@ -22,7 +22,7 @@ public class StartupDto extends ModelDTO {
     @Column(name = "cost", nullable = false)
     private long cost;
     @Column(name = "currentsum", nullable = false)
-    private long currentsum;
+    private long currentSum;
     @Column(name = "image")
     private byte[] image;
 
@@ -56,12 +56,12 @@ public class StartupDto extends ModelDTO {
         this.cost = cost > 0 ? cost : 0;
     }
 
-    public long getCurrentsum() {
-        return currentsum;
+    public long getCurrentSum() {
+        return currentSum;
     }
 
-    public void setCurrentsum(long currentsum) {
-        this.currentsum = currentsum > 0 ? currentsum : 0;
+    public void setCurrentSum(long currentSum) {
+        this.currentSum = currentSum > 0 ? currentSum : 0;
     }
 
     public byte[] getImage() {
@@ -83,12 +83,12 @@ public class StartupDto extends ModelDTO {
     public StartupDto() {
     }
 
-    public StartupDto(String name, String description, long cost, long currentsum, byte[] image, Set<UserDto> userDto) {
+    public StartupDto(String name, String description, long cost, long currentSum, byte[] image, Set<UserDto> userDto) {
         this();
         setName(name);
         setDescription(description);
         setCost(cost);
-        setCurrentsum(currentsum);
+        setCurrentSum(currentSum);
         setImage(image);
         setUserDto(userDto);
     }

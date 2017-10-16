@@ -1,9 +1,8 @@
 package ua.goit.java.startup.bom;
 
 /*
-Main class for all BOMs with field id
+Basic class for all entities(BOMs) with field 'id'
  */
-
 public abstract class Model {
 
     private long id;

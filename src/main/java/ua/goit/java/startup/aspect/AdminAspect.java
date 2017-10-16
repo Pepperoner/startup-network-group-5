@@ -9,7 +9,9 @@ import ua.goit.java.startup.bom.Admin;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.dto.UserDto;
 import ua.goit.java.startup.translator.AdminTranslator;
-
+/*
+Class implements end-to-end functionality for the Admin's side
+ */
 @Aspect
 @Component
 public class AdminAspect {

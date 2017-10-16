@@ -8,4 +8,3 @@ public interface StartupDTORepository extends DataRepository<StartupDto> {
     StartupDto findByName(String name);
     void deleteByName(String name);
 }
-

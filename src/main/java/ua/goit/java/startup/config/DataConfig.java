@@ -13,7 +13,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Properties;
-
+/*
+DataBase settings
+ */
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("ua.goit.java.startup")
@@ -60,7 +62,6 @@ public class DataConfig {
     }
 
     private Properties getHibernateProperties() {
-
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.put("hibernate.show_sql", "true");

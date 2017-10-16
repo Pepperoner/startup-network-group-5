@@ -11,9 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.domainservice.StartupService;
-
-/**
- * Created by Aleksandr on 26.09.2017.
+/*
+A class for the Home page view and management
  */
 @Controller
 @ComponentScan(basePackages = "ua.goit.java.startup.domainservice")
@@ -29,7 +28,6 @@ public class HomePageController {
     public ModelAndView getHomePage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("startups", startupService.getAll());
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Investor || user instanceof Developer) {

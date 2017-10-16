@@ -1,9 +1,6 @@
 package ua.goit.java.startup.domainservice.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.java.startup.bom.Developer;
@@ -22,13 +19,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/*
+Implementation of the developer's methods
+ */
 @Service
 public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> implements DeveloperService {
 
     private UserDTORepository userRepository;
 
     @Autowired
-    public DeveloperServiceImpl(DataRepository<UserDto> repository, DataTranslator<UserDto, Developer> translator, UserDTORepository userRepository) {
+    public DeveloperServiceImpl(DataRepository<UserDto> repository,
+                                DataTranslator<UserDto, Developer> translator,
+                                UserDTORepository userRepository) {
         super(repository, translator);
         this.userRepository = userRepository;
     }
@@ -45,11 +47,10 @@ public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> im
     @Override
     @Transactional
     public Collection<Developer> getAll() {
-
         Set<UserDto> modelDto = new HashSet<>();
         List<UserDto> userDtoList = repository.findAll();
         for (UserDto userDto : userDtoList) {
-            if (userDto.getRole().equals(UserRole.DEVELOPER)){
+            if (userDto.getRole().equals(UserRole.DEVELOPER)) {
                 modelDto.add(userDto);
             }
         }
@@ -57,6 +58,4 @@ public class DeveloperServiceImpl extends DataServiceImpl<UserDto, Developer> im
         model.addAll(translator.getListFromDto(modelDto));
         return model;
     }
-
-
 }

@@ -7,7 +7,9 @@ import ua.goit.java.startup.dto.UserDto;
 
 import java.util.HashSet;
 import java.util.Set;
-
+/*
+A class with Developer's methods for transfer from/to DataBase
+ */
 @Component
 public class DeveloperTranslator extends AbstractUserTranslator<Developer> {
 
@@ -25,7 +27,7 @@ public class DeveloperTranslator extends AbstractUserTranslator<Developer> {
             startup.setName(startupDto.getName());
             startup.setDescription(startupDto.getDescription());
             startup.setCost(startupDto.getCost());
-            startup.setCurrentsum(startupDto.getCurrentsum());
+            startup.setCurrentSum(startupDto.getCurrentSum());
             startups.add(startup);
         }
     }
@@ -51,7 +53,6 @@ public class DeveloperTranslator extends AbstractUserTranslator<Developer> {
         toDto(source, destination);
         return destination;
     }
-
 
     @Override
     public Developer fromDto(UserDto source) {

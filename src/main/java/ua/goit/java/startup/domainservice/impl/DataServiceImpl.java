@@ -12,6 +12,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+Implementation of the most important methods of a DataService
+ */
 public abstract class DataServiceImpl<T extends ModelDTO, V extends Model> implements DataService<V> {
 
     protected DataRepository<T> repository;
@@ -59,14 +62,9 @@ public abstract class DataServiceImpl<T extends ModelDTO, V extends Model> imple
         return model;
     }
 
-
     @Override
     @Transactional
     public Collection<V> getAll() {
-        /*Set<T> modelDto = (Set<T>) repository.findAll();
-        Set<V> model = new HashSet<V>();
-        model.addAll(translator.getListFromDto(modelDto));
-        return model;*/
         Set<T> modelDto = new HashSet<T>();
         modelDto.addAll(repository.findAll());
         Set<V> model = new HashSet<V>();

@@ -2,7 +2,9 @@ package ua.goit.java.startup.ui.form;
 
 import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.bom.Startup;
-
+/*
+An ancillary class for the investorPage and investMoney methods for the startup controllers
+ */
 public class InvestorStartupForm {
     private Investor investor;
     private Startup startup;

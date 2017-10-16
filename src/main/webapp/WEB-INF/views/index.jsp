@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-sm-6 test">
                             <div>Current Sum:</div>
-                            <div>${startup.currentsum}</div>
+                            <div>${startup.currentSum}</div>
                         </div>
                     </div>
                     <div class="startup-description">

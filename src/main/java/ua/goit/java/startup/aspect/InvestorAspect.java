@@ -9,7 +9,9 @@ import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.dto.UserDto;
 import ua.goit.java.startup.translator.InvestorTranslator;
-
+/*
+Class implements end-to-end functionality for the Investor's side
+ */
 @Aspect
 @Component
 public class InvestorAspect {
@@ -29,5 +31,4 @@ public class InvestorAspect {
         UserDto userDto = userDTORepository.findOne(investor.getId());
         investorTranslator.fromDto(userDto, investor);
     }
-
 }

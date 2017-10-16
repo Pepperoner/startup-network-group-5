@@ -14,7 +14,7 @@
         <div>Name: ${investor.username}</div>
         <div>Email: ${investor.email}</div>
         <div>Password: ${investor.password}</div>
-        <div>Total amount of the invest: ${investor.paidcost}</div>
+        <div>Total amount of the invest: ${investor.paidCost}</div>
 
 
         <div>
@@ -35,7 +35,7 @@
                             <td>${startup.name}</td>
                             <td>${startup.description}</td>
                             <td>${startup.cost}</td>
-                            <td>${startup.currentsum}</td>
+                            <td>${startup.currentSum}</td>
                             <c:if test="${startup.image != null}">
                                 <td><img style="width: 200px" src="/startup/imageDisplay?id=${startup.id}" class="media-object pull-left"></td>
                             </c:if>

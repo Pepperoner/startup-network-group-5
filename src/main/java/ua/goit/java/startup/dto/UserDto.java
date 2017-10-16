@@ -13,6 +13,10 @@ import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
+/*
+A (Data Transfer Object) class for some entity(Admin, Developer or Investor)
+that will be connect the entities(BOMs) and the database
+ */
 @Entity
 @Table(name = "users")
 public class UserDto extends ModelDTO implements UserDetails {
@@ -34,7 +38,8 @@ public class UserDto extends ModelDTO implements UserDetails {
     private UserRole role;
 
     @Column(name = "paidcost")
-    private long paidcost;
+    private long paidCost;
+
     @Column(name = "locked")
     private boolean isLocked;
 
@@ -45,19 +50,18 @@ public class UserDto extends ModelDTO implements UserDetails {
     @JoinTable(name = "users_startups",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "startup_id"))
-
     private Set<StartupDto> startupDto = new HashSet<>();
 
     public UserDto() {
     }
 
-    public UserDto(String username, String password, String contacts, UserRole role, long paidcost) {
+    public UserDto(String username, String password, String contacts, UserRole role, long paidCost) {
         this();
         setUsername(username);
         setPassword(password);
         setContacts(contacts);
         setRole(role);
-        setPaidcost(paidcost);
+        setPaidCost(paidCost);
     }
 
     @Override
@@ -82,7 +86,6 @@ public class UserDto extends ModelDTO implements UserDetails {
     public void setUsername(String username) {
         this.username = isNotBlank(username) ? username : "";
     }
-
 
     @Override
     public String getPassword() {
@@ -118,12 +121,12 @@ public class UserDto extends ModelDTO implements UserDetails {
         this.role = (role != null) ? role : UserRole.INVESTOR;
     }
 
-    public long getPaidcost() {
-        return paidcost;
+    public long getPaidCost() {
+        return paidCost;
     }
 
-    public void setPaidcost(long paidcost) {
-        this.paidcost = paidcost > 0 ? paidcost : 0;
+    public void setPaidCost(long paidCost) {
+        this.paidCost = paidCost > 0 ? paidCost : 0;
     }
 
     public boolean isLocked() {

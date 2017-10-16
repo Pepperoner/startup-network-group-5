@@ -19,6 +19,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+Implementation of the startup's methods
+ */
 @Service
 public class StartupServiceImpl extends DataServiceImpl<StartupDto, Startup> implements StartupService {
 
@@ -50,13 +53,13 @@ public class StartupServiceImpl extends DataServiceImpl<StartupDto, Startup> imp
 
     @Override
     @Transactional
-    public Collection<Developer> getStartapsDevelopers(long id){
+    public Collection<Developer> getStartupsDevelopers(long id) {
         StartupDto startupDto = startupDTORepository.getOne(id);
         DeveloperTranslator developerTranslator = new DeveloperTranslator();
         Set<UserDto> userDtos = startupDto.getUserDto();
         Set<Developer> developers = new HashSet<>();
         for (UserDto user : userDtos) {
-            if (user.getRole().equals(UserRole.DEVELOPER)){
+            if (user.getRole().equals(UserRole.DEVELOPER)) {
                 developers.add(developerTranslator.fromDto(user));
             }
         }

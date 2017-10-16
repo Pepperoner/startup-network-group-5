@@ -8,7 +8,9 @@ import ua.goit.java.startup.dto.UserDto;
 
 import java.util.HashSet;
 import java.util.Set;
-
+/*
+A class with Investor's methods for transfer from/to DataBase
+ */
 @Component
 public class InvestorTranslator extends AbstractUserTranslator<Investor> {
 
@@ -20,14 +22,14 @@ public class InvestorTranslator extends AbstractUserTranslator<Investor> {
         super.fromDto(source, destination);
         Set<Startup> startups = new HashSet<>();
         destination.setStartup(startups);
-        destination.setPaidcost(source.getPaidcost());
+        destination.setPaidCost(source.getPaidCost());
         for (StartupDto startupDto : source.getStartupDto()) {
             Startup startup = new Startup();
             startup.setId(startupDto.getId());
             startup.setName(startupDto.getName());
             startup.setDescription(startupDto.getDescription());
             startup.setCost(startupDto.getCost());
-            startup.setCurrentsum(startupDto.getCurrentsum());
+            startup.setCurrentSum(startupDto.getCurrentSum());
 
             startups.add(startup);
         }
@@ -41,7 +43,7 @@ public class InvestorTranslator extends AbstractUserTranslator<Investor> {
         super.toDto(source, destination);
         Set<StartupDto> startupDtos = new HashSet<>();
         destination.setStartupDto(startupDtos);
-        destination.setPaidcost(source.getPaidcost());
+        destination.setPaidCost(source.getPaidCost());
         for (Startup startup : source.getStartup()) {
             StartupDto startupDto = new StartupDto();
             startupDto.setId(startup.getId());

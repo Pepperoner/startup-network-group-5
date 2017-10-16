@@ -6,7 +6,9 @@ import ua.goit.java.startup.dto.UserDto;
 
 import java.util.HashSet;
 import java.util.Set;
-
+/*
+A class with Admin's methods for transfer from/to DataBase
+ */
 @Component
 public class AdminTranslator extends AbstractUserTranslator<Admin> {
 

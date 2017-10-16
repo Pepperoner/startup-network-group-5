@@ -1,7 +1,9 @@
 package ua.goit.java.startup.domainservice;
 
 import java.util.Collection;
-
+/*
+Basic methods for managing entities(BOMs)
+ */
 public interface DataService<T> {
 
     T add(T t);

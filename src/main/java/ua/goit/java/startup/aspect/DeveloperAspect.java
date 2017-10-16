@@ -9,7 +9,9 @@ import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.dao.UserDTORepository;
 import ua.goit.java.startup.dto.UserDto;
 import ua.goit.java.startup.translator.DeveloperTranslator;
-
+/*
+Class implements end-to-end functionality for the Developer's side
+ */
 @Aspect
 @Component
 public class DeveloperAspect {

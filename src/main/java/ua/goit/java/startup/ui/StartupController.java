@@ -1,8 +1,6 @@
 package ua.goit.java.startup.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Startup;
-import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.domainservice.DeveloperService;
 import ua.goit.java.startup.domainservice.StartupService;
 
@@ -23,13 +20,14 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/*
+A class for Startup management
+ */
 @Controller
 public class StartupController {
 
     @Autowired
     private StartupService startupService;
-
     @Autowired
     private DeveloperService developerService;
 
@@ -38,22 +36,6 @@ public class StartupController {
         return new ModelAndView("add-startup", "startup", new Startup());
     }
 
-
-    /* @RequestMapping(value = "/add-startup", method = RequestMethod.POST)
-     public String createStartup(Startup startup, BindingResult result) {
-
-         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-         Object user = auth.getPrincipal();
-
-         if (user instanceof Developer) {
-             Set<Developer> set = new HashSet<>();
-             set.add((Developer) user);
-             startup.setDeveloper(set);
-         }
-         startupService.add(startup);
-
-         return "redirect:/index";
-     }*/
     @RequestMapping(value = "/add-startup", method = RequestMethod.POST)
     public String createStartup(@ModelAttribute("startup") Startup startup, BindingResult result,
                                 @RequestParam("file") MultipartFile file) {
@@ -65,22 +47,18 @@ public class StartupController {
             set.add((Developer) user);
             startup.setDeveloper(set);
         }
-        //modelAndView.addObject("startup", new Startup());
-        //modelAndView.addObject("startupModel", "startup");
         try {
             startup.setImage(file.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
         startupService.add(startup);
-        //return modelAndView;
         return "redirect:/developer/cabinet";
     }
 
     @RequestMapping(value = "/startup/imageDisplay", method = RequestMethod.GET)
-    public void showImage(@RequestParam("id") Long id, HttpServletRequest request, HttpServletResponse response)
+    public void showImage(@RequestParam("id") Long id, HttpServletResponse response)
             throws ServletException, IOException {
-
         Startup startup = startupService.get(id);
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
         response.getOutputStream().write(startup.getImage());
@@ -99,18 +77,15 @@ public class StartupController {
     public ModelAndView showStartup(@PathVariable(name = "id") long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("startup", startupService.get(id));
-        modelAndView.addObject("developers", startupService.getStartapsDevelopers(id));
-
+        modelAndView.addObject("developers", startupService.getStartupsDevelopers(id));
         modelAndView.setViewName("startup_page");
         return modelAndView;
     }
 
     @RequestMapping(value = "/startup/update/{id}", method = RequestMethod.POST)
     public String updateStartup(
-            @ModelAttribute("startup") Startup startup, BindingResult result,
-            @RequestParam("file") MultipartFile file
-    ) {
-
+            @ModelAttribute("startup") Startup startup,
+            @RequestParam("file") MultipartFile file) {
         Startup startupToUpdate = startupService.get(startup.getId());
         startupToUpdate.setName(startup.getName());
         startupToUpdate.setDescription(startup.getDescription());
@@ -122,7 +97,6 @@ public class StartupController {
                 e.printStackTrace();
             }
         }
-
         Startup startupFromDb = startupService.update(startupToUpdate);
         ModelAndView modelAndView = new ModelAndView("edit_startup");
         modelAndView.addObject("startup", startupFromDb);
@@ -134,13 +108,11 @@ public class StartupController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Developer) {
-
             Developer developer = developerService.get(((Developer) user).getId());
-            Startup serchStartup = startupService.get(id);
+            Startup searchStartup = startupService.get(id);
             Set<Startup> startups = developer.getStartup();
-
-            for(Startup startup:startups){
-                if(startup.getId() == serchStartup.getId()){
+            for (Startup startup : startups) {
+                if (startup.getId() == searchStartup.getId()) {
                     startupService.remove(id);
                 }
             }

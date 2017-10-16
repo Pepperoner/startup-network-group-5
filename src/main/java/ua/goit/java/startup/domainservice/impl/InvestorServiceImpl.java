@@ -1,11 +1,8 @@
 package ua.goit.java.startup.domainservice.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.dao.DataRepository;
@@ -20,6 +17,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/*
+Implementation of the investor's methods
+ */
 @Service
 public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> implements InvestorService {
 
@@ -30,6 +30,7 @@ public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> impl
         super(repository, translator);
         this.userRepository = userRepository;
     }
+
     @Transactional
     public Investor findByEmail(String email) {
         UserDto userDTO = userRepository.findByEmail(email);
@@ -42,11 +43,10 @@ public class InvestorServiceImpl extends DataServiceImpl<UserDto, Investor> impl
     @Override
     @Transactional
     public Collection<Investor> getAll() {
-
         Set<UserDto> modelDto = new HashSet<>();
         List<UserDto> userDtoList = repository.findAll();
         for (UserDto userDto : userDtoList) {
-            if (userDto.getRole().equals(UserRole.INVESTOR)){
+            if (userDto.getRole().equals(UserRole.INVESTOR)) {
                 modelDto.add(userDto);
             }
         }

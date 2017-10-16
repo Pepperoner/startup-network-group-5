@@ -9,11 +9,9 @@ import java.util.*;
 /*
 A BOM class for Developer content
  */
-
 public class Developer extends BaseUser implements UserDetails {
 
     private boolean isLocked;
-
     private Set<Startup> startup = new HashSet<>();
 
     public Developer(boolean isLocked, Set<Startup> startup) {

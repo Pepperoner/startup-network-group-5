@@ -20,7 +20,7 @@
             </div>
             <div class="col-sm-6">
                 <div>Cost: ${startup.cost}</div>
-                <div>Current Sum: ${startup.currentsum}</div>
+                <div>Current Sum: ${startup.currentSum}</div>
                 <div>
                     <sec:authorize access="isAuthenticated()">
                         <sec:authentication property="principal.role" var="userRole"/>
