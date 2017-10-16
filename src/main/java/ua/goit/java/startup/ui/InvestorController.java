@@ -59,15 +59,19 @@ public class InvestorController {
     @RequestMapping(value = "startup/invest/{id}", method = RequestMethod.GET)
     public ModelAndView investPage(@PathVariable(name = "id") long id) {
         ModelAndView modelAndView = new ModelAndView();
-        InvestorStartupForm investorStartupForm = new InvestorStartupForm();
-        investorStartupForm.setStartup(startupService.get(id));
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Investor) {
+            InvestorStartupForm investorStartupForm = new InvestorStartupForm();
+            investorStartupForm.setStartup(startupService.get(id));
             investorStartupForm.setInvestor((Investor) user);
+            modelAndView.addObject("investorStartupForm", investorStartupForm);
+            modelAndView.setViewName("invest_startup");
+        }else{
+            modelAndView.setViewName("/login");
         }
-        modelAndView.addObject("investorStartupForm", investorStartupForm);
-        modelAndView.setViewName("invest_startup");
+
         return modelAndView;
     }
 /**/

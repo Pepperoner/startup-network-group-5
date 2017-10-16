@@ -16,6 +16,12 @@
                 <button class="btn btn-lg btn-primary btn-block">SIGN IN</button>
             </form>
         </div>
+        <div class="do-registration-msg-wrapper">
+            <div class="do-registration-msg">
+                <span> New to STARTUP? </span>
+                <span>Please do <a class="registerLink" href="/register">Registration</a></span>
+            </div>
+        </div>
     </jsp:body>
 </t:layout>
 

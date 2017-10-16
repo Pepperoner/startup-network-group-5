@@ -1,6 +1,8 @@
+<%@ page import="ua.goit.java.startup.bom.UserRole" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <t:layout>
     <jsp:attribute name="title">
@@ -31,10 +33,20 @@
                         <c:set var="descr" value="${startup.description}"/>
                         Description: ${descr.length() > 40 ? descr.substring(0, 40) : descr}...
                     </div>
-                    <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
-                       href="<c:url value='/startup/invest/${startup.id}'/>">Invest</a>
-                    <%--<div ><a href="#">See more...</a></div>--%>
-                    <div ><a href="/startup/${startup.id}">See more...</a></div>
+                    <div>
+                        <a href="<c:url value='/startup/${startup.id}'/>" class="pull-left">See more...</a>
+                        <sec:authorize access="isAuthenticated()">
+                            <sec:authentication property="principal.role" var="userRole"/>
+                            <c:if test="${userRole.equals(UserRole.INVESTOR)}">
+                                <a class="btn btn-xs btn-primary active pull-right" role="button" style="margin: 5px"
+                                   href="<c:url value='/startup/invest/${startup.id}'/>">Invest</a>
+                            </c:if>
+                        </sec:authorize>
+                        <sec:authorize access="!isAuthenticated()">
+                            <a class="btn btn-xs btn-primary active pull-right" role="button" style="margin: 5px"
+                               href="<c:url value='/startup/invest/${startup.id}'/>">Invest</a>
+                        </sec:authorize>
+                    </div>
                 </div>
             </c:forEach>
         </div>

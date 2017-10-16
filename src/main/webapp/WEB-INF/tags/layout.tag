@@ -48,7 +48,7 @@
                             <li class="active"><a href="${goToIndex}">Home</a></li>
                             <sec:authorize access="!isAuthenticated()">
                                 <li><a href="/login">Log In</a></li>
-                                <li><a id="registerLink" href="${goToRegister}">Registration</a></li>
+                                <li><a class="registerLink" href="${goToRegister}">Registration</a></li>
                             </sec:authorize>
 
                             <sec:authorize access="isAuthenticated()">
