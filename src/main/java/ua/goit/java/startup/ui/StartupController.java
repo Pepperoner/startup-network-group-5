@@ -95,6 +95,16 @@ public class StartupController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/startup/{id}", method = RequestMethod.GET)
+    public ModelAndView showStartup(@PathVariable(name = "id") long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("startup", startupService.get(id));
+        modelAndView.addObject("developers", startupService.getStartapsDevelopers(id));
+
+        modelAndView.setViewName("startup_page");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/startup/update/{id}", method = RequestMethod.POST)
     public String updateStartup(
             @ModelAttribute("startup") Startup startup, BindingResult result,

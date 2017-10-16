@@ -33,7 +33,8 @@
                     </div>
                     <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
                        href="<c:url value='/startup/invest/${startup.id}'/>">Invest</a>
-                    <div ><a href="#">See more...</a></div>
+                    <%--<div ><a href="#">See more...</a></div>--%>
+                    <div ><a href="/startup/${startup.id}">See more...</a></div>
                 </div>
             </c:forEach>
         </div>
