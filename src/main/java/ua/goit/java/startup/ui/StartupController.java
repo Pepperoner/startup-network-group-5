@@ -26,10 +26,14 @@ A class for Startup management
 @Controller
 public class StartupController {
 
+    private final StartupService startupService;
+    private final DeveloperService developerService;
+
     @Autowired
-    private StartupService startupService;
-    @Autowired
-    private DeveloperService developerService;
+    public StartupController(final StartupService startupService, final DeveloperService developerService) {
+        this.startupService = startupService;
+        this.developerService = developerService;
+    }
 
     @RequestMapping(value = "/add-startup", method = RequestMethod.GET)
     public ModelAndView createStartup() {

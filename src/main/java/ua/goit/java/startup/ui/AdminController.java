@@ -10,18 +10,23 @@ import ua.goit.java.startup.bom.Admin;
 import ua.goit.java.startup.domainservice.AdminService;
 import ua.goit.java.startup.domainservice.DeveloperService;
 import ua.goit.java.startup.domainservice.InvestorService;
+
 /*
 A class for the Admin page, with methods for inside management
  */
 @Controller
 public class AdminController {
 
+    private final AdminService adminService;
+    private final DeveloperService developerService;
+    private final InvestorService investorService;
+
     @Autowired
-    private AdminService adminService;
-    @Autowired
-    private DeveloperService developerService;
-    @Autowired
-    private InvestorService investorService;
+    public AdminController(final AdminService adminService, final DeveloperService developerService, final InvestorService investorService) {
+        this.adminService = adminService;
+        this.developerService = developerService;
+        this.investorService = investorService;
+    }
 
     @RequestMapping(value = "/admin/cabinet", method = RequestMethod.GET)
     public ModelAndView viewCabinet() {
@@ -48,7 +53,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/delete/developer/", method = RequestMethod.POST)
-    public String deleteDeveloper(@RequestParam(name = "id") long id){
+    public String deleteDeveloper(@RequestParam(name = "id") long id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
         if (user instanceof Admin) {

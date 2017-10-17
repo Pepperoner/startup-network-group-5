@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.Investor;
 import ua.goit.java.startup.domainservice.StartupService;
+
 /*
 A class for the Home page view and management
  */
@@ -18,8 +19,12 @@ A class for the Home page view and management
 @ComponentScan(basePackages = "ua.goit.java.startup.domainservice")
 public class HomePageController {
 
+    private final StartupService startupService;
+
     @Autowired
-    private StartupService startupService;
+    public HomePageController(final StartupService startupService) {
+        this.startupService = startupService;
+    }
 
     @RequestMapping(
             value = {"", "/", "index"},

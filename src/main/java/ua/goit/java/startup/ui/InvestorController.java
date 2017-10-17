@@ -11,20 +11,26 @@ import ua.goit.java.startup.bom.Startup;
 import ua.goit.java.startup.domainservice.InvestorService;
 import ua.goit.java.startup.domainservice.StartupService;
 import ua.goit.java.startup.ui.form.InvestorStartupForm;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 /*
 A class for the Investor page, with methods for inside management
  */
 @Controller
 public class InvestorController {
 
+    private final InvestorService investorService;
+    private final StartupService startupService;
+
     @Autowired
-    private InvestorService investorService;
-    @Autowired
-    private StartupService startupService;
+    public InvestorController(final InvestorService investorService, final StartupService startupService) {
+        this.investorService = investorService;
+        this.startupService = startupService;
+    }
 
     @RequestMapping(value = "/investor/cabinet", method = RequestMethod.GET)
     public ModelAndView viewCabinet() {
@@ -58,7 +64,7 @@ public class InvestorController {
             investorStartupForm.setInvestor((Investor) user);
             modelAndView.addObject("investorStartupForm", investorStartupForm);
             modelAndView.setViewName("invest_startup");
-        }else{
+        } else {
             modelAndView.setViewName("/login");
         }
         return modelAndView;
@@ -75,9 +81,9 @@ public class InvestorController {
         Object user = auth.getPrincipal();
         if (user instanceof Investor) {
             startupToInvest.getInvestor().add((Investor) user);
-            Investor investorFromDb = investorService.update(investorToInvest);
+            investorService.update(investorToInvest);
         }
-        Startup startupFromDb = startupService.update(startupToInvest);
+        startupService.update(startupToInvest);
         return "redirect:/index";
     }
 }

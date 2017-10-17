@@ -57,9 +57,7 @@ public abstract class DataServiceImpl<T extends ModelDTO, V extends Model> imple
     @Transactional
     public V get(long id) {
         T modelDto = repository.findOne(id);
-        //TODO: Could be simplify.
-        V model = translator.fromDto(modelDto);
-        return model;
+        return translator.fromDto(modelDto);
     }
 
     @Override

@@ -15,14 +15,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 /*
 A class for the Developer page, with methods for inside management
  */
 @Controller
 public class DeveloperController {
 
+    private final DeveloperService developerService;
+
     @Autowired
-    private DeveloperService developerService;
+    public DeveloperController(final DeveloperService developerService) {
+        this.developerService = developerService;
+    }
 
     @RequestMapping(value = "/developer/cabinet", method = RequestMethod.GET)
     public ModelAndView viewCabinet() {

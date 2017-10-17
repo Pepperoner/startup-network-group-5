@@ -26,7 +26,7 @@ public class DeveloperTranslatorTest {
     private DeveloperTranslator developerTranslator;
 
     @Test
-    public void testToDto(){
+    public void testToDto() {
         Developer developer = new Developer();
         developer.setRole(UserRole.DEVELOPER);
         UserDto userDto = developerTranslator.toDto(developer);
@@ -34,7 +34,7 @@ public class DeveloperTranslatorTest {
     }
 
     @Test
-    public void testFromDto(){
+    public void testFromDto() {
         UserDto userDto = new UserDto();
         userDto.setRole(UserRole.DEVELOPER);
         Developer developer = developerTranslator.fromDto(userDto);
@@ -52,11 +52,12 @@ public class DeveloperTranslatorTest {
         Set<UserDto> userDtoSet = new HashSet<>();
         userDtoSet.add(userDto);
         Set<Developer> developers = developerTranslator.getListFromDto(userDtoSet);
-        Developer element = developers.iterator().next();
-        Assert.assertEquals(element.getUsername(),userDto.getUsername());
-        Assert.assertEquals(element.getPassword(),userDto.getPassword());
-        Assert.assertEquals(element.getEmail(),userDto.getEmail());
-        Assert.assertEquals(element.getContacts(),userDto.getContacts());
-        Assert.assertTrue(element instanceof Developer);
+        for (Developer developer : developers) {
+            Assert.assertEquals(USERNAME, developer.getUsername());
+            Assert.assertEquals(PASSWORD, developer.getPassword());
+            Assert.assertEquals(EMAIL, developer.getEmail());
+            Assert.assertEquals(CONTACTS, developer.getContacts());
+            Assert.assertEquals(UserRole.DEVELOPER, developer.getRole());
+        }
     }
 }

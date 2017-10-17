@@ -20,14 +20,14 @@ public class InvestorTranslatorTest {
     private static final String PASSWORD = "Password";
     private static final String EMAIL = "Email";
     private static final String CONTACTS = "Contacts";
-    private static final Long PAIDCOST = 1500L;
+    private static final long PAIDCOST = 1500L;
 
     @Spy
     @InjectMocks
     private InvestorTranslator investorTranslator;
 
     @Test
-    public void testToDto(){
+    public void testToDto() {
         Investor investor = new Investor();
         investor.setRole(UserRole.INVESTOR);
         UserDto userDto = investorTranslator.toDto(investor);
@@ -35,7 +35,7 @@ public class InvestorTranslatorTest {
     }
 
     @Test
-    public void testFromDto(){
+    public void testFromDto() {
         UserDto userDto = new UserDto();
         userDto.setRole(UserRole.INVESTOR);
         Investor investor = investorTranslator.fromDto(userDto);
@@ -54,12 +54,13 @@ public class InvestorTranslatorTest {
         Set<UserDto> userDtoSet = new HashSet<>();
         userDtoSet.add(userDto);
         Set<Investor> investors = investorTranslator.getListFromDto(userDtoSet);
-        Investor element = investors.iterator().next();
-        Assert.assertEquals(element.getUsername(),userDto.getUsername());
-        Assert.assertEquals(element.getPassword(),userDto.getPassword());
-        Assert.assertEquals(element.getEmail(),userDto.getEmail());
-        Assert.assertEquals(element.getContacts(),userDto.getContacts());
-        Assert.assertEquals(element.getPaidCost(),userDto.getPaidCost());
-        Assert.assertTrue(element instanceof Investor);
+        for (Investor investor : investors) {
+            Assert.assertEquals(USERNAME, investor.getUsername());
+            Assert.assertEquals(PASSWORD, investor.getPassword());
+            Assert.assertEquals(EMAIL, investor.getEmail());
+            Assert.assertEquals(CONTACTS, investor.getContacts());
+            Assert.assertEquals(PAIDCOST, investor.getPaidCost());
+            Assert.assertEquals(UserRole.INVESTOR, investor.getRole());
+        }
     }
 }

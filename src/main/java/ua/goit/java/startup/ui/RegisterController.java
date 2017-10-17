@@ -16,16 +16,21 @@ import ua.goit.java.startup.domainservice.DeveloperService;
 import ua.goit.java.startup.domainservice.InvestorService;
 
 import java.io.IOException;
+
 /*
 A class for (Developer/Investor) registration management
  */
 @Controller
 public class RegisterController {
 
+    private final DeveloperService developerService;
+    private final InvestorService investorService;
+
     @Autowired
-    private DeveloperService developerService;
-    @Autowired
-    private InvestorService investorService;
+    public RegisterController(final DeveloperService developerService, final InvestorService investorService) {
+        this.developerService = developerService;
+        this.investorService = investorService;
+    }
 
     @RequestMapping(value = "/user_type-selector", method = RequestMethod.GET)
     public ModelAndView showRegistrationPage() {

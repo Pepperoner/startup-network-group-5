@@ -26,7 +26,7 @@ public class AdminTranslatorTest {
     private AdminTranslator adminTranslator;
 
     @Test
-    public void testToDto(){
+    public void testToDto() {
         Admin admin = new Admin();
         admin.setRole(UserRole.ADMIN);
         UserDto userDto = adminTranslator.toDto(admin);
@@ -34,7 +34,7 @@ public class AdminTranslatorTest {
     }
 
     @Test
-    public void testFromDto(){
+    public void testFromDto() {
         UserDto userDto = new UserDto();
         userDto.setRole(UserRole.ADMIN);
         Admin admin = adminTranslator.fromDto(userDto);
@@ -52,12 +52,12 @@ public class AdminTranslatorTest {
         Set<UserDto> userDtoSet = new HashSet<>();
         userDtoSet.add(userDto);
         Set<Admin> admins = adminTranslator.getListFromDto(userDtoSet);
-        Admin element = admins.iterator().next();
-        Assert.assertEquals(element.getUsername(),userDto.getUsername());
-        Assert.assertEquals(element.getPassword(),userDto.getPassword());
-        Assert.assertEquals(element.getEmail(),userDto.getEmail());
-        Assert.assertEquals(element.getContacts(),userDto.getContacts());
-        Assert.assertEquals(element.getRole(),userDto.getRole());
-        Assert.assertTrue(element instanceof Admin);
+        for (Admin admin : admins) {
+            Assert.assertEquals(USERNAME, admin.getUsername());
+            Assert.assertEquals(PASSWORD, admin.getPassword());
+            Assert.assertEquals(EMAIL, admin.getEmail());
+            Assert.assertEquals(CONTACTS, admin.getContacts());
+            Assert.assertEquals(UserRole.ADMIN, admin.getRole());
+        }
     }
 }
