@@ -9,10 +9,10 @@ Our Startup-Network is open to financing and supporting the most promising and s
 Make your choice right now and get a profit and profitable terms with us.
 
 Project was made by our team (Group 5):
-Oleksndr Bidnyi
-Dmitriy Degtiar
-Dmitriy Moroz
-Boris Lagutin
+*Oleksndr Bidnyi
+*Dmitriy Degtiar
+*Dmitriy Moroz
+*Boris Lagutin
 and... some other persons who wished to remain anonymous
 
 
