@@ -10,8 +10,16 @@ import ua.goit.java.startup.bom.Developer;
 import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.dto.UserDto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @RunWith(MockitoJUnitRunner.class)
 public class DeveloperTranslatorTest {
+
+    private static final String USERNAME = "Username";
+    private static final String PASSWORD = "Password";
+    private static final String EMAIL = "Email";
+    private static final String CONTACTS = "Contacts";
 
     @Spy
     @InjectMocks
@@ -31,5 +39,24 @@ public class DeveloperTranslatorTest {
         userDto.setRole(UserRole.DEVELOPER);
         Developer developer = developerTranslator.fromDto(userDto);
         Assert.assertEquals(UserRole.DEVELOPER, developer.getRole());
+    }
+
+    @Test
+    public void testGetDeveloperListFromDto() {
+        UserDto userDto = new UserDto();
+        userDto.setUsername(USERNAME);
+        userDto.setPassword(PASSWORD);
+        userDto.setEmail(EMAIL);
+        userDto.setContacts(CONTACTS);
+        userDto.setRole(UserRole.DEVELOPER);
+        Set<UserDto> userDtoSet = new HashSet<>();
+        userDtoSet.add(userDto);
+        Set<Developer> developers = developerTranslator.getListFromDto(userDtoSet);
+        Developer element = developers.iterator().next();
+        Assert.assertEquals(element.getUsername(),userDto.getUsername());
+        Assert.assertEquals(element.getPassword(),userDto.getPassword());
+        Assert.assertEquals(element.getEmail(),userDto.getEmail());
+        Assert.assertEquals(element.getContacts(),userDto.getContacts());
+        Assert.assertTrue(element instanceof Developer);
     }
 }

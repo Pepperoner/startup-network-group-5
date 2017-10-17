@@ -10,8 +10,16 @@ import ua.goit.java.startup.bom.Admin;
 import ua.goit.java.startup.bom.UserRole;
 import ua.goit.java.startup.dto.UserDto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @RunWith(MockitoJUnitRunner.class)
 public class AdminTranslatorTest {
+
+    private static final String USERNAME = "Username";
+    private static final String PASSWORD = "Password";
+    private static final String EMAIL = "Email";
+    private static final String CONTACTS = "Contacts";
 
     @Spy
     @InjectMocks
@@ -31,5 +39,25 @@ public class AdminTranslatorTest {
         userDto.setRole(UserRole.ADMIN);
         Admin admin = adminTranslator.fromDto(userDto);
         Assert.assertEquals(UserRole.ADMIN, admin.getRole());
+    }
+
+    @Test
+    public void testGetAdminListFromDto() {
+        UserDto userDto = new UserDto();
+        userDto.setUsername(USERNAME);
+        userDto.setPassword(PASSWORD);
+        userDto.setEmail(EMAIL);
+        userDto.setContacts(CONTACTS);
+        userDto.setRole(UserRole.ADMIN);
+        Set<UserDto> userDtoSet = new HashSet<>();
+        userDtoSet.add(userDto);
+        Set<Admin> admins = adminTranslator.getListFromDto(userDtoSet);
+        Admin element = admins.iterator().next();
+        Assert.assertEquals(element.getUsername(),userDto.getUsername());
+        Assert.assertEquals(element.getPassword(),userDto.getPassword());
+        Assert.assertEquals(element.getEmail(),userDto.getEmail());
+        Assert.assertEquals(element.getContacts(),userDto.getContacts());
+        Assert.assertEquals(element.getRole(),userDto.getRole());
+        Assert.assertTrue(element instanceof Admin);
     }
 }
