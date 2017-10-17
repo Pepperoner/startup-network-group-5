@@ -1,4 +1,4 @@
-										Greetings you  dear visitor! 
+Greetings you  dear visitor! 
 Welcome to the page of the site on attracting investments - Startup-Network (from developers-group-5). 
 Get the opportunity to invest in the most successful projects and get a huge profit, thanks to our project. 
 By investing in one of the projects in our Startup-Network you are investing in your future.
