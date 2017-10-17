@@ -14,6 +14,3 @@ Project was made by our team (Group 5):
 *Dmitriy Moroz
 *Boris Lagutin
 and... some other persons who wished to remain anonymous
-
-
-
